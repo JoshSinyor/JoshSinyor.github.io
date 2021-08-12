@@ -15,3 +15,17 @@ You'll need a copy of [Karabiner-Elements](https://karabiner-elements.pqrs.org/)
 ### Keyboard Layouts
 
 There are a number of different types of Mac keyboard, and limitless configurations of Windows ones. For the purposes of this post, I'm mapping a tenkeyless UK-pattern ISO keyboard to an American-market ANSI MacBook Air keyboard. Here are my relative layouts:
+
+![MacBook Air Keyboard](../_assets/wikipedia_kb_mac_us_english.svg)
+<p align="center"><i>MacBook Air International English Keyboard</i></p>
+
+![Windows TKL Keyboard](../_assets/wikipedia_kb_windows_uk_english.svg)
+<p align="center"><i>ISO TKL UK English Keyboard</i></p>
+
+<p align="center"><small><i>Images modified from Wikipedia and licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/legalcode">CC BY-SA 3.0</a></i></small></p>
+
+Here I've highlighted the keys that don't map correctly when the keyboard is plugged into the Mac.
+
+![Windows TKL Keyboard Highlighted](../_assets/wikipedia_kb_windows_uk_english_highlighted.svg)
+
+The red keys don't correspond to the Mac's layout, or don't function at all - the Home and End keys do function in the Mac style, but not in the far more useful Windows style; more on that later.
