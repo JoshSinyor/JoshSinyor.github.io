@@ -34,7 +34,7 @@ Here I've highlighted the keys that don't map correctly when the keyboard is plu
 
 ![Windows TKL Keyboard Highlighted](../_assets/2021-08-12/wikipedia_kb_windows_uk_english_highlighted.svg)
 
-The red keys don't correspond to the Mac's layout, or don't function at all - the Home and End keys do function in the Mac style, but not in the far more useful Windows style; more on that in part 3.
+The red keys don't correspond to the Mac's layout, or don't function at all - the Home and End keys do function in the Mac style, but not in the far more useful Windows style; more on that and other common Windows shortcuts in part 3.
 
 ---
 
