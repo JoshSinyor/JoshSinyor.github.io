@@ -56,13 +56,13 @@ To remap the keys, you need to know their names. Open Event Viewer, and start ty
 
 ![Event Viewer 01](../_assets/2021-08-12/event_viewer_01.png)
 
-In the first column is the Event Type; the press (`down`) and release (`up`) of each key. In the second column is the Human Interface Device (HID) code of the key; the internal keyboard is `7`, and the letter h is `11`. In the third is the Name of the key; the letter h is `"key_code":"h"`.
+In the first column is the Event Type; the press (`down`) and release (`up`) of each key. In the second column is the Human Interface Device (HID) code of the key; both the internal and external keyboard are prefixed `7`, and the letter h is `11`, the letter e `8` and so on. In the third is the Name of the key; the letter h is `"key_code":"h"`, the letter e `"key_code":"e"` and so on.
 
-Here's what happens when I type `hello` on my external keyboard:
+Let's revisit some of the buttons that don't match up. Event Viewer identifies these as follows:
 
-![Event Viewer 02](../_assets/2021-08-12/event_viewer_02.png)
+![Windows TKL Keyboard Event Viewer](../_assets/2021-08-12/wikipedia_kb_windows_uk_english_highlighted_event_viewer.svg)
 
-As you can see, only the HID code has changed - the external keyboard is prefixed `7`, rather than ` `.
+![Windows TKL Keyboard Event Viewer](../_assets/2021-08-12/wikipedia_kb_windows_uk_english_highlighted_event_viewer_copy.svg)
 
 ---
 
