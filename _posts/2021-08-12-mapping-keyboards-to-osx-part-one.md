@@ -62,8 +62,6 @@ Let's revisit some of the buttons that don't match up. Event Viewer identifies t
 
 ![Windows TKL Keyboard Event Viewer](../_assets/2021-08-12/wikipedia_kb_windows_uk_english_highlighted_event_viewer.svg)
 
-![Windows TKL Keyboard Event Viewer](../_assets/2021-08-12/wikipedia_kb_windows_uk_english_highlighted_event_viewer_copy.svg)
-
 ---
 
 ### Reassigning Keys 1: Simple Rules
