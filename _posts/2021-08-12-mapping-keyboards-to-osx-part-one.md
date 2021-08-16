@@ -23,17 +23,17 @@ Maybe you want to use a mechanical keyboard to annoy the neighbours, maybe you w
 
 There are a number of different types of Mac keyboard, and limitless configurations of Windows ones. For the purposes of this post, I'm mapping a tenkeyless UK-pattern ISO keyboard to an American-market ANSI MacBook Air keyboard. Here are my relative layouts:
 
-![MacBook Air Keyboard](images/2021-08-12/wikipedia_kb_mac_us_english.svg)
+![MacBook Air Keyboard](/images/2021-08-12/wikipedia_kb_mac_us_english.svg)
 <p align="center"><i>MacBook Air International English Keyboard</i></p>
 
-![Windows TKL Keyboard](images/2021-08-12/wikipedia_kb_windows_uk_english.svg)
+![Windows TKL Keyboard](/images/2021-08-12/wikipedia_kb_windows_uk_english.svg)
 <p align="center"><i>ISO TKL UK English Keyboard</i></p>
 
 <p align="center"><small><i>Images modified from Wikipedia and licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/legalcode">CC BY-SA 3.0</a></i></small></p>
 
 Here I've highlighted the keys that don't map correctly when the keyboard is plugged into the Mac.
 
-![Windows TKL Keyboard Highlighted](images/2021-08-12/wikipedia_kb_windows_uk_english_highlighted.svg)
+![Windows TKL Keyboard Highlighted](/images/2021-08-12/wikipedia_kb_windows_uk_english_highlighted.svg)
 
 The red keys don't correspond to the Mac's layout, or don't function at all - the Home and End keys do function in the Mac style, but not in the far more useful Windows style; more on that and other common Windows shortcuts in part 3.
 
@@ -55,13 +55,13 @@ Each key on a keyboard has a specific name. The number keys are "1" through "0",
 
 To remap the keys, you need to know their names. Open Event Viewer, and start typing. Here's what happens when I type `hello` on my MacBook's internal keyboard:
 
-![Event Viewer 01](images/2021-08-12/event_viewer_01.png)
+![Event Viewer 01](/images/2021-08-12/event_viewer_01.png)
 
 In the first column is the Event Type; the press (`down`) and release (`up`) of each key. In the second column is the Human Interface Device (HID) code of the key; both the internal and external keyboard are prefixed `7`, and the letter h is `11`, the letter e `8` and so on. In the third is the Name of the key; the letter h is `"key_code":"h"`, the letter e `"key_code":"e"` and so on.
 
 Let's revisit some of the buttons that don't match up. Event Viewer identifies these as follows:
 
-![Windows TKL Keyboard Event Viewer](images/2021-08-12/wikipedia_kb_windows_uk_english_highlighted_event_viewer.svg)
+![Windows TKL Keyboard Event Viewer](/images/2021-08-12/wikipedia_kb_windows_uk_english_highlighted_event_viewer.svg)
 
 This process can be repeated on the Apple keyboard to establish the names of the keys the mismatched keys *should* correspond to.
 
@@ -75,11 +75,11 @@ Armed with the names of the keys that should be matched up, we can begin remappi
 
 The most obvious switch most users will wish to prioritise is reassigning the Command and Option keys, which are inverted on Mac and Windows keyboards.
 
-![Keyboard Option & Command](images/2021-08-12/wikipedia_kb_command_and_option.svg)
+![Keyboard Option & Command](/images/2021-08-12/wikipedia_kb_command_and_option.svg)
 
 This, and other simple key remapping, is readily achieved in Karabiner Elements. Open the application, and select Preferences. Select the 'Simple modifications' tab. Select the external keyboard from the 'Target Device' drop-down menu. Click the 'Add Item' button, and select the key you want to reassign from the 'From key' drop-down menu. Then select the key you want to reassign it to from the 'To key' drop-down menu, and you're done.
 
-![Karabiner Elements Option & Command](images/2021-08-12/karabiner_elements_01.png)
+![Karabiner Elements Option & Command](/images/2021-08-12/karabiner_elements_01.png)
 
 You can repeat this for any other keys you want to reassign like-for-like.
 
