@@ -12,10 +12,10 @@ Maybe you want to use a mechanical keyboard to annoy the neighbours, maybe you w
 - [Keyboard Layouts](#keyboard-layouts)
 - [Software](#software)
 - [Identifying Keys](#identifying-keys)
-- [Reassigning Keys 1: Simple Rules](#reassigning-keys-1--simple-rules)
-  * [Switching the Command & Option Keys](#switching-the-command---option-keys)
+- [Reassigning Keys 1: Simple Rules](#reassigning-keys-1-simple-rules)
+  * [Switching the Command & Option Keys](#switching-the-command--option-keys)
   * [Disabling Keys](#disabling-keys)
-- [Reassigning Keys 2: Complex Rules](#reassigning-keys-2--complex-rules)
+- [Reassigning Keys 2: Complex Rules](#reassigning-keys-2-complex-rules)
 
 ---
 
@@ -44,8 +44,12 @@ The red keys don't correspond to the Mac's layout, or don't function at all - th
 You'll need a copy of [Karabiner-Elements](https://karabiner-elements.pqrs.org/), a free open-source application intended for exactly this purpose. Check that your version of OSX is supported (anything after 10.15.6 should be OK), that you have Administrator-level permissions on your computer, and download the application from their website. It installs like any other app, but requires permissions you'll have to approve manually. Follow the [official instructions](https://karabiner-elements.pqrs.org/docs/getting-started/installation/) carefully to ensure the app has the permissions it needs.
 
 Karabiner-Element installs two distinct programs:
-- **Elements**, where keys are reassigned according to rules, and
+- **Karabiner Elements**, where keys are reassigned according to rules, and
 - **Event Viewer**, where a keylogger shows the assigned names and flags of keys pressed on any connected keyboard.
+
+The first thing to do is limit the changes you are making to the external keyboard only. Open up Karabiner Elements' Preferences pane and navigate to the Devices tab. Uncheck the checkboxes for keyboards you don't want your reassignments to affect - in particular the Mac's keyboard.
+
+![Karabiner Elements Devices](/images/2021-08-12/karabiner_elements_01.png)
 
 ---
 
@@ -55,7 +59,7 @@ Each key on a keyboard has a specific name. The number keys are "1" through "0",
 
 To remap the keys, you need to know their names. Open Event Viewer, and start typing. Here's what happens when I type `hello` on my MacBook's internal keyboard:
 
-![Event Viewer 01](/images/2021-08-12/event_viewer_01.png)
+![Event Viewer 01](/images/2021-08-12/event_viewer_02.png)
 
 In the first column is the Event Type; the press (`down`) and release (`up`) of each key. In the second column is the Human Interface Device (HID) code of the key; both the internal and external keyboard are prefixed `7`, and the letter h is `11`, the letter e `8` and so on. In the third is the Name of the key; the letter h is `"key_code":"h"`, the letter e `"key_code":"e"` and so on.
 
@@ -79,7 +83,7 @@ The most obvious switch most users will wish to prioritise is reassigning the Co
 
 This, and other simple key remapping, is readily achieved in Karabiner Elements. Open the application, and select Preferences. Select the 'Simple modifications' tab. Select the external keyboard from the 'Target Device' drop-down menu. Click the 'Add Item' button, and select the key you want to reassign from the 'From key' drop-down menu. Then select the key you want to reassign it to from the 'To key' drop-down menu, and you're done.
 
-![Karabiner Elements Option & Command](/images/2021-08-12/karabiner_elements_01.png)
+![Karabiner Elements Option & Command](/images/2021-08-12/karabiner_elements_02.png)
 
 You can repeat this for any other keys you want to reassign like-for-like.
 
@@ -91,4 +95,4 @@ Disabling keys is another simple feature supported by the 'Simple modifications'
 
 ### Reassigning Keys 2: Complex Rules
 
-The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. This will be addressed in [Part 2 of this series](/_posts/2021-08-12-mapping-keyboards-to-osx-part-one.html).
+The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. This will be addressed in [Part 2 of this series](/_posts/2021-08-16-mapping-keyboards-to-osx-part-two).
