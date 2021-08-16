@@ -95,4 +95,4 @@ Disabling keys is another simple feature supported by the 'Simple modifications'
 
 ### Reassigning Keys 2: Complex Rules
 
-The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. This will be addressed in [Part 2 of this series](/_posts/2021-08-16-mapping-keyboards-to-osx-part-two).
+The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. This will be addressed in [Part 2 of this series](/2021-08-16-mapping-keyboards-to-osx-part-two).

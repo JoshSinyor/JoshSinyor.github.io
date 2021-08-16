@@ -1,7 +1,7 @@
 ## Remapping Windows Keyboards to OSX: Part 2
 ### Part 2: Complex Rules
 
-Karabiner Elements' Preferences pane has a 'Simple modifications' tab capable of simple key reassignment. This is useful if you'd like to switch keys like-for-like (e.g. [reversing the Command and Option keys](/_posts/2021-08-12-mapping-keyboards-to-osx-part-one#switching-the-command--option-keys), or [disabling a key altogether](/_posts/2021-08-12-mapping-keyboards-to-osx-part-one#disabling-keys)) but incapable of dealing with more complex situations, like combinations of keystrokes, or partial reassingment of keys.
+Karabiner Elements' Preferences pane has a 'Simple modifications' tab capable of simple key reassignment. This is useful if you'd like to switch keys like-for-like (e.g. [reversing the Command and Option keys](/2021-08-12-mapping-keyboards-to-osx-part-one#switching-the-command--option-keys), or [disabling a key altogether](/2021-08-12-mapping-keyboards-to-osx-part-one#disabling-keys)) but incapable of dealing with more complex situations, like combinations of keystrokes, or partial reassingment of keys.
 
 ---
 
