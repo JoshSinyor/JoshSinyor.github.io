@@ -14,6 +14,7 @@ rss: rss
 kramdown:
   syntax_highlighter_opts:
     disable: true
+    auto_ids: true
 
 plugins:
   - jekyll-feed
