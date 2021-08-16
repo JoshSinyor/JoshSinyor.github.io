@@ -11,10 +11,11 @@ Maybe you want to use a mechanical keyboard to annoy the neighbours, maybe you w
 
 - [Keyboard Layouts](#keyboard-layouts)
 - [Software](#software)
-- [Mapping Keys](#mapping-keys)
 - [Identifying Keys](#identifying-keys)
-  - [1. Simple Rules](#1-simple-rules)
-  - [2. Complex Rules](#2-complex-rules)
+- [Reassigning Keys 1: Simple Rules](#reassigning-keys-1--simple-rules)
+  * [Switching the Command & Option Keys](#switching-the-command---option-keys)
+  * [Disabling Keys](#disabling-keys)
+- [Reassigning Keys 2: Complex Rules](#reassigning-keys-2--complex-rules)
 
 ---
 
@@ -62,18 +63,32 @@ Let's revisit some of the buttons that don't match up. Event Viewer identifies t
 
 ![Windows TKL Keyboard Event Viewer](../_assets/2021-08-12/wikipedia_kb_windows_uk_english_highlighted_event_viewer.svg)
 
+This process can be repeated on the Apple keyboard to establish the names of the keys the mismatched keys *should* correspond to.
+
 ---
 
 ### Reassigning Keys 1: Simple Rules
 
-#### 1. Switching the Command & Option Keys
+Armed with the names of the keys that should be matched up, we can begin remapping the keyboard. The most straightforward remapping - key-for-key - is done through Karabiner-Element's GUI.
 
-#### 2. Disabling Keys
+#### Switching the Command & Option Keys
+
+The most obvious switch most users will wish to prioritise is reassigning the Command and Option keys, which are inverted on Mac and Windows keyboards.
+
+![Keyboard Option & Command](../_assets/2021-08-12/wikipedia_kb_command_and_option.svg)
+
+This, and other simple key remapping, is readily achieved in Karabiner Elements. Open the application, and select Preferences. Select the 'Simple modifications' tab. Select the external keyboard from the 'Target Device' drop-down menu. Click the 'Add Item' button, and select the key you want to reassign from the 'From key' drop-down menu. Then select the key you want to reassign it to from the 'To key' drop-down menu, and you're done.
+
+![Karabiner Elements Option & Command](../_assets/2021-08-12/karabiner_elements_01.png)
+
+You can repeat this for any other keys you want to reassign like-for-like.
+
+#### Disabling Keys
+
+Disabling keys is another simple feature supported by the 'Simple modifications' tab. There are several keys on the typical Windows keyboard that are superfluous on a basic Mac layout. Some you might want to reassign to more complex modes, others conflict with your Windows keyboard muscle memory. I chose to disable the `Scroll Lock` and `Pause` keys, which have extremely limited utility even in Windows use. Again, it's a simple case of selecting the key you wish to reassign, and assigning it to `vk_none (disable this key)`.
 
 ---
 
-### Reassigning Keys 2. Complex Rules
+### Reassigning Keys 2: Complex Rules
 
-The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not.
-
----
+The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. This will be addressed in Part 2 of this series.
