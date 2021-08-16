@@ -1,4 +1,4 @@
-## Remapping Windows Keyboards to OSX
+## Remapping Windows Keyboards to OSX: Part 1
 ### Part 1: Identifying Keys
 
 Many people new to programming - including me - learn their lessons on a Mac. MacBooks, with their uniform hardware and UNIX-based operating system, are beloved by coding schools. That said, there's no two ways about it: Apple's keyboards are not the choice of champions. In addition to being costly (even the most basic Magic Keyboard is £99; the full-fat version is an eye-watering £179), like most OEMs Apple's 'boards use membrane switches, giving a mushy press and return. Modern typists after a definitive click, or a particularly obnoxious typewriter-like rattle, have returned to the noisy embrace of the mechanical keyboard.
