@@ -12,10 +12,10 @@ Maybe you want to use a mechanical keyboard to annoy the neighbours, maybe you w
 - [Keyboard Layouts](#keyboard-layouts)
 - [Software](#software)
 - [Identifying Keys](#identifying-keys)
-- [Reassigning Keys 1: Simple Rules](#reassigning-keys-1--simple-rules)
-  * [Switching the Command & Option Keys](#switching-the-command---option-keys)
+- [Reassigning Keys 1: Simple Rules](#reassigning-keys-1-simple-rules)
+  * [Switching the Command & Option Keys](#switching-the-command--option-keys)
   * [Disabling Keys](#disabling-keys)
-- [Reassigning Keys 2: Complex Rules](#reassigning-keys-2--complex-rules)
+- [Reassigning Keys 2: Complex Rules](#reassigning-keys-2-complex-rules)
 
 ---
 
