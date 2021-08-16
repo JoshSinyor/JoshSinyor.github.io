@@ -1,5 +1,5 @@
 ## Remapping Windows Keyboards to OSX: Part 1
-### Part 1: Identifying Keys
+### Part 1: Identifying Keys & Simple Rules
 
 Many people new to programming - including me - learn their lessons on a Mac. MacBooks, with their uniform hardware and UNIX-based operating system, are beloved by coding schools. That said, there's no two ways about it: Apple's keyboards are not the choice of champions. In addition to being costly (even the most basic Magic Keyboard is £99; the full-fat version is an eye-watering £179), like most OEMs Apple's 'boards use membrane switches, giving a mushy press and return. Modern typists after a definitive click, or a particularly obnoxious typewriter-like rattle, have returned to the noisy embrace of the mechanical keyboard.
 
@@ -91,4 +91,4 @@ Disabling keys is another simple feature supported by the 'Simple modifications'
 
 ### Reassigning Keys 2: Complex Rules
 
-The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. This will be addressed in Part 2 of this series.
+The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. This will be addressed in [Part 2 of this series](/_posts/2021-08-12-mapping-keyboards-to-osx-part-one.html).
