@@ -6,11 +6,20 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 
 ## Table of Contents
 
+- [Installation](#installation)
 - [Built With](#built-with)
 - [Dependencies](#dependencies)
 - [Author(s)](#author-s-)
 - [License(s)](#license-s-)
 - [Acknowledgements](#acknowledgements)
+
+---
+
+## Installation
+
+This repository is automatically processed by GitHub Pages using Jekyll. If you would like to run a copy of the site locally, fork this repository to your local machine. Verify that you have the variant of Ruby specified in the `Gemfile` installed. In the repository directory, run `gem install bundler`, then `bundle update`. Some of the gems this repository uses are frequently updated, so running `bundle update` frequently is advised.
+
+To start the local hosting server, run `jekyll serve`, and visit the site at http://localhost:4000/.
 
 ---
 
@@ -26,9 +35,10 @@ This repository is based on the guidelines provided in [How to Build A SQL Blog]
 
 - [Ruby](https://www.ruby-lang.org/), courtesy of [Yukihiro Matsumoto](https://github.com/matz).
 
-GitHub pages uses Jekyll to translate the contents of this repository into a static website rendered in HTML and CSS. In a sense these are the repository's only true dependencies. However, local build and testing of the repository requires the installation of a local version of Jekyll.
+GitHub pages uses Jekyll to translate the contents of this repository into a static website rendered in HTML and CSS. In a sense these are the repository's only true dependencies. However, local build and testing of the repository requires the installation of a local version of Jekyll and GitHub-Pages.
 
 - [Jekyll](https://jekyllrb.com/), courtesy of [Ashwin Maroli](https://github.com/ashmaroli), [Frank Taillandier](https://github.com/DirtyF) and [Matt Rogers](https://github.com/mattr-).
+- [github-pages](https://github.com/github/pages-gem), courtesy of [Ben Balter](https://github.com/benbalter) and [Parker Moore](https://github.com/parkr).
 
 This program's other dependencies are minimal and relate solely to testing. They were chosen for their ubiquity and self-contained nature, so that they could be specified as `require: false` and required only in the `test` environment to reduce their impact on the program's speed. For clarity, all dependencies are explicitly invoked by the `Gemfile`.
 
