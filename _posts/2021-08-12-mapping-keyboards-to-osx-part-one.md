@@ -59,7 +59,7 @@ Each key on a keyboard has a specific name. The number keys are "1" through "0",
 
 To remap the keys, you need to know their names. Open Event Viewer, and start typing. Here's what happens when I type `hello` on my MacBook's internal keyboard:
 
-![Event Viewer 01](/images/2021-08-12/event_viewer_02.png)
+![Event Viewer 01](/images/2021-08-12/event_viewer_01.png)
 
 In the first column is the Event Type; the press (`down`) and release (`up`) of each key. In the second column is the Human Interface Device (HID) code of the key; both the internal and external keyboard are prefixed `7`, and the letter h is `11`, the letter e `8` and so on. In the third is the Name of the key; the letter h is `"key_code":"h"`, the letter e `"key_code":"e"` and so on.
 
