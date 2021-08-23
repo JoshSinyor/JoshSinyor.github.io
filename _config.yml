@@ -30,3 +30,10 @@ defaults:
       type: posts
     values:
       tags: Other
+
+exclude:
+  - spec
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
