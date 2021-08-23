@@ -7,6 +7,7 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 ## Table of Contents
 
 - [Built With](#built-with)
+- [Dependencies](#dependencies)
 - [Author(s)](#author-s-)
 - [License(s)](#license-s-)
 - [Acknowledgements](#acknowledgements)
