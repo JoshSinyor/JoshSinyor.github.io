@@ -10,7 +10,8 @@ Karabiner Elements' Preferences pane has a 'Simple modifications' tab capable of
   * [Partial Reassignment](#partial-reassignment)
   * [Partial Disabling](#partial-disabling)
   * [Multiple Complex Rules](#multiple-complex-rules)
-- [Reassigning Keys 3: Windows Key Functions](#reassigning-keys-3-windows-key-functions)
+- [Saving Your Profile](#saving-your-profile)
+- [Reassigning Keys 3: Windows Key Functions](#reassigning-keys-3--windows-key-functions)
 
 ---
 
@@ -145,6 +146,14 @@ Multiple complex rules can be stacked on a single key. For example, to simultane
 
 ---
 
+### Saving Your Profile
+
+If you've invested serious time in the creation of your new keyboard profile, it makes sense to save it! Open Karabiner Elements' Preferences pane and select the 'Profile' tab. Click the 'Add profile' button, and give your profile a name.
+
+![Profile Tab](/images/2021-08-16/karabiner_elements_03.png)
+
+---
+
 ### Reassigning Keys 3: Windows Key Functions
 
-There are some key combinations from Windows that will be so ingrained in your muscle memory - or so conspicuously lacking from Mac's default function - that you'll want to add them over and above the basic reassignment. For example, the default behaviour of the `Home` and `End` keys - especially when it comes to highlighting text using a `shift` modifier (default behaviour: skipping to the beginning and end of files, rather than the beginning or end of the line) feels inadequate after using the default Windows option. The three-key combination required to execute a Print Screen command seems wildly excessive when a typical Windows keyboard will have a dedicated button. Commonly desired modifications of this type will be addressed in Part 3 of this series.
+There are some key combinations from Windows that will be so ingrained in your muscle memory - or so conspicuously lacking from Mac's default function - that you'll want to add them over and above the basic reassignment. For example, the default behaviour of the `Home` and `End` keys - especially when it comes to highlighting text using a `shift` modifier (default behaviour: skipping to the beginning and end of files, rather than the beginning or end of the line) feels inadequate after using the default Windows option. The three-key combination required to execute a Print Screen command seems wildly excessive when a typical Windows keyboard will have a dedicated button. Commonly desired modifications of this type will be addressed in [Part 3]({% post_url 2021-08-23-mapping-keyboards-to-osx-part-three %}) of this series.

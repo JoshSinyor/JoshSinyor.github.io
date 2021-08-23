@@ -13,6 +13,7 @@ Maybe you want to use a mechanical keyboard to annoy the neighbours, maybe you w
 - [Reassigning Keys 1: Simple Rules](#reassigning-keys-1-simple-rules)
   * [Switching the Command & Option Keys](#switching-the-command--option-keys)
   * [Disabling Keys](#disabling-keys)
+  * [Function Keys](#function-keys)
 - [Reassigning Keys 2: Complex Rules](#reassigning-keys-2-complex-rules)
 
 ---
@@ -53,7 +54,7 @@ The first thing to do is limit the changes you are making to the external keyboa
 
 ### Identifying Keys
 
-Each key on a keyboard has a specific name. The number keys are "1" through "0", the letters "a" through "z". The modifier, arrow, keypad, international and control and symbol keys are named more specifically. For example, the caps lock key is "caps_lock", the up arrow key "up_arrow", the keypad number 1 key "keypad_1", and the backspace key "delete_or_backspace".
+Each key on a keyboard has a specific name. The number keys are "`1`" through "`0`", the letters "`a`" through "`z`". The modifier, arrow, keypad, international and control and symbol keys are named more specifically. For example, the caps lock key is "`caps_lock`", the up arrow key "`up_arrow`", the keypad number 1 key "`keypad_1`", and the backspace key "`delete_or_backspace`".
 
 To remap the keys, you need to know their names. Open Event Viewer, and start typing. Here's what happens when I type `hello` on my MacBook's internal keyboard:
 
@@ -65,7 +66,7 @@ Let's revisit some of the buttons that don't match up. Event Viewer identifies t
 
 ![Windows TKL Keyboard Event Viewer](/images/2021-08-12/wikipedia_kb_windows_uk_english_highlighted_event_viewer.svg)
 
-This process can be repeated on the Apple keyboard to establish the names of the keys the mismatched keys *should* correspond to.
+This process can be repeated on the Apple keyboard to establish the names of the keys that the mismatched keys *should* correspond to.
 
 ---
 
@@ -79,7 +80,7 @@ The most obvious switch most users will wish to prioritise is reassigning the Co
 
 ![Keyboard Option & Command](/images/2021-08-12/wikipedia_kb_command_and_option.svg)
 
-This, and other simple key remapping, is readily achieved in Karabiner Elements. Open the application, and select Preferences. Select the 'Simple modifications' tab. Select the external keyboard from the 'Target Device' drop-down menu. Click the 'Add Item' button, and select the key you want to reassign from the 'From key' drop-down menu. Then select the key you want to reassign it to from the 'To key' drop-down menu, and you're done.
+This, and other simple key remapping, is readily achieved in Karabiner Elements. Open the application, and select Preferences. Select the 'Simple modifications' tab. Select the external keyboard from the 'Target device' drop-down menu. Click the 'Add item' button, and select the key you want to reassign from the 'From key' drop-down menu. Then select the key you want to reassign it to from the 'To key' drop-down menu, and you're done.
 
 ![Karabiner Elements Option & Command](/images/2021-08-12/karabiner_elements_02.png)
 
@@ -88,6 +89,14 @@ You can repeat this for any other keys you want to reassign like-for-like.
 #### Disabling Keys
 
 Disabling keys is another simple feature supported by the 'Simple modifications' tab. There are several keys on the typical Windows keyboard that are superfluous on a basic Mac layout. Some you might want to reassign to more complex modes, others conflict with your Windows keyboard muscle memory. I chose to disable the `Scroll Lock` and `Pause` keys, which have extremely limited utility even in Windows use. Again, it's a simple case of selecting the key you wish to reassign, and assigning it to `vk_none (disable this key)`.
+
+#### Function Keys
+
+Reassigning Function keys is one of the simplest processes in Karabiner-Elements. In Karabiner-Elements' Preferences pane, select the 'Function keys' tab. Again, limit the changes you are making to the external keyboard only by selecting it from the 'Target device' drop-down menu. Here's my modified pairing:
+
+![Karabiner Elements Function Keys](/images/2021-08-12/karabiner_elements_03.png)
+
+You can see that I haven't reassigned the F5 key. We'll return to this key in Part 3 of this series.
 
 ---
 
