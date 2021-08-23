@@ -1,11 +1,9 @@
 ## Remapping Windows Keyboards to OSX: Part 2
 ### Part 2: Complex Rules
 
-Karabiner Elements' Preferences pane has a 'Simple modifications' tab capable of simple key reassignment. This is useful if you'd like to switch keys like-for-like (e.g. [reversing the Command and Option keys](/2021-08-12-mapping-keyboards-to-osx-part-one#switching-the-command--option-keys), or [disabling a key altogether](/2021-08-12-mapping-keyboards-to-osx-part-one#disabling-keys)) but incapable of dealing with more complex situations, like combinations of keystrokes, or partial reassingment of keys.
+Karabiner Elements' Preferences pane has a 'Simple modifications' tab capable of simple key reassignment. This is useful if you'd like to switch keys like-for-like (e.g. [reversing the Command and Option keys]({% post_url 2021-08-12-mapping-keyboards-to-osx-part-one %}#switching-the-command--option-keys), or [disabling a key altogether]({% post_url 2021-08-12-mapping-keyboards-to-osx-part-one %}#disabling-keys)) but incapable of dealing with more complex situations, like combinations of keystrokes, or partial reassignment of keys.
 
 ---
-
-### Table of Contents
 
 - [Importing Complex Rules](#importing-complex-rules)
 - [Manual Reassignment](#manual-reassignment)
@@ -149,4 +147,4 @@ Multiple complex rules can be stacked on a single key. For example, to simultane
 
 ### Reassigning Keys 3: Windows Key Functions
 
-There are some key combinations from Windows that will be so ingrained in your muscle memory - or so conspicuously lacking from Mac's default function - that you'll want to add them over and above the basic reassignment. For example, the default behaviour of the `Home` and `End` keys - especially when it comes to highlighting text using a `shift` modifier (default behaviour: skipping to the beginning and end of files, rather than the beginning or end of the line) feels inadequate after using the default Windows option. The three-key combination required to execute a Print Screen command seems wildly excessive when a typical Windows keyboard will have a dedicated button. Commonly desired modifications of this type will be addressed in [Part 3 of this series](/_posts/2021-08-16-mapping-keyboards-to-osx-part-two).
+There are some key combinations from Windows that will be so ingrained in your muscle memory - or so conspicuously lacking from Mac's default function - that you'll want to add them over and above the basic reassignment. For example, the default behaviour of the `Home` and `End` keys - especially when it comes to highlighting text using a `shift` modifier (default behaviour: skipping to the beginning and end of files, rather than the beginning or end of the line) feels inadequate after using the default Windows option. The three-key combination required to execute a Print Screen command seems wildly excessive when a typical Windows keyboard will have a dedicated button. Commonly desired modifications of this type will be addressed in Part 3 of this series.
