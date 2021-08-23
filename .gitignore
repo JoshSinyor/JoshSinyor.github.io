@@ -1,3 +1,15 @@
-﻿_site
-
+# Ignore local temporary files
 .DS_Store
+
+# Jekyll
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+
+# Ignore local cache of Rubocop remote config
+.rubocop-*
+
+# Ignore local cache of SimpleCov
+/coverage
