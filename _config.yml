@@ -9,7 +9,7 @@ linkedin_username: "joshsinyor"
 
 theme: "minima"
 
-rss: rss
+rss: RSS
 
 kramdown:
   syntax_highlighter_opts:
@@ -27,6 +27,6 @@ titles_from_headings:
 defaults:
   - scope:
       path: ""
-      type: post
+      type: posts
     values:
       tags: Other
