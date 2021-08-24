@@ -82,13 +82,149 @@ The Apple application of the `Home` and `End` keys will be befuddling to most Wi
 | Move cursor to end of line.                  | `Command` + `Right Arrow`           | `End`                        |
 | Select from cursor to beginning of line.     | `Shift` + `Command` + `Left Arrow`  | `Shift` + `Home`             |
 | Select from cursor to end of line.           | `Shift` + `Command` + `Right Arrow` | `Shift` + `End`              |
-| Move cursor to beginning of document.        | `Fn` + `Left Arrow`                 | `Control` + `Home`           |
-| Move cursor to end of document.              | `Fn` + `Right Arrow`                | `Control` + `End`            |
-| Select from cursor to beginning of document. | `Shift` + `Command` + `Up Arrow`    | `Shift` + `Control` + `Home` |
-| Select from cursor to end of document.       | `Shift` + `Command` + `Down Arrow`  | `Shift` + `Control` + `End`  |
+| Move cursor to beginning of document.        | `Control` + `Up Arrow`              | `Control` + `Home`           |
+| Move cursor to end of document.              | `Control` + `Down Arrow`            | `Control` + `End`            |
+| Select from cursor to beginning of document. | `Shift` + `Control` + `Up Arrow`    | `Shift` + `Control` + `Home` |
+| Select from cursor to end of document.       | `Shift` + `Control` + `Down Arrow`  | `Shift` + `Control` + `End`  |
 
 ```
-
+{
+  "description": "Remap home and end",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "home"
+      },
+      "to": {
+        "key_code": "left_arrow",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "home",
+        "modifiers": {
+          "mandatory": [
+            "shift"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "left_arrow",
+        "modifiers": [
+          "command",
+          "shift"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "home",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "up_arrow",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "home",
+        "modifiers": {
+          "mandatory": [
+            "shift",
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "up_arrow",
+        "modifiers": [
+          "shift",
+          "command"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "end"
+      },
+      "to": {
+        "key_code": "right_arrow",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "end",
+        "modifiers": {
+          "mandatory": [
+            "shift"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "right_arrow",
+        "modifiers": [
+          "command",
+          "shift"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "end",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "down_arrow",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
+        "key_code": "end",
+        "modifiers": {
+          "mandatory": [
+            "shift",
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "down_arrow",
+        "modifiers": [
+          "shift",
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
 ```
 
 ---
