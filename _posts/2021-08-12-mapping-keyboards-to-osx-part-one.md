@@ -96,7 +96,7 @@ Reassigning Function keys is one of the simplest processes in Karabiner-Elements
 
 ![Karabiner Elements Function Keys](/images/2021-08-12/karabiner_elements_03.png)
 
-You can see that I haven't reassigned the F5 key. We'll return to this key in Part 3 of this series.
+I also remapped the otherwise-useless `Application` key to the `Fn` key. You can also see that I haven't reassigned the F5 key. We'll return to this key in Part 3 of this series.
 
 ---
 
