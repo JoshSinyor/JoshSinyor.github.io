@@ -226,6 +226,11 @@ The Apple application of the `Home` and `End` keys will be befuddling to most Wi
   ]
 }
 ```
+---
+
+### Lock Computer
+
+A relatively simple complex rule will replicate the Windows shortcut used to lock your computer.
 
 ---
 
