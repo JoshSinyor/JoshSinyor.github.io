@@ -11,7 +11,7 @@ Karabiner Elements' Preferences pane has a 'Simple modifications' tab capable of
   * [Partial Disabling](#partial-disabling)
   * [Multiple Complex Rules](#multiple-complex-rules)
 - [Saving Your Profile](#saving-your-profile)
-- [Reassigning Keys 3: Windows Key Functions](#reassigning-keys-3--windows-key-functions)
+- [Reassigning Keys 3: Windows Key Functions](#reassigning-keys-3-windows-key-functions)
 
 ---
 

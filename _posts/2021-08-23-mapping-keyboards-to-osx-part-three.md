@@ -21,13 +21,18 @@ Windows users will have it ingrained in them that the `F5` key refreshes a webpa
 
 ### Print Screen Key
 
-Apple's Print Screen function is useful, but requires a three-key (`Shift` + `Command` + `3`) combination to execute the same functionality as a Windows keyboard's single `Print Screen` button. Mapping the Mac key combinations to the `Print Screen` key is as simple as adding another complex rule to the `karabiner.json` file; if you're not sure how to do that, revisit the [Manual Reassignment]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#manual-reassignment)] section of Part 2 of this topic. There are three options for printing a Mac's screen:
+Apple's Print Screen function is useful, but requires a three-key (`Shift` + `Command` + `3`) combination to execute the same functionality as a Windows keyboard's single `Print Screen` button. Mapping the Mac key combinations to the `Print Screen` key is as simple as adding another complex rule to the `karabiner.json` file; if you're not sure how to do that, revisit the [Manual Reassignment]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#manual-reassignment) section of Part 2 of this topic.
 
-|                         | Mac Key Combination                     | Desired Key Combination      |
-|-------------------------|-----------------------------------------|------------------------------|
-| Print the entire screen | `Shift` + `Command` + `3`               | `Shift` + `Print Screen`     |
-| Print a selected area   | `Shift` + `Command` + `4`               | `Print Screen`               |
-| Print a selected window | `Shift` + `Command` + `4`, then `Space` | `Print Screen`, then `Space` |
+There are six options for printing a Mac's screen; as you can see below, it takes a scarcely believable five keys to execute the fairly common command of printing a single window to clipboard. To execute some operations in Windows you must use a shortcut (`Windows Key` + `Shift` + `S`) to open Snip & Sketch, a program which has a native equivalent in OSX.
+
+| Command                               | Mac Key Combination                                     | Windows Key Combination        |
+|---------------------------------------|---------------------------------------------------------|--------------------------------|
+| Print the entire screen to clipboard. | `Control` + `Shift` + `Command` + `3`                   | `Print Screen`                 |
+| Print the entire screen to file.      | `Shift` + `Command` + `3`                               | `Windows Key` + `Print Screen` |
+| Print a selected area to clipboard.   | `Control` + `Shift` + `Command` + `4`                   | `Windows Key` + `Shift` + `S`  |
+| Print a selected area to file.        | `Shift` + `Command` + `4`                               | `Windows Key` + `Shift` + `S`  |
+| Print a selected window to clipboard. | `Control` + `Shift` + `Command` + `4`, then `Space Bar` | `Alt` + `Print Screen`         |
+| Print a selected window to file.      | `Shift` + `Command` + `4`, then `Space Bar`             | `Windows Key` + `Shift` + `S`  |
 
 Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -37,10 +42,24 @@ Here's the complex rule I inserted into my `karabiner.json` file:
   "manipulators": [
     {
       "from": {
+        "key_code": "print_screen"
+      },
+      "to": {
+        "key_code": "3",
+        "modifiers": [
+          "control",
+          "shift",
+          "command"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
         "key_code": "print_screen",
         "modifiers": {
           "mandatory": [
-            "shift"
+            "left_option"
           ]
         }
       },
@@ -55,11 +74,36 @@ Here's the complex rule I inserted into my `karabiner.json` file:
     },
     {
       "from": {
+        "key_code": "s",
+        "modifiers": {
+          "mandatory": [
+            "left_option",
+            "shift"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "5",
+        "modifiers": [
+          "shift",
+          "command"
+        ]
+      },
+      "type": "basic"
+    },
+    {
+      "from": {
         "key_code": "print_screen",
+        "modifiers": {
+          "mandatory": [
+            "command"
+          ]
+        }
       },
       "to": {
         "key_code": "4",
         "modifiers": [
+          "control",
           "shift",
           "command"
         ]
@@ -76,7 +120,7 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 The Apple application of the `Home` and `End` keys will be befuddling to most Windows users. If you'd like to revert to `Home` sending you to the beginning of a line rather than the beginning of a document, and `End` sending you to the end of a line rather than the end of the document, and would like `Shift` to select the content between the cursor position and that point, you'll need to institute new complex rules. The existing and desired combinations are as follows:
 
-| Command                                      | Mac Key Combination                 | Desired Key Combination      |
+| Command                                      | Mac Key Combination                 | Windows Key Combination      |
 |----------------------------------------------|-------------------------------------|------------------------------|
 | Move cursor to beginning of line.            | `Command` + `Left Arrow`            | `Home`                       |
 | Move cursor to end of line.                  | `Command` + `Right Arrow`           | `End`                        |
