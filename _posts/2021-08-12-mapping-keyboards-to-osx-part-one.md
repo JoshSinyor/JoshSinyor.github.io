@@ -76,7 +76,7 @@ Armed with the names of the keys that should be matched up, we can begin remappi
 
 #### Switching the Command & Option Keys
 
-The most obvious switch most users will wish to prioritise is reassigning the Command and Option keys, which are inverted on Mac and Windows keyboards.
+The most obvious switch most users will wish to prioritise is reassigning the `Command` and `Option` keys, which are inverted on Mac and Windows keyboards.
 
 ![Keyboard Option & Command](/images/2021-08-12/wikipedia_kb_command_and_option.svg)
 
