@@ -569,4 +569,4 @@ A oxymoronically simple complex rule will replicate the Windows shortcut (`Comma
 
 ### Reassigning Keys 4: Browser Shortcuts
 
-There are some situations where you'll only want reassignment to apply when you're using certain applications. Windows users will find Commonly desired modifications of this type will be addressed in [Part 4]({% post_url 2021-10-01-mapping-keyboards-to-osx-part-four %}) of this series.
+There are some situations where you'll only want reassignment to apply when you're using certain applications. Windows users will find Commonly desired modifications of this type will be addressed in Part 4 of this series.
