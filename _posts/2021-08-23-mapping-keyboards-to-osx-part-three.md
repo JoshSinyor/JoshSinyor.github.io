@@ -152,7 +152,7 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 ### Finding with `Control` + `F`
 
-A commonly-used Windows shortcuts is Find, using the `Control` and `F` shortcut. As before, the `Control` and `F` combination is not actually assigned on OSX, so there's no obvious downside to assigning this shortcut to Paste. Here's the complex rule I inserted into my `karabiner.json` file:
+A commonly-used Windows shortcuts is Find, using the `Control` and `F` shortcut. As before, the `Control` and `F` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Find. Here's the complex rule I inserted into my `karabiner.json` file:
 
 ```
 {
