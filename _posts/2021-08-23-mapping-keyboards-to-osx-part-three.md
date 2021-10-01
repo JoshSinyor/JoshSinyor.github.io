@@ -3,6 +3,8 @@
 
 Karabiner Elements' Preferences pane has a 'Complex modifications' tab capable of implementing complex rules of key reassignment. This is useful if you'd like to execute complex key reassignment (e.g. [partially reassigning keys]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#partial-reassignment) or [partially disabling keys]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#partial-disabling)), but mimicking some of the most common Windows key behaviour requires special combinations of rules.
 
+⚠️ **It's important when reassigning combinations of keys to ensure that you understand the behaviour [that OSX might already assign](https://support.apple.com/en-gb/HT201236) to that shortcut.** If you're substituting different behaviour for a key combination that is already an OSX shortcut you may wish to reassign the OSX shortcut to a different, unassigned combination.
+
 Some commonly desired rules are provided below.
 
 ---
@@ -11,6 +13,7 @@ Some commonly desired rules are provided below.
 - [Copying with `Control` + `C`](#copying-with-control--c)
 - [Cutting with `Control` + `X`](#cutting-with-control--x)
 - [Pasting with `Control` + `V`](#pasting-with-control--v)
+- [Finding with `Control` + `F`](#finding-with-control--f)
 - [Print Screen Key](#print-screen-key)
 - [Home and End Keys](#home-and-end-keys)
 - [Lock Computer](#lock-computer)
@@ -20,7 +23,7 @@ Some commonly desired rules are provided below.
 
 ### Saving with `Control` + `S`
 
-One of the most commonly-used Windows shortcuts is Save, using the `Control` and `S` shortcut. The `Control` and `S` combination is not actually assigned on Mac, so there's no obvious downside to assigning this shortcut to Save. Here's the complex rule I inserted into my `karabiner.json` file:
+One of the most commonly-used Windows shortcuts is Save, using the `Control` and `S` shortcut. The `Control` and `S` combination is not actually assigned on OSX, so there's no obvious downside to assigning this shortcut to Save. Here's the complex rule I inserted into my `karabiner.json` file:
 
 ```
 {
@@ -51,6 +54,49 @@ One of the most commonly-used Windows shortcuts is Save, using the `Control` and
 
 ### Copying with `Control` + `C`
 
+Another one of the most commonly-used Windows shortcuts is Copy, using the `Control` and `C` shortcut. As before, the `Control` and `C` combination is not actually assigned on OSX, so there's no obvious downside to assigning this shortcut to Copy.
+
+⚠️ **While the `Control` + `C` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications.** These applications must be excluded from the operation of this rule.
+
+⚠️ **To disable an application with an internal terminal window (e.g. Atom, with the platformio-ide-terminal package installed) the entire application must be excluded.**
+
+Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign control + c to Copy",
+  "manipulators": [
+  "conditions": [
+        {
+          "bundle_identifiers": [
+            "^com\\.apple\\.Terminal$",
+            "^com\\.github\\.atom$",
+            "^com\\.googlecode\\.iterm2$"
+          ],
+          "type": "frontmost_application_unless"
+        }
+      ],
+    {
+      "from": {
+        "key_code": "c",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "c",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
+
 ---
 
 ### Cutting with `Control` + `X`
@@ -58,6 +104,78 @@ One of the most commonly-used Windows shortcuts is Save, using the `Control` and
 ---
 
 ### Pasting with `Control` + `V`
+
+Another one of the most commonly-used Windows shortcuts is Paste, using the `Control` and `V` shortcut. As before, the `Control` and `V` combination is not actually assigned on OSX, so there's no obvious downside to assigning this shortcut to Paste.
+
+⚠️ **As before, while the `Control` + `C` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule.
+
+Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign control + v to Paste",
+  "manipulators": [
+  "conditions": [
+      {
+        "bundle_identifiers": [
+          "^com\\.apple\\.Terminal$",
+          "^com\\.github\\.atom$",
+          "^com\\.googlecode\\.iterm2$"
+        ],
+        "type": "frontmost_application_unless"
+      }
+    ],
+    {
+      "from": {
+        "key_code": "v",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "v",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
+
+---
+
+### Finding with `Control` + `F`
+
+A commonly-used Windows shortcuts is Find, using the `Control` and `F` shortcut. As before, the `Control` and `F` combination is not actually assigned on OSX, so there's no obvious downside to assigning this shortcut to Paste. Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign control + f to Find",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "f",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "f",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
 
 ---
 
