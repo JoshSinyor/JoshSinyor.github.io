@@ -3,7 +3,9 @@
 
 Karabiner Elements' Preferences pane has a 'Complex modifications' tab capable of implementing complex rules of key reassignment. This is useful if you'd like to execute complex key reassignment (e.g. [partially reassigning keys]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#partial-reassignment) or [partially disabling keys]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#partial-disabling)), but mimicking some of the most common Windows key behaviour requires special combinations of rules.
 
-⚠️ **It's important when reassigning combinations of keys to ensure that you understand the behaviour [that OSX might already assign](https://support.apple.com/en-gb/HT201236) to that shortcut.** If you're substituting different behaviour for a key combination that is already an OSX shortcut you may wish to reassign the OSX shortcut to a different, unassigned combination.
+⚠️ **It's important when reassigning combinations of keys to ensure that you understand the behaviour [that OSX might already assign](https://support.apple.com/en-gb/HT201236) to that shortcut.** If you're substituting different behaviour for a key combination that is already an OSX shortcut, you may wish to reassign the OSX shortcut to a different, unassigned combination.
+
+⚠️ **It's important when reassigning combinations of keys to ensure that you understand the behaviour that applications may assign to that shortcut.** If you're substituting different behaviour for a key combination that is already an application-specific shortcut, you may wish to exclude the application from the rule.
 
 Some commonly desired rules are provided below.
 
@@ -23,7 +25,7 @@ Some commonly desired rules are provided below.
 
 ### Saving with `Control` + `S`
 
-One of the most commonly-used Windows shortcuts is Save, using the `Control` and `S` shortcut. The `Control` and `S` combination is not actually assigned on OSX, so there's no obvious downside to assigning this shortcut to Save. Here's the complex rule I inserted into my `karabiner.json` file:
+One of the most commonly-used Windows shortcuts is Save, using the `Control` and `S` shortcut. The `Control` and `S` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Save. Here's the complex rule I inserted into my `karabiner.json` file:
 
 ```
 {
@@ -54,7 +56,7 @@ One of the most commonly-used Windows shortcuts is Save, using the `Control` and
 
 ### Copying with `Control` + `C`
 
-Another one of the most commonly-used Windows shortcuts is Copy, using the `Control` and `C` shortcut. As before, the `Control` and `C` combination is not actually assigned on OSX, so there's no obvious downside to assigning this shortcut to Copy.
+Another one of the most commonly-used Windows shortcuts is Copy, using the `Control` and `C` shortcut.
 
 ⚠️ **While the `Control` + `C` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications.** These applications must be excluded from the operation of this rule.
 
@@ -105,9 +107,9 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 ### Pasting with `Control` + `V`
 
-Another one of the most commonly-used Windows shortcuts is Paste, using the `Control` and `V` shortcut. As before, the `Control` and `V` combination is not actually assigned on OSX, so there's no obvious downside to assigning this shortcut to Paste.
+Another one of the most commonly-used Windows shortcuts is Paste, using the `Control` and `V` shortcut.
 
-⚠️ **As before, while the `Control` + `C` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule.
+⚠️ **While the `Control` + `V` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule.
 
 Here's the complex rule I inserted into my `karabiner.json` file:
 
