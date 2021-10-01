@@ -60,7 +60,13 @@ Another one of the most commonly-used Windows shortcuts is Copy, using the `Cont
 
 ⚠️ **While the `Control` + `C` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications.** These applications must be excluded from the operation of this rule.
 
-⚠️ **To disable an application with an internal terminal window (e.g. Atom, with the platformio-ide-terminal package installed) the entire application must be excluded.**
+⚠️ **To disable an application with an internal terminal window (e.g. Atom, with the platformio-ide-terminal package installed) the entire application must be excluded.** The individual application may permit custom keybinding which can be used instead of Karabiner Elements to address specific parts of the application. For example, even though Atom must be excluded from the `Control` + `C` and `Control` + `V` complex rules to prevent Karabiner Elements from interfering with platformio-ide-terminal, [Atom permits custom keybinds](https://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/). Atom keybinds can be limited in scope, e.g. to the text editor but not to a terminal window. To add the Copy and Paste keybinds to the text editor but not the terminal window, add these keybinds to Atom's `Keymap.cson`:
+
+```
+'atom-text-editor':
+  'ctrl-c': 'core:copy'
+  'ctrl-v': 'core:paste'
+```
 
 Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -109,7 +115,7 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 Another one of the most commonly-used Windows shortcuts is Paste, using the `Control` and `V` shortcut.
 
-⚠️ **While the `Control` + `V` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule.
+⚠️ **While the `Control` + `V` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule. Some applications have [internal functions which compensate for this](#copying-with-control--c).
 
 Here's the complex rule I inserted into my `karabiner.json` file:
 
