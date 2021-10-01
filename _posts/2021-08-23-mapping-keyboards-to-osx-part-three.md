@@ -5,7 +5,7 @@ Karabiner Elements' Preferences pane has a 'Complex modifications' tab capable o
 
 ⚠️ **It's important when reassigning combinations of keys to ensure that you understand the behaviour [that OSX might already assign](https://support.apple.com/en-gb/HT201236) to that shortcut.** If you're substituting different behaviour for a key combination that is already an OSX shortcut, you may wish to reassign the OSX shortcut to a different, unassigned combination.
 
-⚠️ **It's important when reassigning combinations of keys to ensure that you understand the behaviour that applications may assign to that shortcut.** If you're substituting different behaviour for a key combination that is already an application-specific shortcut, you may wish to exclude the application from the rule.
+⚠️ **It's important when reassigning combinations of keys to ensure that you understand the behaviour that applications may already assign to that shortcut.** If you're substituting different behaviour for a key combination that is already an application-specific shortcut, you may wish to exclude the application from the rule.
 
 Some commonly desired rules are provided below.
 
@@ -15,10 +15,12 @@ Some commonly desired rules are provided below.
 - [Copying with `Control` + `C`](#copying-with-control--c)
 - [Cutting with `Control` + `X`](#cutting-with-control--x)
 - [Pasting with `Control` + `V`](#pasting-with-control--v)
+- [Undoing with `Control` + `Z`](#undoing-with-control--z)
+- [Redoing with `Control` + `Y`](#redoing-with-control--y)
 - [Finding with `Control` + `F`](#finding-with-control--f)
 - [Print Screen Key](#print-screen-key)
 - [Home and End Keys](#home-and-end-keys)
-- [Lock Computer](#lock-computer)
+- [Lock Screen](#lock-screen)
 - [Reassigning Keys 4: Browser Shortcuts](#reassigning-keys-4-browser-shortcuts)
 
 ---
@@ -109,13 +111,44 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 ### Cutting with `Control` + `X`
 
+A commonly-used Windows shortcut is Cut, using the `Control` and `X` shortcut. As before, the `Control` and `X` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Cut.
+
+⚠️ OSX uses the `Command` + `X` key combination for the Cut command. However, **the Cut command does not work for files in Finder**.
+
+Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign control + x to Cut",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "x",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "x",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
+
 ---
 
 ### Pasting with `Control` + `V`
 
 Another one of the most commonly-used Windows shortcuts is Paste, using the `Control` and `V` shortcut.
 
-⚠️ **While the `Control` + `V` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule. Some applications have [internal functions which compensate for this](#copying-with-control--c).
+⚠️ **While the `Control` + `V` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule. Some applications have [internal functions which provide an alternative method](#copying-with-control--c).
 
 Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -153,12 +186,74 @@ Here's the complex rule I inserted into my `karabiner.json` file:
   ]
 }
 ```
+---
+
+### Undoing with `Control` + `Z`
+
+A commonly-used Windows shortcut is Undo, using the `Control` and `Z` shortcut. As before, the `Control` and `Z` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Find. Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign control + z to Undo",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "z",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "z",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
+
+---
+
+### Redoing with `Control` + `Y`
+
+A commonly-used Windows shortcut is Redo, using the `Control` and `Y` shortcut. As before, the `Control` and `Y` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Find. Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign control + y to Redo",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "y",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "x",
+        "modifiers": [
+          "command",
+          "shift"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
 
 ---
 
 ### Finding with `Control` + `F`
 
-A commonly-used Windows shortcuts is Find, using the `Control` and `F` shortcut. As before, the `Control` and `F` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Find. Here's the complex rule I inserted into my `karabiner.json` file:
+A commonly-used Windows shortcut is Find, using the `Control` and `F` shortcut. As before, the `Control` and `F` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Find. Here's the complex rule I inserted into my `karabiner.json` file:
 
 ```
 {
@@ -440,9 +535,35 @@ The OSX application of the `Home` and `End` keys will be befuddling to most Wind
 ```
 ---
 
-### Lock Computer
+### Lock Screen
 
-A relatively simple complex rule will replicate the Windows shortcut used to lock your computer.
+A oxymoronically simple complex rule will replicate the Windows shortcut (`Command` + `L`) used to lock your computer. Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign option + l to Lock Screen",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "l",
+        "modifiers": {
+          "mandatory": [
+            "option"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "q",
+        "modifiers": [
+          "control",
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
 
 ---
 
