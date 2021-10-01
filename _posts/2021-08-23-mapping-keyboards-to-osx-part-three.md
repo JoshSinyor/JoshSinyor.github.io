@@ -8,10 +8,13 @@ Some commonly desired rules are provided below.
 ---
 
 - [Saving with `Control` + `S`](#saving-with-control--s)
-- [Browser Page Refresh Using `F5`](#browser-page-refresh-using-f5)
-- [Browser Page Refresh Using `Control` + `R`](#browser-page-refresh-using-control--r)
+- [Copying with `Control` + `C`](#copying-with-control--c)
+- [Cutting with `Control` + `X`](#cutting-with-control--x)
+- [Pasting with `Control` + `V`](#pasting-with-control--v)
 - [Print Screen Key](#print-screen-key)
 - [Home and End Keys](#home-and-end-keys)
+- [Lock Computer](#lock-computer)
+- [Reassigning Keys 4: Browser Shortcuts](#reassigning-keys-4-browser-shortcuts)
 
 ---
 
@@ -46,63 +49,25 @@ One of the most commonly-used Windows shortcuts is Save, using the `Control` and
 
 ---
 
-### Browser Page Refresh Using `F5`
-
-Windows users will have it ingrained in them that the `F5` key refreshes a webpage, and that `Control` and `F5` hard refreshes a webpage. On a MacBook the `F5` and `F6` keys respectively decrease and increase the brightness of the keyboard backlighting, a feature my Windows keyboard does not even have. By default Karabiner Elements assigns a function I rarely use (Dictation) to the `F5` key and nothing at all to the `F6` key. I'll remove the Dictation shortcut, and reassign `F5` to refreshing duties.
-
-I really only want this behaviour when I'm using a web browser; it's always possible there will be a hitherto-unforeseen scenario where I do actually want the default `F5` and `F6` behaviour.
+### Copying with `Control` + `C`
 
 ---
 
-### Browser Page Refresh Using `Control` + `R`
+### Cutting with `Control` + `X`
 
-Windows users will also be used to refreshing browser webpages using `Control` + `R`, and hard-refreshing browser pages using `Control` + `Shift` + `R`. Once again, I really only want this behaviour when I'm using a web browser. Here's the complex rule I inserted into my `karabiner.json` file:
+---
 
-```
-{
-  "description": "Assign control + r to Refresh",
-  "conditions": [
-    {
-      "bundle_identifiers": [
-        "^com\\.apple\\.Safari2$",
-        "^com\\.google\\.Chrome$",
-        "^org\\.mozilla\\.Firefox$",
-        "^org\\.torproject\\.Torbrowser$"
-      ],
-      "type": "frontmost_application_if"
-    }
-  ],
-  "manipulators": [
-    {
-      "from": {
-        "key_code": "r",
-        "modifiers": {
-          "mandatory": [
-            "control"
-          ]
-        }
-      },
-      "to": {
-        "key_code": "r",
-        "modifiers": [
-          "command"
-        ]
-      },
-      "type": "basic"
-    }
-  ]
-}
-```
+### Pasting with `Control` + `V`
 
 ---
 
 ### Print Screen Key
 
-Apple's Print Screen function is useful, but requires a three-key (`Shift` + `Command` + `3`) combination to execute the same functionality as a Windows keyboard's single `Print Screen` button. Mapping the Mac key combinations to the `Print Screen` key is as simple as adding another complex rule to the `karabiner.json` file; if you're not sure how to do that, revisit the [Manual Reassignment]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#manual-reassignment) section of Part 2 of this topic.
+OSX's Print Screen function is useful, but requires a three-key (`Shift` + `Command` + `3`) combination to execute the same functionality as a Windows keyboard's single `Print Screen` button. Mapping the OSX key combinations to the `Print Screen` key is as simple as adding another complex rule to the `karabiner.json` file; if you're not sure how to do that, revisit the [Manual Reassignment]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#manual-reassignment) section of Part 2 of this topic.
 
 There are six options for printing a Mac's screen; as you can see below, it takes a scarcely believable five keys to execute the fairly common command of printing a single window to clipboard. To execute some operations in Windows you must use a shortcut (`Windows Key` + `Shift` + `S`) to open Snip & Sketch, a program which has a native equivalent in OSX.
 
-| Command                               | Mac Key Combination                                     | Windows Key Combination        |
+| Command                               | OSX Key Combination                                     | Windows Key Combination        |
 |---------------------------------------|---------------------------------------------------------|--------------------------------|
 | Print the entire screen to clipboard. | `Control` + `Shift` + `Command` + `3`                   | `Print Screen`                 |
 | Print the entire screen to file.      | `Shift` + `Command` + `3`                               | `Windows Key` + `Print Screen` |
@@ -195,9 +160,9 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 ### Home and End Keys
 
-The Apple application of the `Home` and `End` keys will be befuddling to most Windows users. If you'd like to revert to `Home` sending you to the beginning of a line rather than the beginning of a document, and `End` sending you to the end of a line rather than the end of the document, and would like `Shift` to select the content between the cursor position and that point, you'll need to institute new complex rules. The existing and desired combinations are as follows:
+The OSX application of the `Home` and `End` keys will be befuddling to most Windows users. If you'd like to revert to `Home` sending you to the beginning of a line rather than the beginning of a document, and `End` sending you to the end of a line rather than the end of the document, and would like `Shift` to select the content between the cursor position and that point, you'll need to institute new complex rules. The existing and desired combinations are as follows:
 
-| Command                                      | Mac Key Combination                 | Windows Key Combination      |
+| Command                                      | OSX Key Combination                 | Windows Key Combination      |
 |----------------------------------------------|-------------------------------------|------------------------------|
 | Move cursor to beginning of line.            | `Command` + `Left Arrow`            | `Home`                       |
 | Move cursor to end of line.                  | `Command` + `Right Arrow`           | `End`                        |
@@ -355,4 +320,6 @@ A relatively simple complex rule will replicate the Windows shortcut used to loc
 
 ---
 
-That about sums up my use of Karabiner Elements to crosslink my external keyboard to my MacBook Air. I hope you've found this a useful aggregate of disparate and poorly-documented information - good luck!
+### Reassigning Keys 4: Browser Shortcuts
+
+There are some situations where you'll only want reassignment to apply when you're using certain applications. Windows users will find Commonly desired modifications of this type will be addressed in [Part 4]({% post_url 2021-10-01-mapping-keyboards-to-osx-part-four %}) of this series.
