@@ -78,7 +78,7 @@ You can view the new complex rule in the Rules tab of the Complex modifications 
 
 #### Partial Disabling
 
-The `Command` key provides alternate output for many of the Mac keyboard's keys. Some of these are unexpected or unhelpful. Disabling them using complex rules is similar to using simple rules - the reassignment of some combination of keys to `vk_none`. For example, to assign `2` with the modification of either `Control` key (`™` by default) to `vk_none`:
+The `Command` key provides alternate output for many of the Mac keyboard's keys. Some of these are unexpected or unhelpful. Disabling them using complex rules is similar to using simple rules - the reassignment of some combination of keys to `vk_none`. For example, to assign `2` with the modification of either `Ctrl` key (`™` by default) to `vk_none`:
 
 ```
 {
