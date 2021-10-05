@@ -1,11 +1,14 @@
 # Ignore local temporary files
 .DS_Store
 
+# Ignore Bundler config
+/.bundle
+
 # Jekyll
-_site
-.sass-cache
 .jekyll-cache
 .jekyll-metadata
+.sass-cache
+_site
 vendor
 
 # Ignore local cache of Rubocop remote config
