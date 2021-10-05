@@ -1,6 +1,6 @@
 name: Continuous Improvement
 
-on:
+on: [push]
   push:
     branches:
       - actions
