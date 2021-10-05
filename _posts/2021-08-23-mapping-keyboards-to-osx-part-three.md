@@ -660,8 +660,4 @@ A oxymoronically simple complex rule will replicate the Windows shortcut (`⊞` 
 
 ### Reassigning Keys 4: Browser Shortcuts
 
-<<<<<<< HEAD
-There are some situations where you'll only want reassignment to apply when you're using certain applications. Windows users will find Commonly desired modifications of this type will be addressed in Part 4 of this series.
-=======
 There are situations where rather than applying reassignments by exclusion (that is, *unless* you're using a particular application), you'll want reassignment to apply by inclusion (that is, when you *are* using a particular application). A good example of this can be found in browser-specific shortcuts, where you'll want to apply reassignments to a handful of included applications, rather than to all applications and then having to exclude all applications that aren't browsers. A demonstration of reassignments of this type will be addressed in [Part 4]({% post_url 2021-10-01-mapping-keyboards-to-osx-part-four %}) of this series.
->>>>>>> post-4
