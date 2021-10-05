@@ -11,7 +11,7 @@ Karabiner Elements' Preferences pane has a 'Simple modifications' tab capable of
   * [Partial Disabling](#partial-disabling)
   * [Multiple Complex Rules](#multiple-complex-rules)
 - [Saving Your Profile](#saving-your-profile)
-- [Reassigning Keys 3: Windows Key Functions](#reassigning-keys-3-windows-key-functions)
+- [Reassigning Keys 3: Windows Shortcuts](#reassigning-keys-3-windows-shortcuts)
 
 ---
 
@@ -37,7 +37,7 @@ Manually adding complex rules is as simple as adding the desired reassignment to
 
 #### Partial Reassignment
 
-The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. A good example of this on my keyboard is the `2` key; while this is the same on the Mac keyboard, the `2` + `Shift` key combination on my keyboard should correspond to `"`, but instead corresponds to `@` on the Mac keyboard. Karabiner Elements' Simple modifications aren't suitable - I don't want to reassign the `2` key to a different key. I need to reassign the `2` key only when it is pressed in conjunction with a `Shift` key.
+The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. A good example of this on my keyboard is the `2` key; while this is the same on the Mac keyboard, the `2` + `⇧` (`Shift`) key combination on my keyboard should correspond to `"`, but instead corresponds to `@` on the Mac keyboard. Karabiner Elements' Simple modifications aren't suitable - I don't want to reassign the `2` key to a different key. I need to reassign the `2` key only when it is pressed in conjunction with either `⇧` key.
 
 Here's an example of how it works:
 
@@ -66,7 +66,7 @@ Here's an example of how it works:
 }
 ```
 
-Here, the external keyboard's `2` key (`"key_code":"2"`, as per the previous post), with the mandatory modification of either `shift` key, is reassigned to the Mac's `quote` key (`"key_code":"quote"`), with the modification of either `shift` key. Pressing the `2` and either `shift` keys now returns the same outcome as pressing the `quote` and either `shift` keys on the Mac's keyboard.
+Here, the external keyboard's `2` key (`"key_code":"2"`, as per the previous post), with the mandatory modification of either `⇧` key, is reassigned to the Mac's `quote` key (`"key_code":"quote"`), with the modification of either `⇧` key. Pressing the `2` and either `⇧` keys now returns the same outcome as pressing the `quote` and either `⇧` keys on the Mac's keyboard.
 
 Custom complex rules are inserted into the `karabiner.json` file in the `"complex_modifications": {rules": []}` section.
 
@@ -78,7 +78,7 @@ You can view the new complex rule in the Rules tab of the Complex modifications 
 
 #### Partial Disabling
 
-The `Command` key provides alternate output for many of the Mac keyboard's keys. Some of these are unexpected or unhelpful. Disabling them using complex rules is similar to using simple rules - the reassignment of some combination of keys to `vk_none`. For example, to assign `2` with the modification of either `Control` key (`™` by default) to `vk_none`:
+The `⌘` key provides alternate output for many of the Mac keyboard's keys. Some of these are unexpected or unhelpful. Disabling them using complex rules is similar to using simple rules - the reassignment of some combination of keys to `vk_none`. For example, to assign `2` with the modification of either `Ctrl` key (`™` by default) to `vk_none`:
 
 ```
 {
@@ -157,4 +157,4 @@ If you've invested serious time in the creation of your new keyboard profile, it
 
 ### Reassigning Keys 3: Windows Shortcuts
 
-There are some key combinations from Windows that will be so ingrained in your muscle memory - or so conspicuously lacking from Mac's default function - that you'll want to add them over and above the basic reassignment. For example, the default behaviour of the `Home` and `End` keys - especially when it comes to highlighting text using a `shift` modifier (default behaviour: skipping to the beginning and end of files, rather than the beginning or end of the line) feels inadequate after using the default Windows option. The three-key combination required to execute a Print Screen command seems wildly excessive when a typical Windows keyboard will have a dedicated button. Commonly desired modifications of this type will be addressed in [Part 3]({% post_url 2021-08-23-mapping-keyboards-to-osx-part-three %}) of this series.
+There are some key combinations from Windows that will be so ingrained in your muscle memory - or so conspicuously lacking from Mac's default function - that you'll want to add them over and above the basic reassignment. For example, the default behaviour of the `Home` and `End` keys - especially when it comes to highlighting text using a `⇧` modifier (default behaviour: skipping to the beginning and end of files, rather than the beginning or end of the line) feels inadequate after using the default Windows shortcut. The three-key combination required to execute a Print Screen command seems wildly excessive when a typical Windows keyboard will have a dedicated button. Commonly desired modifications of this type will be addressed in [Part 3]({% post_url 2021-08-23-mapping-keyboards-to-osx-part-three %}) of this series.
