@@ -33,6 +33,5 @@ jobs:
 
       - name: Commit to main
         run: |
-          git checkout gh_pages
-          git add .
-          git commit -m "GitHub Actions commit. Reflects main branch commit `$MAIN_COMMIT_HASH`"
+          git push origin gh_pages
+          # git commit -am "GitHub Actions commit. Reflects main branch commit `$MAIN_COMMIT_HASH`"
