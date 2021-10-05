@@ -20,7 +20,7 @@ Some commonly desired rules are provided below.
 - [Redoing with `Ctrl` + `y`](#redoing-with-ctrl--y)
 - [Finding with `Ctrl` + `f`](#finding-with-ctrl--f)
 - [Selecting All with `Ctrl` + `a`](#selecting-all-with-ctrl--a)
-- [Creating with `Ctrl` + `n`](#selecting-all-with-ctrl--n)
+- [Creating with `Ctrl` + `n`](#creating-with-ctrl--n)
 - [Print Screen Key](#print-screen-key)
 - [Home and End Keys](#home-and-end-keys)
 - [Lock Screen with `Ctrl` + `l`](#lock-screen-with-ctrl--l)
@@ -330,6 +330,37 @@ A commonly-used Windows shortcut is Select All, using the `Ctrl` and `a` shortcu
       },
       "to": {
         "key_code": "a",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
+
+---
+
+### Creating with `Ctrl` + `n`
+
+A commonly-used Windows shortcut is New, using the `Ctrl` and `n` shortcut. As before, the `Ctrl` and `n` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to New. Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign Ctrl + n to New",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "n",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "n",
         "modifiers": [
           "command"
         ]
