@@ -3,7 +3,8 @@ name: Continuous Improvement
 on:
   push:
     branches:
-      - gh_pages
+      - actions
+      # - gh_pages
 
 jobs:
   RSpec:
