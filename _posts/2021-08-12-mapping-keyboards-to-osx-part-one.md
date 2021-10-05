@@ -76,7 +76,7 @@ Armed with the names of the keys that should be matched up, we can begin remappi
 
 #### Switching the Command & Option Keys
 
-The most obvious switch most users will wish to prioritise is reassigning the `Command` and `Option` keys, which are inverted on Mac and Windows keyboards.
+The most obvious switch most users will wish to prioritise is reassigning the `Command` (`Alt` and `⌘` for Windows and OSX respectively) and `Option` (`⊞` and `⌥` for Windows and OSX respectively) keys, which are inverted on Mac and Windows keyboards.
 
 ![Keyboard Option & Command](/images/2021-08-12/wikipedia_kb_command_and_option.svg)
 
@@ -96,7 +96,7 @@ Reassigning Function keys is one of the simplest processes in Karabiner-Elements
 
 ![Karabiner Elements Function Keys](/images/2021-08-12/karabiner_elements_03.png)
 
-I also remapped the otherwise-useless `Application` key to the `Fn` key. You can also see that I haven't reassigned the F5 key. We'll return to this key in Part 3 of this series.
+I also remapped the otherwise-useless `≣` (`Application`) key to the `Fn` key. You can also see that I haven't reassigned the F5 key. We'll return to this key in Part 3 of this series.
 
 ---
 
