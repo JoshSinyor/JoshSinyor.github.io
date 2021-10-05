@@ -11,6 +11,7 @@ Some commonly desired rules are provided below.
 
 ---
 
+- [Excluding Applications from Rules](#excluding-applications-from-rules)
 - [Saving with `Control` + `S`](#saving-with-control--s)
 - [Copying with `Control` + `C`](#copying-with-control--c)
 - [Cutting with `Control` + `X`](#cutting-with-control--x)
@@ -18,10 +19,45 @@ Some commonly desired rules are provided below.
 - [Undoing with `Control` + `Z`](#undoing-with-control--z)
 - [Redoing with `Control` + `Y`](#redoing-with-control--y)
 - [Finding with `Control` + `F`](#finding-with-control--f)
+- [Selecting All with `Control` + `A`](#selecting-all-with-control--a)
 - [Print Screen Key](#print-screen-key)
 - [Home and End Keys](#home-and-end-keys)
 - [Lock Screen](#lock-screen)
 - [Reassigning Keys 4: Browser Shortcuts](#reassigning-keys-4-browser-shortcuts)
+
+---
+
+### Excluding Applications from Rules
+
+A number of the keyboard shortcuts discussed in this part of this series are unassigned by OSX and will be useful across almost all applications, but would wreak havoc on a small number of applications. For example, while unassigned by OSX and with widespread utility across almost all applications, the assignment of Save functionality to `Control` + `S` wreaks havoc on terminal programs, which use the shortcut to cancel input, shut down the execution of scripts and so on. To exclude applications from Karabiner Elements' rules, Karabiner Elements provides the [`frontmost_application_if` condition](https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/conditions/frontmost-application/). A simple example of using `frontmost_application_if` to exclude terminal applications is provided in the [Copying with `Control` + `C`](#copying-with-control--c) section below.
+
+⚠️ **Karabiner Elements cannot distinguish between individual parts of the frontmost application. To exclude an internal terminal window within an application from a rule using `frontmost_application_if`, the entire application must be excluded.**
+
+Some individual applications permit custom keybinding, which can be used instead of Karabiner Elements to address specific parts of the application. For example, Atom can be configured an internal terminal window (e.g. with the platformio-ide-terminal package). Karabiner Elements cannot distinguish between entries made in Atom's text editor and entries made in the platformio-ide-terminal, so the entirety of Atom must be excluded from the `Control` + `C` and `Control` + `V` complex rules to prevent Karabiner Elements from interfering with platformio-ide-terminal. However, [Atom permits custom keybinds](https://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/). Atom keybinds can be limited in scope, e.g. to the text editor but not to a terminal window. To add the Copy and Paste keybinds to the text editor but not the terminal window, I added these keybinds to Atom's `Keymap.cson`:
+
+```
+'atom-text-editor':
+  'ctrl-a': 'core:'
+  'ctrl-c': 'core:copy'
+  'ctrl-v': 'core:paste'
+```
+
+I then prefixed the [Copy](#copying-with-control--c) and [Paste](#pasting-with-control--v) rules I implemented in Karabiner Elements with conditions which excluded Atom:
+
+```
+{
+  "conditions": [
+        {
+          "bundle_identifiers": [
+            "^com\\.github\\.atom$",
+          ],
+          "type": "frontmost_application_unless"
+        }
+      ],
+}
+```
+
+Examples of how conditions are integrated into rules are provided in the Copy and Paste sections below.
 
 ---
 
@@ -60,15 +96,7 @@ One of the most commonly-used Windows shortcuts is Save, using the `Control` and
 
 Another one of the most commonly-used Windows shortcuts is Copy, using the `Control` and `C` shortcut.
 
-⚠️ **While the `Control` + `C` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications.** These applications must be excluded from the operation of this rule.
-
-⚠️ **To disable an application with an internal terminal window (e.g. Atom, with the platformio-ide-terminal package installed) the entire application must be excluded.** The individual application may permit custom keybinding which can be used instead of Karabiner Elements to address specific parts of the application. For example, even though Atom must be excluded from the `Control` + `C` and `Control` + `V` complex rules to prevent Karabiner Elements from interfering with platformio-ide-terminal, [Atom permits custom keybinds](https://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/). Atom keybinds can be limited in scope, e.g. to the text editor but not to a terminal window. To add the Copy and Paste keybinds to the text editor but not the terminal window, add these keybinds to Atom's `Keymap.cson`:
-
-```
-'atom-text-editor':
-  'ctrl-c': 'core:copy'
-  'ctrl-v': 'core:paste'
-```
+⚠️ **While the `Control` + `C` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications.** These applications must be excluded from the operation of this rule; see the [Excluding Applications from Rules](#excluding-applications-from-rules) section above.
 
 Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -148,7 +176,7 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 Another one of the most commonly-used Windows shortcuts is Paste, using the `Control` and `V` shortcut.
 
-⚠️ **While the `Control` + `V` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule. Some applications have [internal functions which provide an alternative method](#copying-with-control--c).
+⚠️ **While the `Control` + `V` combination is not assigned by OSX, it is assigned by some common programs, especially terminal applications and applications with an internal terminal.** These applications must be excluded from the operation of this rule; see the [Excluding Applications from Rules](#excluding-applications-from-rules) section above.
 
 Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -270,6 +298,37 @@ A commonly-used Windows shortcut is Find, using the `Control` and `F` shortcut. 
       },
       "to": {
         "key_code": "f",
+        "modifiers": [
+          "command"
+        ]
+      },
+      "type": "basic"
+    }
+  ]
+}
+```
+
+---
+
+### Selecting All with `Control` + `A`
+
+A commonly-used Windows shortcut is Select All, using the `Control` and `A` shortcut. The `Control` and `A` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Select All. Here's the complex rule I inserted into my `karabiner.json` file:
+
+```
+{
+  "description": "Assign control + a to Select All",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "a",
+        "modifiers": {
+          "mandatory": [
+            "control"
+          ]
+        }
+      },
+      "to": {
+        "key_code": "a",
         "modifiers": [
           "command"
         ]
@@ -569,4 +628,4 @@ A oxymoronically simple complex rule will replicate the Windows shortcut (`Comma
 
 ### Reassigning Keys 4: Browser Shortcuts
 
-There are some situations where you'll only want reassignment to apply when you're using certain applications. Windows users will find Commonly desired modifications of this type will be addressed in [Part 4]({% post_url 2021-10-01-mapping-keyboards-to-osx-part-four %}) of this series.
+There are situations where rather than applying reassignments by exclusion (that is, *unless* you're using a particular application), you'll want reassignment to apply by inclusion (that is, when you *are* using a particular application). A good example of this can be found in browser-specific shortcuts, where you'll want to apply reassignments to a handful of included applications, rather than to all applications and then having to exclude all applications that aren't browsers. A demonstration of reassignments of this type will be addressed in Part 4 of this series.
