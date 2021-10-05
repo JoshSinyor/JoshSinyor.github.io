@@ -1,0 +1,33 @@
+name: Continuous Improvement
+
+on: [push]
+  push:
+    branches:
+      - actions
+      # - gh_pages
+
+jobs:
+  RSpec:
+    runs-on: macos-latest
+
+    steps:
+
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7.3
+
+    - name: Install and update gems
+      run: |
+          gem install bundler
+          bundle install --without jekyll jekyll_plugins
+
+    - run: rspec
+
+    - name: Commit and push commit
+      run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Automated GitHub Action commit."
+          git push
