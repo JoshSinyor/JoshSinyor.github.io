@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  Rubocop & RSpec:
+  Rubocop_and_RSpec:
     runs-on: macos-latest
 
     steps:
