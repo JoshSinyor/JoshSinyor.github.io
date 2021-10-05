@@ -1,0 +1,2 @@
+---
+BUNDLE_WITHOUT: "jekyll:jekyll_plugins"
