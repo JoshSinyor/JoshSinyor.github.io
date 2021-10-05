@@ -379,14 +379,14 @@ OSX's Print Screen function is useful, but requires a three-key (`⇧` + `⌘` +
 
 There are six options for printing a Mac's screen; as you can see below, it takes a scarcely believable five keys to execute the fairly common command of printing a single window to clipboard. To execute some operations in Windows you must use a shortcut (`⊞` + `⇧` + `s`) to open Snip & Sketch, a program which has a native equivalent in OSX.
 
-| Command                               | OSX Key Combination                                     | Windows Key Combination        |
-|---------------------------------------|---------------------------------------------------------|--------------------------------|
-| Print the entire screen to clipboard. | `Ctrl` + `⇧` + `⌘` + `3`                   | `Print Screen`                 |
-| Print the entire screen to file.      | `⇧` + `⌘` + `3`                               | `⊞` + `Print Screen` |
-| Print a selected area to clipboard.   | `Ctrl` + `⇧` + `⌘` + `4`                   | `⊞` + `⇧` + `s`  |
-| Print a selected area to file.        | `⇧` + `⌘` + `4`                               | `⊞` + `⇧` + `s`  |
-| Print a selected window to clipboard. | `Ctrl` + `⇧` + `⌘` + `4`, then `Space Bar` | `Alt` + `Print Screen`         |
-| Print a selected window to file.      | `⇧` + `⌘` + `4`, then `Space Bar`             | `⊞` + `⇧` + `s`  |
+| Command                               | OSX Key Combination                        | Windows Key Combination |
+|---------------------------------------|--------------------------------------------|-------------------------|
+| Print the entire screen to clipboard. | `Ctrl` + `⇧` + `⌘` + `3`                   | `Print Screen`          |
+| Print the entire screen to file.      | `⇧` + `⌘` + `3`                            | `⊞` + `Print Screen`    |
+| Print a selected area to clipboard.   | `Ctrl` + `⇧` + `⌘` + `4`                   | `⊞` + `⇧` + `s`         |
+| Print a selected area to file.        | `⇧` + `⌘` + `4`                            | `⊞` + `⇧` + `s`         |
+| Print a selected window to clipboard. | `Ctrl` + `⇧` + `⌘` + `4`, then `Space Bar` | `Alt` + `Print Screen`  |
+| Print a selected window to file.      | `⇧` + `⌘` + `4`, then `Space Bar`          | `⊞` + `⇧` + `s`         |
 
 Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -474,16 +474,16 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 The OSX application of the `Home` and `End` keys will be befuddling to most Windows users. If you'd like to revert to `Home` sending you to the beginning of a line rather than the beginning of a document, and `End` sending you to the end of a line rather than the end of the document, and would like `⇧` to select the content between the cursor position and that point, you'll need to institute new complex rules. The existing and desired combinations are as follows:
 
-| Command                                      | OSX Key Combination                 | Windows Key Combination      |
-|----------------------------------------------|-------------------------------------|------------------------------|
-| Move cursor to beginning of line.            | `⌘` + `Left Arrow`            | `Home`                       |
-| Move cursor to end of line.                  | `⌘` + `Right Arrow`           | `End`                        |
-| Select from cursor to beginning of line.     | `⇧` + `⌘` + `Left Arrow`  | `⇧` + `Home`             |
-| Select from cursor to end of line.           | `⇧` + `⌘` + `Right Arrow` | `⇧` + `End`              |
-| Move cursor to beginning of document.        | `Ctrl` + `Up Arrow`              | `Ctrl` + `Home`           |
-| Move cursor to end of document.              | `Ctrl` + `Down Arrow`            | `Ctrl` + `End`            |
-| Select from cursor to beginning of document. | `⇧` + `Ctrl` + `Up Arrow`    | `⇧` + `Ctrl` + `Home` |
-| Select from cursor to end of document.       | `⇧` + `Ctrl` + `Down Arrow`  | `⇧` + `Ctrl` + `End`  |
+| Command                                      | OSX Key Combination         | Windows Key Combination |
+|----------------------------------------------|-----------------------------|-------------------------|
+| Move cursor to beginning of line.            | `⌘` + `Left Arrow`          | `Home`                  |
+| Move cursor to end of line.                  | `⌘` + `Right Arrow`         | `End`                   |
+| Select from cursor to beginning of line.     | `⇧` + `⌘` + `Left Arrow`    | `⇧` + `Home`            |
+| Select from cursor to end of line.           | `⇧` + `⌘` + `Right Arrow`   | `⇧` + `End`             |
+| Move cursor to beginning of document.        | `Ctrl` + `Up Arrow`         | `Ctrl` + `Home`         |
+| Move cursor to end of document.              | `Ctrl` + `Down Arrow`       | `Ctrl` + `End`          |
+| Select from cursor to beginning of document. | `⇧` + `Ctrl` + `Up Arrow`   | `⇧` + `Ctrl` + `Home`   |
+| Select from cursor to end of document.       | `⇧` + `Ctrl` + `Down Arrow` | `⇧` + `Ctrl` + `End`    |
 
 ```
 {
