@@ -30,9 +30,8 @@ To start the local hosting server, run `jekyll serve`, and visit the site at htt
 
 ## Built With
 
-This repository is based on the guidelines provided in [How to Build A SQL Blog](https://chadbaldwin.net/2021/03/14/how-to-build-a-sql-blog.html), courtesy of [Chad Baldwin](https://github.com/chadbaldwin).
-
-- [simple-blog-bootstrap](https://github.com/chadbaldwin/simple-blog-bootstrap/), courtesy of [Chad Baldwin](https://github.com/chadbaldwin).
+- [How to Build A SQL Blog](https://chadbaldwin.net/2021/03/14/how-to-build-a-sql-blog.html) and [simple-blog-bootstrap](https://github.com/chadbaldwin/simple-blog-bootstrap/), courtesy of [Chad Baldwin](https://github.com/chadbaldwin).
+- [Automating GitHub Pages Deployments with GitHub Actions](https://www.innoq.com/en/blog/github-actions-automation/), courtesy of [Frederik Dohr](https://github.com/FND)
 
 ---
 
