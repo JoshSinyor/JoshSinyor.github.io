@@ -31,7 +31,7 @@ jobs:
           git config user.email github-actions@github.com
           MAIN_COMMIT_HASH=$(git log -1 --format="%h")
 
-      - name: Commit to main
-        run: |
-          git push origin gh_pages
-          # git commit -am "GitHub Actions commit. Reflects main branch commit `$MAIN_COMMIT_HASH`"
+      # - name: Commit to main
+      #   run: |
+      #     git push origin gh_pages
+      #     # git commit -am "GitHub Actions commit. Reflects main branch commit `$MAIN_COMMIT_HASH`"
