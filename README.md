@@ -11,6 +11,7 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 
 ## Table of Contents
 
+- [Features of Note](#features-of-note)
 - [Installation](#installation)
 - [Built With](#built-with)
 - [Dependencies](#dependencies)
@@ -20,9 +21,16 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 
 ---
 
+## Features of Note
+
+- **Auto-Deployment and CI/CD Using GitHub Actions:** A GitHub Action is triggered whenever a commit is pushed to the repository's `main` branch. This Action installs a local Ruby environment, installs only the required gems for testing, and executes a battery of RSpec tests. Only if those tests pass will the commit be pushed to the deployment (`gh-pages`) branch. These tests are executed in addition to Jekyll's built-in testing, which will reject pushes with broken page links and so on.
+- **Local Hosting:** GitHub's processing of GitHub Pages repositories using Jekyll occurs server-side, so no local installation of Jekyll is required for a GitHub Pages repository. However, for development purposes this repository includes the gems required for local installation of Jekyll, permitting local hosting of Jekyll sites. Development can proceed in a sandbox environment where changes are immediately reflected in the locally hosted site and the public site is not affected.
+
+---
+
 ## Installation
 
-This repository is automatically processed by GitHub Pages using Jekyll. If you would like to run a copy of the site locally, fork this repository to your local machine. Verify that you have the variant of Ruby specified in the `Gemfile` installed. In the repository directory, run `gem install bundler`, then `bundle update`. Some of the gems this repository uses are frequently updated, so running `bundle update` frequently is advised.
+This repository is automatically processed by GitHub Pages using Jekyll. If you would like to run a copy of the site locally, fork this repository to your local machine. Verify that you have the variant of Ruby specified in the `Gemfile` installed. In your REPL of choice, change your working directory to the repository directory and run `gem install bundler`, then `bundle update`. Some of the gems this repository uses are frequently updated, so running `bundle update` frequently is advised.
 
 To start the local hosting server, run `jekyll serve`, and visit the site at http://localhost:4000/.
 
