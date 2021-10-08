@@ -39,7 +39,8 @@ jobs:
       - name: Commit
         run: |
           touch test.txt
-          git commit -am "Automated deployment commit. Reflects ${{ github.ref }} commit $GITHUB_SHA."
+          git add .
+          git commit -am "Automated deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
       # - name: Deploy
       #   run: |
