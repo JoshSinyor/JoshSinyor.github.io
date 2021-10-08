@@ -26,10 +26,12 @@ jobs:
 
       - name: Set ENV Variables
         run: |
+          echo ${{ github.actor }}
+          echo ${{ github.actor }}@bots.github.com
           git config --local user.name github-actions
           git config --local user.email github-actions@github.com
         env:
-          PAGES_BRANCH: gh-pages
+          DEPLOY_BRANCH: gh-pages
           TOKEN: ${{ secrets.ACTION_PAT }}
 
       # - name: Run Tests
@@ -38,17 +40,18 @@ jobs:
 
       - name: Commit
         run: |
-          touch test.txt
+          echo DEPLOY_BRANCH
+          echo $DEPLOY_BRANCH
+          echo "$DEPLOY_BRANCH"
+          echo ${{ DEPLOY_BRANCH }}
+          echo ${{ $DEPLOY_BRANCH }}
+          echo "${{ DEPLOY_BRANCH }}"
+          echo "${{ $DEPLOY_BRANCH }}"
+          echo "Hello World!" >> test.txt
+          echo ${{ github.sha --format="%h"}}
           git add .
-          git commit -am "Automated deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
+          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
-      # - name: Deploy
-      #   run: |
-
-      # - name: Delete Commit
-      #   run: git reset --hard HEAD^
-
-      # - name: Commit to main
-      #   run: |
-      #     git push origin gh_pages
-      #     # git commit -am "GitHub Actions commit. Reflects main branch commit `$MAIN_COMMIT_HASH`"
+      - name: Deploy
+        run: |
+          git remote set-url origin "https://x-access-token:${{ TOKEN }}@github.com/${{ github.repository }}"
