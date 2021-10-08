@@ -3,7 +3,7 @@ name: Deployment CI
 on:
   push:
     branches:
-      - deployment test
+      - deployment-test
 
 jobs:
   Rubocop_and_RSpec:
@@ -25,11 +25,11 @@ jobs:
           rubocop
           rspec
 
-      - name: Set environment variables
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          MAIN_COMMIT_HASH=$(git log -1 --format="%h")
+      # - name: Set environment variables
+      #   run: |
+      #     git config user.name github-actions
+      #     git config user.email github-actions@github.com
+      #     MAIN_COMMIT_HASH=$(git log -1 --format="%h")
 
       # - name: Commit to main
       #   run: |
