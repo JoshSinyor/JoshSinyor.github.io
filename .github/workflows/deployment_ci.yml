@@ -3,33 +3,41 @@ name: Deployment CI
 on:
   push:
     branches:
+      # - main
       - deployment-test
 
 jobs:
-  Rubocop_and_RSpec:
+  Build, Test & Deploy:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Environment
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.3
 
-      - name: Install and update gems
+      - name: Install Gems
         run: |
             gem install bundler
             bundle install --without jekyll jekyll_plugins
 
+      - name: Set ENV
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+        env:
+          PAGES_BRANCH: gh-pages
+          TOKEN: ${{ secrets.ACTION_PAT }}
+          COMMIT_HASH: $(git log -1 --format="%h")
+
       - name: Run CI
         run: |
+          echo $COMMIT_HASH
           rubocop
           rspec
-
-      # - name: Set environment variables
-      #   run: |
-      #     git config user.name github-actions
-      #     git config user.email github-actions@github.com
-      #     MAIN_COMMIT_HASH=$(git log -1 --format="%h")
 
       # - name: Commit to main
       #   run: |
