@@ -12,6 +12,7 @@ jobs:
 
     env:
       DEPLOY_BRANCH: gh-pages
+      DEPLOY_BRANCH_2: gh-pages-2
       TOKEN: ${{ secrets.ACTION_PAT }}
 
     steps:
@@ -37,12 +38,14 @@ jobs:
 
       - name: Commit
         run: |
-          echo "Hello World!" >> test.txt
           ${{ env.DEPLOY_BRANCH }}
-          echo ${{ env.DEPLOY_BRANCH }}
+          echo ${{ env.DEPLOY_BRANCH_2 }}
           git config --list
-          git add .
-          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
+
+      # - name: Commit_2
+      #     echo "Hello World!" >> test.txt
+      #     git add .
+      #     git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
       # - name: Deploy
       #   run: |
