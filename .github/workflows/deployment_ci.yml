@@ -1,4 +1,4 @@
-name: Deployment CI
+name: Build, Test & Deploy
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - deployment-test
 
 jobs:
-  Build, Test & Deploy:
+  build_test_deploy:
     runs-on: macos-latest
 
     steps:
