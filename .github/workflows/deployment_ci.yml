@@ -31,7 +31,6 @@ jobs:
           git config --local user.name github-actions
           git config --local user.email github-actions@github.com
 
-
       # - name: Run Tests
       #     rubocop
       #     rspec
@@ -39,9 +38,9 @@ jobs:
       - name: Commit
         run: |
           echo "Hello World!" >> test.txt
-          echo env.DEPLOY_BRANCH
+          ${{ env.DEPLOY_BRANCH }}
           echo ${{ env.DEPLOY_BRANCH }}
-          echo git config --list
+          echo ${{ git config --list }}
           git add .
           git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
