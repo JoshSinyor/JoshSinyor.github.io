@@ -48,4 +48,4 @@ jobs:
         run: |
           git remote set-url origin ${{ env.REPO_URI }}
           git remote -v
-          git push --force-with-lease origin gh-pages
+          git push origin push-test
