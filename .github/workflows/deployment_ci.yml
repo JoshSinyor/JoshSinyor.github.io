@@ -48,7 +48,6 @@ jobs:
           $DEPLOY_BRANCH
           echo ${{ env.DEPLOY_BRANCH_2 }}
           echo $DEPLOY_BRANCH_2
-          echo ${{ DEPLOY_BRANCH_3 }}
           echo ${{ $DEPLOY_BRANCH_4 }}
           git add .
           git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
