@@ -3,7 +3,7 @@ name: Deployment CI
 on:
   push:
     branches:
-      - main
+      - deployment-test
 
 jobs:
   Rubocop_and_RSpec:
