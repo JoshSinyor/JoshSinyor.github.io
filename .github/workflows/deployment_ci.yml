@@ -12,7 +12,6 @@ jobs:
 
     env:
       DEPLOY_BRANCH: gh-pages
-      DEPLOY_BRANCH_2: gh-pages-2
       TOKEN: ${{ secrets.ACTION_PAT }}
 
     steps:
@@ -33,20 +32,22 @@ jobs:
           git config --local user.email github-actions@github.com
 
       # - name: Run Tests
+      #   run: |
       #     rubocop
       #     rspec
 
       - name: Commit
+        env:
+          PRETTY_HASH: ${{ github.sha }}
+          PRETTY_HASH: ${{ env.PRETTY_HASH::5 }}
         run: |
-          ${{ env.DEPLOY_BRANCH }}
-          echo ${{ env.DEPLOY_BRANCH_2 }}
-          git config --list
+          echo ${{ env.PRETTY_HASH }}
+          echo ${{ env.PRETTY_HASH_2 }}
+          echo "Hello World!" >> test.txt
+          git add .
+          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ env.PRETTY_HASH }}."
 
-      # - name: Commit_2
-      #     echo "Hello World!" >> test.txt
-      #     git add .
-      #     git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
-
-      # - name: Deploy
-      #   run: |
-      #     git remote set-url origin "https://x-access-token:${{ github.TOKEN }}@github.com/${{ github.repository }}"
+      - name: Deploy
+        run: |
+          git remote set-url origin "https://x-access-token:${{ env.TOKEN }}@github.com/${{ github.repository }}"
+          git remote -v
