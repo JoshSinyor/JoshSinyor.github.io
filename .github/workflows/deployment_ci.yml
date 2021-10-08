@@ -40,7 +40,7 @@ jobs:
           echo "Hello World!" >> test.txt
           ${{ env.DEPLOY_BRANCH }}
           echo ${{ env.DEPLOY_BRANCH }}
-          echo ${{ git config --list }}
+          git config --list
           git add .
           git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
