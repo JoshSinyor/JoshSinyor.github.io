@@ -1,4 +1,4 @@
-name: Deployment CI
+name: Build, Test & Deploy
 
 on:
   push:
@@ -6,32 +6,40 @@ on:
       - deployment-test
 
 jobs:
-  Rubocop_and_RSpec:
+  build_test_deploy:
     runs-on: macos-latest
 
+    env:
+      DEPLOY_BRANCH: gh-pages
+      TOKEN: ${{ secrets.ACTION_PAT }}
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Environment
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.3
 
-      - name: Install and update gems
-        run: |
-            gem install bundler
-            bundle install --without jekyll jekyll_plugins
+      - name: Install Gems
+        run: bundle install --without jekyll jekyll_plugins
 
-      - name: Run CI
+      - name: Run Tests
         run: |
           rubocop
           rspec
 
-      - name: Set environment variables
+      - name: Commit
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          MAIN_COMMIT_HASH=$(git log -1 --format="%h")
+          echo "Hello World!" >> test.txt
+          git add .
 
-      # - name: Commit to main
-      #   run: |
-      #     git push origin gh_pages
-      #     # git commit -am "GitHub Actions commit. Reflects main branch commit `$MAIN_COMMIT_HASH`"
+          git config --local user.name github-actions
+          git config --local user.email github-actions@github.com
+          git commit -am "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+
+      - name: Deploy
+        run: |
+          git remote set-url origin "https://x-access-token:${{ env.TOKEN }}@github.com/${{ github.repository }}"
+          git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}

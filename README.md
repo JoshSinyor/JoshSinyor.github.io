@@ -2,6 +2,7 @@
 ![License](https://img.shields.io/github/license/JoshSinyor/JoshSinyor.github.io)
 ![Code Size](https://img.shields.io/github/languages/code-size/JoshSinyor/JoshSinyor.github.io)
 ![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen?&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnMvPjxwYXRoIGQ9Ik0yNyAxNHYtMWEyIDIgMCAwMC0yLTJIN2EyIDIgMCAwMC0yIDJ2MWEyIDIgMCAwMC0xIDF2MmExIDEgMCAwMDEgMnYxYTIgMiAwIDAwMiAxaDE4YTIgMiAwIDAwMi0xdi0xYTIgMiAwIDAwMS0ydi0yYTIgMiAwIDAwLTEtMXpNMTYgMmExMCAxMCAwIDAwLTEwIDloMjBhMTAgMTAgMCAwMC0xMC05ek0xMyAyNGg2djFsMS0xLTEtMWgtN3YybDEtMXoiLz48cGF0aCBmaWxsPSIjZWMxYzI0IiBkPSJNMjQgMThIOGExIDEgMCAxMTAtM2gxNmExIDEgMCAwMTEgMSAxIDEgMCAwMS0xIDJ6Ii8+PHBhdGggZD0iTTIzIDIydjRhMiAyIDAgMDEtMiAyaC0xYTEgMSAwIDAxMC0xbC0yLTFhMSAxIDAgMDAwLTFoLTRhMSAxIDAgMDAwIDFsLTIgMWExIDEgMCAwMTAgMWgtMWEyIDIgMCAwMS0yLTJ2LTRIN3Y0YTQgNCAwIDAwNCA0aDEwYTQgNCAwIDAwNC00di00eiIvPjwvc3ZnPg==)
+![Deployment CI Badge](https://github.com/JoshSinyor/JoshSinyor.github.io/actions/workflows/deployment_ci.yml/badge.svg?branch=gh-pages)
 
 # JoshSinyor.github.io
 
@@ -11,6 +12,7 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 
 ## Table of Contents
 
+- [Features of Note](#features-of-note)
 - [Installation](#installation)
 - [Built With](#built-with)
 - [Dependencies](#dependencies)
@@ -20,9 +22,16 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 
 ---
 
+## Features of Note
+
+- **Auto-Deployment and CI/CD Using GitHub Actions:** A GitHub Action is triggered whenever a commit is pushed to the repository's `main` branch. This Action installs a local Ruby environment, installs only the required gems for testing, and executes a battery of RSpec tests. Only if those tests pass will the commit be pushed to the deployment (`gh-pages`) branch. These tests are executed in addition to Jekyll's built-in testing, which will reject pushes with broken page links and so on.
+- **Local Hosting:** GitHub's processing of GitHub Pages repositories using Jekyll occurs server-side, so no local installation of Jekyll is required for a GitHub Pages repository. However, for development purposes this repository includes the gems required for local installation of Jekyll, permitting local hosting of Jekyll sites. Development can proceed in a sandbox environment where changes are immediately reflected in the locally hosted site and the public site is not affected.
+
+---
+
 ## Installation
 
-This repository is automatically processed by GitHub Pages using Jekyll. If you would like to run a copy of the site locally, fork this repository to your local machine. Verify that you have the variant of Ruby specified in the `Gemfile` installed. In the repository directory, run `gem install bundler`, then `bundle update`. Some of the gems this repository uses are frequently updated, so running `bundle update` frequently is advised.
+This repository is automatically processed by GitHub Pages using Jekyll. If you would like to run a copy of the site locally, fork this repository to your local machine. Verify that you have the variant of Ruby specified in the `Gemfile` installed. In your REPL of choice, change your working directory to the repository directory and run `gem install bundler`, then `bundle update`. Some of the gems this repository uses are frequently updated, so running `bundle update` frequently is advised.
 
 To start the local hosting server, run `jekyll serve`, and visit the site at http://localhost:4000/.
 
@@ -30,9 +39,8 @@ To start the local hosting server, run `jekyll serve`, and visit the site at htt
 
 ## Built With
 
-This repository is based on the guidelines provided in [How to Build A SQL Blog](https://chadbaldwin.net/2021/03/14/how-to-build-a-sql-blog.html), courtesy of [Chad Baldwin](https://github.com/chadbaldwin).
-
-- [simple-blog-bootstrap](https://github.com/chadbaldwin/simple-blog-bootstrap/), courtesy of [Chad Baldwin](https://github.com/chadbaldwin).
+- [How to Build A SQL Blog](https://chadbaldwin.net/2021/03/14/how-to-build-a-sql-blog.html) and [simple-blog-bootstrap](https://github.com/chadbaldwin/simple-blog-bootstrap/), courtesy of [Chad Baldwin](https://github.com/chadbaldwin).
+- [Automating GitHub Pages Deployments with GitHub Actions](https://www.innoq.com/en/blog/github-actions-automation/), courtesy of [Frederik Dohr](https://github.com/FND)
 
 ---
 
