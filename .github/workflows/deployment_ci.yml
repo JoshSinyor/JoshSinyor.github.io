@@ -12,10 +12,6 @@ jobs:
 
     env:
       DEPLOY_BRANCH: gh-pages
-      DEPLOY_BRANCH_2: gh-pages-2
-      DEPLOY_BRANCH_3: gh-pages-3
-      DEPLOY_BRANCH_4: gh-pages-4
-      DEPLOY_BRANCH_5: gh-pages-5
       TOKEN: ${{ secrets.ACTION_PAT }}
 
     steps:
@@ -28,9 +24,7 @@ jobs:
           ruby-version: 2.7.3
 
       # - name: Install Gems
-      #   run: |
-      #       gem install bundler
-      #       bundle install --without jekyll jekyll_plugins
+      #   run: bundle install --without jekyll jekyll_plugins
 
       - name: Set ENV Variables
         run: |
@@ -45,9 +39,9 @@ jobs:
       - name: Commit
         run: |
           echo "Hello World!" >> test.txt
-          $DEPLOY_BRANCH
-          echo ${{ env.DEPLOY_BRANCH_2 }}
-          echo $DEPLOY_BRANCH_2
+          echo env.DEPLOY_BRANCH
+          echo ${{ env.DEPLOY_BRANCH }}
+          echo git config --list
           git add .
           git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
