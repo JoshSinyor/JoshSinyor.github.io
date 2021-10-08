@@ -22,6 +22,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.3
+
+      - name: Test remote
         run: |
           git remote -v
           echo $REPO_URI
