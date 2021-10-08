@@ -37,13 +37,10 @@ jobs:
       #     rspec
 
       - name: Commit
-        env:
-          PRETTY_HASH: {${{ github.sha }}:0:7}
-
         run: |
           echo "Hello World!" >> test.txt
           git add .
-          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ env.PRETTY_HASH }}."
+          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit $(git rev-parse --short ${{ github.sha }})."
 
       - name: Deploy
         run: |
