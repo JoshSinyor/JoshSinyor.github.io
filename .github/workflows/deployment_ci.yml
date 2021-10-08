@@ -40,7 +40,6 @@ jobs:
       - name: Commit
         run: |
           echo "Hello World!" >> test.txt
-          echo ${{ $DEPLOY_BRANCH_2 }}
           echo ${{ github.DEPLOY_BRANCH }}
           echo ${{ github.deploy_branch_2 }}
           git add .
