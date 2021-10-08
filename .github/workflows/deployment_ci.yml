@@ -40,7 +40,6 @@ jobs:
 
       - name: Commit
         run: |
-          echo DEPLOY_BRANCH
           echo $DEPLOY_BRANCH
           echo "$DEPLOY_BRANCH"
           echo ${{ DEPLOY_BRANCH }}
@@ -54,4 +53,4 @@ jobs:
 
       - name: Deploy
         run: |
-          git remote set-url origin "https://x-access-token:${{ $TOKEN }}@github.com/${{ github.repository }}"
+          git remote set-url origin "https://x-access-token:${{ TOKEN }}@github.com/${{ github.repository }}"
