@@ -47,5 +47,4 @@ jobs:
       - name: Deploy
         run: |
           git remote set-url origin ${{ env.REPO_URI }}
-          git remote -v
-          git push origin push-test
+          git push gh-pages
