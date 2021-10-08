@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "Hello World!" >> test.txt
           git add .
-          git commit -am "Automated post-CI deployment commit. Reflects ${${{ github.ref }}#refs\/heads\/} branch commit $(git rev-parse --short ${{ github.sha }})."
+          git commit -am "Automated post-CI deployment commit. Reflects $(${{ github.ref }}#refs\/heads\/) branch commit $(git rev-parse --short ${{ github.sha }})."
 
       - name: Deploy
         run: |
