@@ -32,7 +32,7 @@ jobs:
 
       - name: Commit
         run: |
-          echo "Hello World!" >> test.txt
+          echo Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }}). >> test.txt
           git add .
           git commit -am "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
 
