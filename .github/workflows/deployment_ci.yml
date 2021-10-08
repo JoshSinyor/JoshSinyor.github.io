@@ -32,13 +32,14 @@ jobs:
         env:
           PAGES_BRANCH: gh-pages
           TOKEN: ${{ secrets.ACTION_PAT }}
-          MAIN_COMMIT_HASH: ${{ git log -1 --format="%h" }}
 
-      - name: Run CI
+      # - name: Run Tests
+      #     rubocop
+      #     rspec
+
+      - name: Deploy
         run: |
-          echo $COMMIT_HASH
-          rubocop
-          rspec
+          echo Automated commit. Reflects $GITHUB_REF commit $GITHUB_SHA.
 
       # - name: Commit to main
       #   run: |
