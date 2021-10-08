@@ -11,8 +11,8 @@ jobs:
 
     env:
       DEPLOY_BRANCH: gh-pages
-      TOKEN: ${{ secrets.ACTION_PAT }}
-      REPO_URI: "https://x-access-token:${{ secrets.ACTION_PAT }}@github.com/${{ github.repository }}"
+      TOKEN: ${{ secrets.ACTIONS_PAT }}
+      REPO_URI: "https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/${{ github.repository }}"
 
     steps:
       - name: Checkout
@@ -22,13 +22,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.3
-
-      - name: Test remote
-        run: |
-          git remote -v
-          echo $REPO_URI
-          git remote set-url origin ${{ env.REPO_URI }}
-          git remote -v
 
       # - name: Install Gems
       #   run: bundle install --without jekyll jekyll_plugins
@@ -47,4 +40,4 @@ jobs:
       - name: Deploy
         run: |
           git remote set-url origin ${{ env.REPO_URI }}
-          git push gh-pages
+          git push origin gh-pages
