@@ -39,7 +39,7 @@ jobs:
       - name: Commit
         env:
           PRETTY_HASH: ${{ github.sha }}
-          PRETTY_HASH_2: ${{ env.PRETTY_HASH }:0:5}
+          PRETTY_HASH_2: ${{ env.PRETTY_HASH }}:0:5
         run: |
           echo ${{ env.PRETTY_HASH }}
           echo ${{ env.PRETTY_HASH_2 }}
