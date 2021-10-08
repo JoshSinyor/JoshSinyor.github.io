@@ -41,11 +41,11 @@ jobs:
           PRETTY_HASH: ${{ github.sha }}
 
         run: |
-          var=${{ env.PRETTY_HASH }}
-          echo ${var:0:7}
+          prettyHash={${{ github.sha }}:0:7}
+          echo $prettyHash
           echo "Hello World!" >> test.txt
           git add .
-          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${var:0:7}."
+          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ env.PRETTY_HASH }}."
 
       - name: Deploy
         run: |
