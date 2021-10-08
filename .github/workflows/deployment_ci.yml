@@ -19,16 +19,15 @@ jobs:
         with:
           ruby-version: 2.7.3
 
-      - name: Install Gems
-        run: |
-            gem install bundler
-            bundle install --without jekyll jekyll_plugins
-            COMMIT_HASH=$(git log -1 --format="%h")
+      # - name: Install Gems
+      #   run: |
+      #       gem install bundler
+      #       bundle install --without jekyll jekyll_plugins
 
-      - name: Set ENV
+      - name: Set ENV Variables
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config --local user.name github-actions
+          git config --local user.email github-actions@github.com
         env:
           PAGES_BRANCH: gh-pages
           TOKEN: ${{ secrets.ACTION_PAT }}
@@ -37,9 +36,16 @@ jobs:
       #     rubocop
       #     rspec
 
-      - name: Deploy
+      - name: Commit
         run: |
-          echo Automated commit. Reflects $GITHUB_REF commit $GITHUB_SHA.
+          touch test.txt
+          git commit -am "Automated deployment commit. Reflects ${{ github.ref }} commit $GITHUB_SHA."
+
+      # - name: Deploy
+      #   run: |
+
+      # - name: Delete Commit
+      #   run: git reset --hard HEAD^
 
       # - name: Commit to main
       #   run: |
