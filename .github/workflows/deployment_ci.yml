@@ -41,16 +41,12 @@ jobs:
       - name: Commit
         run: |
           echo $DEPLOY_BRANCH
-          echo "$DEPLOY_BRANCH"
-          echo ${{ DEPLOY_BRANCH }}
-          echo ${{ $DEPLOY_BRANCH }}
-          echo "${{ DEPLOY_BRANCH }}"
-          echo "${{ $DEPLOY_BRANCH }}"
+          echo github.DEPLOY_BRANCH
           echo "Hello World!" >> test.txt
           echo ${{ github.sha --format="%h"}}
           git add .
           git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
-      - name: Deploy
-        run: |
-          git remote set-url origin "https://x-access-token:${{ TOKEN }}@github.com/${{ github.repository }}"
+      # - name: Deploy
+      #   run: |
+      #     git remote set-url origin "https://x-access-token:${{ github.TOKEN }}@github.com/${{ github.repository }}"
