@@ -45,7 +45,7 @@ jobs:
           echo ${var:0:7}
           echo "Hello World!" >> test.txt
           git add .
-          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ ${var:0:7} }}."
+          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ var:0:7 }}."
 
       - name: Deploy
         run: |
