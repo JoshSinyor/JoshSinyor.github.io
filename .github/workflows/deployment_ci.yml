@@ -30,16 +30,20 @@ jobs:
       #     rubocop
       #     rspec
 
-      - name: Commit
+      - name: Fetch Branch
         run: |
-          echo Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }}). >> test.txt
-          git add .
-          git commit -am "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
-
-      - name: Deploy
-        run: |
-          ${{ github.workspace }}
-          ${{ github.server_url }}
-          ${{ github.actor }}
           git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
-          git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
+          git fetch origin gh-pages
+          git branch -a
+
+      # - name: Commit
+      #   run: |
+      #     echo Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }}). >> test.txt
+      #     git add .
+      #     git commit -am "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+      #
+      # - name: Deploy
+      #   run: |
+      #     git config user.name github-actions
+      #     git config user.email github-actions@github.com
+      #     git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
