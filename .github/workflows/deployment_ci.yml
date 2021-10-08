@@ -24,8 +24,8 @@ jobs:
         with:
           ruby-version: 2.7.3
 
-      # - name: Install Gems
-      #   run: bundle install --without jekyll jekyll_plugins
+      - name: Install Gems
+        run: bundle install --without jekyll jekyll_plugins
 
       # - name: Run Tests
       #   run: |
