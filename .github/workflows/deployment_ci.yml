@@ -41,10 +41,7 @@ jobs:
           PRETTY_HASH: ${{ github.sha }}
 
         run: |
-          prettyHash2=${{ github.sha }}
-          prettyHash3=$prettyHash2{0, 7}
-          puts prettyHash2
-          puts prettyHash3
+          echo ${{ github.sha:0:7 }}
           echo "Hello World!" >> test.txt
           git add .
           git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ env.PRETTY_HASH }}."
