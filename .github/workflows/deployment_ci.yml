@@ -22,6 +22,10 @@ jobs:
         with:
           ruby-version: 2.7.3
 
+      - name:
+        run: git branch -a
+
+
       # - name: Install Gems
       #   run: bundle install --without jekyll jekyll_plugins
       #
@@ -29,15 +33,15 @@ jobs:
       #   run: |
       #     rubocop
       #     rspec
-
-      - name: Commit
-        run: |
-          echo "Hello World!" >> test.txt
-          git add .
-          git commit -am "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
-
-      - name: Deploy
-        run: |
-          git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
-          git remote -v
-          git push origin main
+      #
+      # - name: Commit
+      #   run: |
+      #     echo "Hello World!" >> test.txt
+      #     git add .
+      #     git commit -am "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+      #
+      # - name: Deploy
+      #   run: |
+      #     git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
+      #     git remote -v
+      #     git push origin gh-pages
