@@ -11,7 +11,8 @@ jobs:
     runs-on: macos-latest
 
     env:
-      DEPLOY_BRANCH: gh-pages
+      # DEPLOY_BRANCH: gh-pages
+      DEPLOY_BRANCH: gh-pages-test
       TOKEN: ${{ secrets.ACTION_PAT }}
 
     steps:
@@ -26,11 +27,6 @@ jobs:
       # - name: Install Gems
       #   run: bundle install --without jekyll jekyll_plugins
 
-      - name: Set ENV Variables
-        run: |
-          git config --local user.name github-actions
-          git config --local user.email github-actions@github.com
-
       # - name: Run Tests
       #   run: |
       #     rubocop
@@ -40,9 +36,12 @@ jobs:
         run: |
           echo "Hello World!" >> test.txt
           git add .
+
+          git config --local user.name github-actions
+          git config --local user.email github-actions@github.com
           git commit -am "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
 
       - name: Deploy
         run: |
           git remote set-url origin "https://x-access-token:${{ env.TOKEN }}@github.com/${{ github.repository }}"
-          git remote -v
+          git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
