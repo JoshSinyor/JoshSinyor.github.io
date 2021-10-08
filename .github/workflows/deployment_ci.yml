@@ -41,7 +41,7 @@ jobs:
           PRETTY_HASH: ${{ github.sha }}
 
         run: |
-          prettyHash={${{ github.sha }}:0:7}
+          prettyHash=${{ {github.sha:0:7} }}
           echo $prettyHash
           echo "Hello World!" >> test.txt
           git add .
