@@ -12,7 +12,7 @@ jobs:
     env:
       DEPLOY_BRANCH: gh-pages
       TOKEN: ${{ secrets.ACTION_PAT }}
-      REPO_URI: "https://x-access-token:${{ env.TOKEN }}@github.com/${{ github.repository }}"
+      REPO_URI: "https://x-access-token:${{ secrets.ACTION_PAT }}@github.com/${{ github.repository }}"
 
     steps:
       - name: Checkout
