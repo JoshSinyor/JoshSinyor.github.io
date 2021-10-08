@@ -32,6 +32,7 @@ jobs:
           git config --local user.email github-actions@github.com
         env:
           DEPLOY_BRANCH: gh-pages
+          DEPLOY_BRANCH_2: testing
           TOKEN: ${{ secrets.ACTION_PAT }}
 
       # - name: Run Tests
@@ -41,7 +42,8 @@ jobs:
       - name: Commit
         run: |
           echo "Hello World!" >> test.txt
-          echo ${{ github.DEPLOY_BRANCH }}
+          echo DEPLOY_BRANCH
+          echo $DEPLOY_BRANCH_2
           git add .
           git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
