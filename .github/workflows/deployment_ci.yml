@@ -38,4 +38,8 @@ jobs:
 
       - name: Deploy
         run: |
-          git remote set-url --push origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}/${{ env.DEPLOY_BRANCH }}"
+          ${{ github.workspace }}
+          ${{ github.server_url }}
+          ${{ github.actor }}
+          git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
+          git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
