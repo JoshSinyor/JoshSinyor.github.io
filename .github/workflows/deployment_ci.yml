@@ -31,7 +31,6 @@ jobs:
           git config --local user.name github-actions
           git config --local user.email github-actions@github.com
         env:
-          PRETTY_COMMIT_HASH: ${{ github.sha:0:7 }}
           DEPLOY_BRANCH: gh-pages
           TOKEN: ${{ secrets.ACTION_PAT }}
 
@@ -48,7 +47,7 @@ jobs:
           echo $PRETTY_COMMIT_HASH
           echo ${{ github.PRETTY_COMMIT_HASH }}
           git add .
-          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.PRETTY_COMMIT_HASH }}."
+          git commit -am "Automated post-CI deployment commit. Reflects ${{ github.ref }} commit ${{ github.sha }}."
 
       # - name: Deploy
       #   run: |
