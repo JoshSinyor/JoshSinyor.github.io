@@ -42,7 +42,7 @@ jobs:
 
         run: |
           prettyHash2=${{ github.sha }}
-          prettyHash3=$prettyHash2[0, 7]
+          prettyHash3=$prettyHash2{0, 7}
           puts prettyHash2
           puts prettyHash3
           echo "Hello World!" >> test.txt
