@@ -23,6 +23,7 @@ jobs:
         run: |
             gem install bundler
             bundle install --without jekyll jekyll_plugins
+            COMMIT_HASH=$(git log -1 --format="%h")
 
       - name: Set ENV
         run: |
@@ -31,7 +32,7 @@ jobs:
         env:
           PAGES_BRANCH: gh-pages
           TOKEN: ${{ secrets.ACTION_PAT }}
-          COMMIT_HASH: $(git log -1 --format="%h")
+          MAIN_COMMIT_HASH: ${{ git log -1 --format="%h" }}
 
       - name: Run CI
         run: |
