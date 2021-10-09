@@ -3,15 +3,15 @@ name: Test & Deploy
 on:
   push:
     branches:
-      - push-test
+      - main
 
 jobs:
   test_deploy:
     runs-on: macos-latest
 
     env:
-      EMPLOY_BRANCH: push-test
-      DEPLOY_BRANCH: gh-pages-test
+      EMPLOY_BRANCH: main
+      DEPLOY_BRANCH: gh-pages
       DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
 
     steps:
