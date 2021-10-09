@@ -10,6 +10,7 @@ jobs:
     runs-on: macos-latest
 
     env:
+      EMPLOY_BRANCH: push-test
       DEPLOY_BRANCH: gh-pages-test
       DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
 
@@ -44,7 +45,7 @@ jobs:
       - name: Reset Deploy Branch
         run: |
           git checkout ${{ env.DEPLOY_BRANCH }}
-          git reset --hard main
+          git reset --hard ${{  env.EMPLOY_BRANCH }}
 
       - name: Deploy
         run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
