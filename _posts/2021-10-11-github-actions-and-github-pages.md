@@ -168,7 +168,7 @@ Although the `DEPLOY_BRANCH` won't have much of a commit history - since it will
 Here's the next step of the job:
 
 ```
-      - name: Edit Commit Message
+      - name: Edit Commit
         run: git commit --amend --author="GitHub Action <github-actions@github.com>" -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
 ```
 
@@ -207,3 +207,61 @@ Finally, the reset `DEPLOY_BRANCH` can be pushed to the remote repository. As in
 ---
 
 ## Conclusions
+
+GitHub Actions are a useful tool for a variety of things - deploying to GitHub Pages is just a very simple example of their utility. If you'd like to get started with a simple task, I hope this proved useful!
+
+Here's the contents of my complete GitHub Action.
+
+```
+name: Test & Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test_deploy:
+    runs-on: macos-latest
+
+    env:
+      EMPLOY_BRANCH: main
+      DEPLOY_BRANCH: gh-pages
+      DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Environment
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.3
+
+      - name: Install Gems
+        run: |
+          bundle config set --local without 'jekyll jekyll_plugins'
+          bundle install
+
+      - name: Run Tests
+        run: |
+          rubocop
+          rspec
+
+      - name: Edit Commit
+        run: git commit --amend --author="GitHub Action <github-actions@github.com>" -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+
+      - name: Fetch Deploy Branch
+        run: |
+          git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
+          git fetch origin ${{ env.DEPLOY_BRANCH }}
+
+      - name: Reset Deploy Branch
+        run: |
+          git restore Gemfile.lock
+          git checkout ${{ env.DEPLOY_BRANCH }}
+          git reset --hard ${{  env.EMPLOY_BRANCH }}
+
+      - name: Deploy
+        run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
+```
