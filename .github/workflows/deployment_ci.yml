@@ -35,9 +35,7 @@ jobs:
 
       - name: Edit Commit Message
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git commit --amend -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+          git commit --amend --author="GitHub Action <github-actions@github.com>" -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
 
       - name: Fetch Deploy Branch
         run: |

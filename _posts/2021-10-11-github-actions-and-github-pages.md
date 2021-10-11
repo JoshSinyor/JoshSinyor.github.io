@@ -53,7 +53,7 @@ jobs:
 
 ## Environment Variables
 
-Next I'll need to set and get some variables for later reference. A [fairly extensive list](https://docs.github.com/en/actions/learn-github-actions/environment-variables) of environmental variables are made available to users of GitHub Actions. In particular I'll want to set here (once, so I don't have to change each reference to them in the Action if I decide to use different branches or tokens later) the branches I'm pulling from (`main`, defined as `EMPLOY_BRANCH`) and the branch I'm pushing to (`gh-pages`, defined as `DEPLOY_BRANCH`). I'll also need to create an access token (defined as `DEPLOY_TOKEN`) to authorise the Ruby container to push to my repository; more information on this is in the next section.
+Next I'll need to set and get some variables for later reference. A [fairly extensive list](https://docs.github.com/en/actions/learn-github-actions/environment-variables) of environmental variables are made available to users of GitHub Actions. In particular I'll want to set here (once, so I don't have to change each reference to them in the Action if I decide to use different branches or tokens later) the branches I'm pulling from (`main`, designated as `EMPLOY_BRANCH`) and the branch I'm pushing to (`gh-pages`, designated as `DEPLOY_BRANCH`). I'll also need to create an access token (designated as `DEPLOY_TOKEN`) to authorise the Ruby container to push to my repository; more information on this is in the next section. GitHub Action environment variables need to be defined under the `env` keyword:
 
 GitHub Actions environment variables are accessible at the workflow, job and step levels. I need these variables to be accessible in several different steps, so they need to be defined at the job level (`jobs.test_deploy.env`).
 
@@ -63,8 +63,6 @@ GitHub Actions environment variables are accessible at the workflow, job and ste
     DEPLOY_BRANCH: gh-pages
     DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
 ```
-
-GitHub Action environment variables need to be defined under the `env` keyword.
 
 ### Authentication
 
@@ -86,13 +84,13 @@ Next, click Generate token. You'll be presented with your new token's hash; this
 
 ⚠️ **Never reveal the hash of any security token!** It will allow anyone with access to the hash access to whatever your token's scope is. This token was revoked immediately after I took these illustrative screenshots. **Never save or share a token's hash anywhere!**
 
-⚠️ **Do not share PATs between repositories!** If a single PAT is somehow compromised, you can delete it and update the single dependent repository. Using a repository-specific PAT allows you to limit the PAT's scope to the absolute minimum required by that individual repository.
+⚠️ **Do not share PATs between repositories!** If a single PAT is somehow compromised, you can delete it and update the single dependent repository. Using a repository-specific PAT allows you to limit the PAT's scope to the absolute minimum required by that individual repository. We will actually end up restricting the scope of the PAT even further, to just the GitHub Pages environment within this individual repository.
 
 Having copied the token's hash, navigate to the Secrets subsection of your repository's Settings tab, and select New repository secret.
 
 ![Adding a Secret](/images/2021-10-11/personal_access_token_03.png)
 
-In the New secret page, name the token how you'll want to refer to it in the workflow, paste the PAT's hash in the Value box, and select Add secret.
+In the New secret page, name the token how you'll want to refer to it in the workflow (matching the `DEPLOY_TOKEN` environmental variable), paste the PAT's hash in the Value box, and select Add secret.
 
 ![New Secret](/images/2021-10-11/personal_access_token_04.png)
 
@@ -102,7 +100,7 @@ You'll see the token listed in the repository's Secrets.
 
 Finally, as above I'll need to add the token to the environmental variables already listed in the workflow.
 
-⚠️ **We will return to PATs later on to further restrict their scope.**
+⚠️ **We will return to this PAT later on to further restrict their scope.**
 
 ---
 
@@ -112,7 +110,7 @@ My workflow will run in a Ruby environment inside the OSX container, so I need t
 
 ### Installing Ruby
 
-Installed is `checkout@v2` - an interface between GitHub and the container. - and Ruby. I specify the version of Ruby to match the version of Ruby contemporaneously [used by GitHub pages](https://pages.github.com/versions/). Here are the first steps of the job:
+Installed is `checkout@v2` - an interface between GitHub and the container - and Ruby. I specify the version of Ruby to match the version of Ruby contemporaneously [used by GitHub pages](https://pages.github.com/versions/). Here are the first steps of the job:
 
 ```
     steps:
@@ -140,7 +138,7 @@ Having installed Ruby, it's time to install the gems required for my testing (wh
 
 ## Running the Test Suite
 
-Running the test suite is as simple as running the commands as you would in any local machine's terminal.
+Running the test suite is as simple as running the commands as you would in any local machine's terminal. Here's the next step of the job:
 
 ```
       - name: Run Tests
@@ -153,11 +151,28 @@ Running the test suite is as simple as running the commands as you would in any 
 
 ## Deploying to Pages
 
-### Actions Marketplace
+Having set up our environment and tested the commit, we can now deploy it - by pushing it to the `DEPLOY_BRANCH`.
+
+### Commit Strategies
+
+  One of the most annoying situations to find yourself in is pushing a commit which triggers an action which makes a further commit on the branch you're working on, but failing to pull that commit down before continuing to work on the branch and having to merge your work to with the automated commit first. My Action is designed to deploy the commit I've pushed to the `main` branch and shouldn't make any changes to that branch, so I don't want the Action to modify the commit history of the `EMPLOY_BRANCH` branch, just the `DEPLOY_BRANCH`.
+
+I also want to restrict pushes to the `DEPLOY_BRANCH` to this Action - I don't want other commits being pushed without going through testing, nor being inadvertently overwritten by later Action pushes, nor conflicts when Actions tries to push a commit to `DEPLOY_BRANCH`.
+
+Further, I want Action's pushes to be the last word: I manage the `EMPLOY_BRANCH`, and I expect the `DEPLOY_BRANCH` to mirror it exactly. The `DEPLOY_BRANCH`'s commit history is irrelevant: I want it overwritten, not merged. Therefore I use the nuclear option: hard reset.
 
 ### Appropriate Commit Messaging
 
-### Commit Strategies
+Although the `DEPLOY_BRANCH` won't have much of a commit history - since it will be reset each time a commit is pushed to it - I want the commit to reflect the fact that the commit was pushed by an Action, and that it reflects a specific commit from a specific branch. Since I'll be pushing a commit to the `DEPLOY_BRANCH` branch, I'll edit the last commit on the `EMPLOY_BRANCH`, and go from there.
+
+Here's the next step of the job:
+
+```
+      - name: Edit Commit Message
+        run: git commit --amend --author="GitHub Action <github-actions@github.com>" -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+```
+
+This command edits the author and message of the commit.
 
 ---
 
