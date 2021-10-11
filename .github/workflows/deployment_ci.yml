@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Gems
         run: |
-          bundle config set --local --without 'jekyll jekyll_plugins'
+          bundle config set --local without 'jekyll jekyll_plugins'
           bundle install
 
       - name: Run Tests
