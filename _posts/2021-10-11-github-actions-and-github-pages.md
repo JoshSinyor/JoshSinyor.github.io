@@ -67,7 +67,6 @@ GitHub Actions environment variables are accessible at the workflow, job and ste
   env:
     EMPLOY_BRANCH: main
     DEPLOY_BRANCH: gh-pages
-    DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
 ```
 
 GitHub Action environment variables need to be defined under the `env` keyword.
@@ -81,6 +80,11 @@ Each run of my Action workflow requires setting up a container which I will use 
 ⚠️ **Personal Access Tokens can only authenticate via HTTPS, not SSH.** My Action's Ruby instance is therefore configured to push via HTTPS, not SSH. However, this doesn't affect any other local instances of my repository - my local machines can continue to authenticate pushes and pulls to and from this repository using SSH. Deploy Keys can use SSH or OAuth tokens if HTTPS isn't appropriate.
 
 For this situation, a limited-scope PAT was ideal. To create it, I:
+
+```
+  env:
+    DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
+```
 
 ---
 
