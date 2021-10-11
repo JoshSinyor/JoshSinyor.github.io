@@ -19,6 +19,7 @@ A decade after the launch of Pages, GitHub launched [GitHub Actions](https://git
   * [Appropriate Commit Messaging](#appropriate-commit-messaging)
   * [Resetting the `DEPLOY_BRANCH`](#resetting-the-deploy_branch)
   * [Pushing to the `DEPLOY_BRANCH`](#pushing-to-the-deploy_branch)
+- [Testing the Action](#testing-the-action)
 - [Conclusions](#conclusions)
 
 ---
@@ -39,7 +40,7 @@ If that's not asking too much, I'd also like to work in a familiar environment a
 
 ## GitHub Actions Workflows
 
-GitHub Actions workflows are designed to be simple and easy to use. There's a pretty obvious flow to the work I want to do; first, I have to set up my environment, then run my tests, then deploy (or not, if the tests don't pass) my code to the branch Pages publishes. Here's the first steps of setting up the workflow - creating the environment. I started by creating [a file in the repository](https://github.com/JoshSinyor/JoshSinyor.github.io/blob/main/.github/workflows/deployment_ci.yml) in a following folder structure: `ROOT/.github/workflows/deployment_ci.yml`. This folder structure is mandatory.
+GitHub Actions workflows are designed to be simple and easy to use. There's a pretty obvious flow to the work I want to do; first, I have to set up my environment, then run my tests, then deploy (or not, if the tests don't pass) my code to the branch Pages publishes. Here's the first steps of setting up the workflow - creating the environment. I started by creating [a file in the repository](https://github.com/JoshSinyor/JoshSinyor.github.io/blob/0fa6254b358a846f88dc677fd043323d928c5004/.github/workflows/deployment_ci.yml) in a following folder structure: `ROOT/.github/workflows/deployment_ci.yml`. This folder structure is mandatory.
 
 ⚠️ **Warning: GitHub Actions won't trigger on workflow files outside the default branch.** If you're using a different branch for testing changes to the Actions file(s), you'll need to change the default branch to that test branch.
 
@@ -228,6 +229,18 @@ Finally, the reset `DEPLOY_BRANCH` can be pushed to the remote repository. As in
   run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
 {% endraw %}
 ```
+
+---
+
+## Testing the Action
+
+It's pretty simple to test the Action. First, I need to push the commit with the completed workflow file to the `EMPLOY_BRANCH`, which must be the default branch. This push should trigger the Action, which I can monitor on repository's Actions tab. There, logs are posted for each run of each workflow. If there are any problems, these logs will be of help in troubleshooting them.
+
+Finally, I can check the commit histories of the `EMPLOY` and `DEPLOY` branches; I should see:
+
+1. My push to the `EMPLOY_BRANCH` as the last commit to that branch, and
+2. A new commit on the `DEPLOY_BRANCH`, with
+3. A commit author and message corresponding to the correct commit on the `EMPLOY_BRANCH`.
 
 ---
 
