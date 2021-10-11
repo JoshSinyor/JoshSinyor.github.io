@@ -159,7 +159,7 @@ Having set up our environment and tested the commit, we can now deploy it - by p
 
 I also want to restrict pushes to the `DEPLOY_BRANCH` to this Action - I don't want other commits being pushed without going through testing, nor being inadvertently overwritten by later Action pushes, nor conflicts when Actions tries to push a commit to `DEPLOY_BRANCH`.
 
-Further, I want Action's pushes to be the last word: I manage the `EMPLOY_BRANCH`, and I expect the `DEPLOY_BRANCH` to mirror it exactly. The `DEPLOY_BRANCH`'s commit history is irrelevant: I want it overwritten, not merged. Therefore I use the nuclear option: hard reset.
+Further, I want Action's pushes to be the last word: I manage the `EMPLOY_BRANCH`, and I expect the `DEPLOY_BRANCH` to mirror it exactly. The `DEPLOY_BRANCH`'s commit history is irrelevant: I want it overwritten, not merged. Therefore I use the nuclear option: `reset --hard`.
 
 ### Appropriate Commit Messaging
 
@@ -172,7 +172,37 @@ Here's the next step of the job:
         run: git commit --amend --author="GitHub Action <github-actions@github.com>" -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
 ```
 
-This command edits the author and message of the commit.
+This command edits the author and message of the commit. Now it's suitable for a push to the `DEPLOY_BRANCH`.
+
+### Resetting the `DEPLOY_BRANCH`
+
+Within the Actions container, only the default branch is loaded, and that only within the locality. Therefore it's necessary to set up a remote connection to the hosted repository, and fetch the `DEPLOY_BRANCH`. This is where the PAT is required; it authenticates the HTTPS connection to the remote repository.
+
+```
+- name: Fetch Deploy Branch
+  run: |
+    git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
+    git fetch origin ${{ env.DEPLOY_BRANCH }}
+```
+
+Having fetched the `DEPLOY_BRANCH`, it can be overwritten with the tested `EMPLOY_BRANCH`. However, the loading of the Gems in the Actions' configuration (without the Jekyll-related gems) will often generate changes in the `EMPLOY_BRANCH`'s Gemfile; it's necessary to discard these before switching to the `EMPLOY_BRANCH`.
+
+```
+- name: Reset Deploy Branch
+  run: |
+    git restore Gemfile.lock
+    git checkout ${{ env.DEPLOY_BRANCH }}
+    git reset --hard ${{  env.EMPLOY_BRANCH }}
+```
+
+### Pushing to the `DEPLOY_BRANCH`
+
+Finally, the reset `DEPLOY_BRANCH` can be pushed to the remote repository. As in the `reset --hard` situation, this deployment needs to be pushed forcefully to prevent merge conflicts. However, there is one situation where overwriting the existing commit is undesirable: where another commit has been pushed in the interim. The `-with-lease` flag will prevent an accidental overwrite of a newer commit with an older one, should such a situation arise.
+
+```
+- name: Deploy
+  run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
+```
 
 ---
 

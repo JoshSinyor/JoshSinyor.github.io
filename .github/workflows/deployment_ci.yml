@@ -34,8 +34,7 @@ jobs:
           rspec
 
       - name: Edit Commit Message
-        run: |
-          git commit --amend --author="GitHub Action <github-actions@github.com>" -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+        run: git commit --amend --author="GitHub Action <github-actions@github.com>" -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
 
       - name: Fetch Deploy Branch
         run: |
