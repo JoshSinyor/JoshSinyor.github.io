@@ -24,7 +24,9 @@ jobs:
           ruby-version: 2.7.3
 
       - name: Install Gems
-        run: bundle install --without jekyll jekyll_plugins
+        run: |
+          bundle config set --local --without 'jekyll jekyll_plugins'
+          bundle install
 
       - name: Run Tests
         run: |
