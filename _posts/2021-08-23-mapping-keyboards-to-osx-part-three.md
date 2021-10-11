@@ -1,5 +1,5 @@
-## Remapping Windows Keyboards to OSX: Part 3
-### Part 3: Windows Shortcuts
+# Remapping Windows Keyboards to OSX: Part 3
+## Part 3: Windows Shortcuts
 
 Karabiner Elements' Preferences pane has a 'Complex modifications' tab capable of implementing complex rules of key reassignment. This is useful if you'd like to execute complex key reassignment (e.g. [partially reassigning keys]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#partial-reassignment) or [partially disabling keys]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#partial-disabling)), but mimicking some of the most common Windows key behaviour requires special combinations of rules.
 
@@ -28,7 +28,7 @@ Some commonly desired rules are provided below.
 
 ---
 
-### Excluding Applications from Rules
+## Excluding Applications from Rules
 
 A number of the keyboard shortcuts discussed in this part of this series are unassigned by OSX and will be useful across almost all applications, but would wreak havoc on a small number of applications. For example, while unassigned by OSX and with widespread utility across almost all applications, the assignment of Save functionality to `Ctrl` + `s` wreaks havoc on terminal programs, which use the shortcut to cancel input, shut down the execution of scripts and so on. To exclude applications from Karabiner Elements' rules, Karabiner Elements provides the [`frontmost_application_if` condition](https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/conditions/frontmost-application/). A simple example of using `frontmost_application_if` to exclude terminal applications is provided in the [Copying with `Ctrl` + `c`](#copying-with-ctrl--c) section below.
 
@@ -62,7 +62,7 @@ Examples of how conditions are integrated into rules are provided in the Copy an
 
 ---
 
-### Saving with `Ctrl` + `s`
+## Saving with `Ctrl` + `s`
 
 One of the most commonly-used Windows shortcuts is Save, using the `Ctrl` and `s` shortcut. The `Ctrl` and `s` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Save. Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -93,7 +93,7 @@ One of the most commonly-used Windows shortcuts is Save, using the `Ctrl` and `s
 
 ---
 
-### Copying with `Ctrl` + `c`
+## Copying with `Ctrl` + `c`
 
 Another one of the most commonly-used Windows shortcuts is Copy, using the `Ctrl` and `c` shortcut.
 
@@ -138,7 +138,7 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 ---
 
-### Cutting with `Ctrl` + `x`
+## Cutting with `Ctrl` + `x`
 
 A commonly-used Windows shortcut is Cut, using the `Ctrl` and `x` shortcut. As before, the `Ctrl` and `x` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Cut.
 
@@ -173,7 +173,7 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 ---
 
-### Pasting with `Ctrl` + `v`
+## Pasting with `Ctrl` + `v`
 
 Another one of the most commonly-used Windows shortcuts is Paste, using the `Ctrl` and `v` shortcut.
 
@@ -217,7 +217,7 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 ```
 ---
 
-### Undoing with `Ctrl` + `z`
+## Undoing with `Ctrl` + `z`
 
 A commonly-used Windows shortcut is Undo, using the `Ctrl` and `z` shortcut. As before, the `Ctrl` and `z` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Find. Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -248,7 +248,7 @@ A commonly-used Windows shortcut is Undo, using the `Ctrl` and `z` shortcut. As 
 
 ---
 
-### Redoing with `Ctrl` + `y`
+## Redoing with `Ctrl` + `y`
 
 A commonly-used Windows shortcut is Redo, using the `Ctrl` and `y` shortcut. As before, the `Ctrl` and `y` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Find. Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -280,7 +280,7 @@ A commonly-used Windows shortcut is Redo, using the `Ctrl` and `y` shortcut. As 
 
 ---
 
-### Finding with `Ctrl` + `f`
+## Finding with `Ctrl` + `f`
 
 A commonly-used Windows shortcut is Find, using the `Ctrl` and `f` shortcut. As before, the `Ctrl` and `f` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Find. Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -311,7 +311,7 @@ A commonly-used Windows shortcut is Find, using the `Ctrl` and `f` shortcut. As 
 
 ---
 
-### Selecting All with `Ctrl` + `a`
+## Selecting All with `Ctrl` + `a`
 
 A commonly-used Windows shortcut is Select All, using the `Ctrl` and `a` shortcut. The `Ctrl` and `a` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to Select All. Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -342,7 +342,7 @@ A commonly-used Windows shortcut is Select All, using the `Ctrl` and `a` shortcu
 
 ---
 
-### Creating with `Ctrl` + `n`
+## Creating with `Ctrl` + `n`
 
 A commonly-used Windows shortcut is New, using the `Ctrl` and `n` shortcut. As before, the `Ctrl` and `n` combination is not actually assigned on OSX, so there's no obvious side-effect to assigning this shortcut to New. Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -373,7 +373,7 @@ A commonly-used Windows shortcut is New, using the `Ctrl` and `n` shortcut. As b
 
 ---
 
-### Print Screen Key
+## Print Screen Key
 
 OSX's Print Screen function is useful, but requires a three-key (`⇧` + `⌘` + `3`) combination to execute the same functionality as a Windows keyboard's single `Print Screen` button. Mapping the OSX key combinations to the `Print Screen` key is as simple as adding another complex rule to the `karabiner.json` file; if you're not sure how to do that, revisit the [Manual Reassignment]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}#manual-reassignment) section of Part 2 of this topic.
 
@@ -470,7 +470,7 @@ Here's the complex rule I inserted into my `karabiner.json` file:
 
 ---
 
-### Home and End Keys
+## Home and End Keys
 
 The OSX application of the `Home` and `End` keys will be befuddling to most Windows users. If you'd like to revert to `Home` sending you to the beginning of a line rather than the beginning of a document, and `End` sending you to the end of a line rather than the end of the document, and would like `⇧` to select the content between the cursor position and that point, you'll need to institute new complex rules. The existing and desired combinations are as follows:
 
@@ -626,7 +626,7 @@ The OSX application of the `Home` and `End` keys will be befuddling to most Wind
 ```
 ---
 
-### Lock Screen with `Ctrl` + `l`
+## Lock Screen with `Ctrl` + `l`
 
 A oxymoronically simple complex rule will replicate the Windows shortcut (`⊞` + `l`) used to lock your computer. Here's the complex rule I inserted into my `karabiner.json` file:
 
@@ -658,6 +658,6 @@ A oxymoronically simple complex rule will replicate the Windows shortcut (`⊞` 
 
 ---
 
-### Reassigning Keys 4: Browser Shortcuts
+## Reassigning Keys 4: Browser Shortcuts
 
 There are situations where rather than applying reassignments by exclusion (that is, *unless* you're using a particular application), you'll want reassignment to apply by inclusion (that is, when you *are* using a particular application). A good example of this can be found in browser-specific shortcuts, where you'll want to apply reassignments to a handful of included applications, rather than to all applications and then having to exclude all applications that aren't browsers. A demonstration of reassignments of this type will be addressed in [Part 4]({% post_url 2021-10-01-mapping-keyboards-to-osx-part-four %}) of this series.

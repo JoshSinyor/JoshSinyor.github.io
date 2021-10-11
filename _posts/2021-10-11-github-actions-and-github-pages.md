@@ -1,4 +1,4 @@
-## GitHub Actions & GitHub Pages
+# GitHub Actions and GitHub Pages
 
 [In 2008](https://github.blog/2008-12-18-github-pages/) GitHub launched [GitHub Pages](https://pages.github.com/), a simple way for users to translate a simple repository into a basic static website hosted by GitHub itself. The concept itself is remarkably simple - you create the bare bones of a site's content, and GitHub will translate it into HTML and CSS using popular Ruby static site generator [Jekyll](https://jekyllrb.com/). The basics of building a Jekyll website have been explained numerous times by coders far more experienced than me; I leaned heavily on [Chad Baldwin](https://github.com/chadbaldwin)'s excellent [simple-blog-bootstrap](https://github.com/chadbaldwin/simple-blog-bootstrap/). GitHub automatically updates your Page with any commit pushed to branch you designate as the site's Source (in the Pages section of the repository's Settings tab), so if you're happy to push changes directly to a branch there's no need to complicate that.
 
@@ -10,7 +10,7 @@ TABLE OF CONTENTS
 
 ---
 
-### Aims & Objectives
+## Aims & Objectives
 
 My aims for this Action are simple enough. I want:
 
@@ -24,7 +24,7 @@ If that's not asking too much, I'd also like to work in a familiar environment a
 
 ---
 
-### GitHub Actions Workflows
+## GitHub Actions Workflows
 
 GitHub Actions workflows are designed to be simple and easy to use. There's a pretty obvious flow to the work I want to do; first, I have to set up my environment, then run my tests, then deploy (or not, if the tests don't pass) my code to the branch Pages publishes. Here's the first steps of setting up the workflow - creating the environment. I started by creating [a file in the repository](https://github.com/JoshSinyor/JoshSinyor.github.io/blob/main/.github/workflows/deployment_ci.yml) in a following folder structure: `ROOT/.github/workflows/deployment_ci.yml`. This folder structure is mandatory.
 
@@ -51,7 +51,7 @@ jobs:
 
 ---
 
-#### Environment Variables
+## Environment Variables
 
 Next I'll need to set and get some variables for later reference. A [fairly extensive list](https://docs.github.com/en/actions/learn-github-actions/environment-variables) of environmental variables are made available to users of GitHub Actions. In particular I'll want to set here (once, so I don't have to change each reference to them in the Action if I decide to use different branches or tokens later) the branches I'm pulling from (`main`, defined as `EMPLOY_BRANCH`) and the branch I'm pushing to (`gh-pages`, defined as `DEPLOY_BRANCH`). I'll also need to create an access token (defined as `DEPLOY_TOKEN`) to authorise the Ruby container to push to my repository; more information on this is in the next section.
 
@@ -66,7 +66,7 @@ GitHub Actions environment variables are accessible at the workflow, job and ste
 
 GitHub Action environment variables need to be defined under the `env` keyword.
 
-#### Authentication
+### Authentication
 
 Each run of my Action workflow requires setting up a container which I will use to push commits to my repository. For GitHub to accept pushes, that container will need to authenticate itself. There are several ways to do this, but the simplest is to use a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) ('PAT') with a very limited scope. There are a few things to consider when allowing Actions to push to a repository:
 
@@ -106,11 +106,11 @@ Finally, as above I'll need to add the token to the environmental variables alre
 
 ---
 
-### Setting Up the Environment
+## Setting Up the Environment
 
 My workflow will run in a Ruby environment inside the OSX container, so I need to install Ruby and a way for with workflow to interface with it within OSX.
 
-#### Installing Ruby
+### Installing Ruby
 
 Installed is `checkout@v2` - an interface between GitHub and the container. - and Ruby. I specify the version of Ruby to match the version of Ruby contemporaneously [used by GitHub pages](https://pages.github.com/versions/). Here are the first steps of the job:
 
@@ -125,7 +125,7 @@ Installed is `checkout@v2` - an interface between GitHub and the container. - an
           ruby-version: 2.7.3
 ```
 
-#### Installing Gems
+### Installing Gems
 
 Having installed Ruby, it's time to install the gems required for my testing (which will rely on Rubocop and RSpec) to work. `setup-ruby@v1` automatically installs the Bundler gem, so the next step can simply command the installation of the repository's gems. This repository's Gemfile includes Jekyll strictly for local development - it's not required for testing, so it can be specifically excluded from the Action's installation. Here's the next step of the job:
 
@@ -138,7 +138,7 @@ Having installed Ruby, it's time to install the gems required for my testing (wh
 
 ---
 
-### Running the Test Suite
+## Running the Test Suite
 
 Running the test suite is as simple as running the commands as you would in any local machine's terminal.
 
@@ -151,14 +151,14 @@ Running the test suite is as simple as running the commands as you would in any 
 
 ---
 
-### Deploying to Pages
+## Deploying to Pages
 
-#### Actions Marketplace
+### Actions Marketplace
 
-#### Appropriate Commit Messaging
+### Appropriate Commit Messaging
 
-#### Commit Strategies
+### Commit Strategies
 
 ---
 
-### Conclusions
+## Conclusions

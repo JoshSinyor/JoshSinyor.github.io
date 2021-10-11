@@ -1,5 +1,5 @@
-## Remapping Windows Keyboards to OSX: Part 1
-### Part 1: Identifying Keys & Simple Rules
+# Remapping Windows Keyboards to OSX: Part 1
+## Part 1: Identifying Keys & Simple Rules
 
 Many people new to programming - including me - learn their lessons on a Mac. MacBooks, with their uniform hardware and UNIX-based operating system, are beloved by coding schools. That said, there's no two ways about it: Apple's keyboards are not the choice of champions. In addition to being costly (even the most basic Magic Keyboard is £99; the full-fat version is an eye-watering £179), like most OEMs Apple's 'boards use membrane switches, giving a mushy press and return. Modern typists after a definitive click, or a particularly obnoxious typewriter-like rattle, have returned to the noisy embrace of the mechanical keyboard.
 
@@ -18,7 +18,7 @@ Maybe you want to use a mechanical keyboard to annoy the neighbours, maybe you w
 
 ---
 
-### Keyboard Layouts
+## Keyboard Layouts
 
 There are a number of different types of Mac keyboard, and limitless configurations of Windows ones. For the purposes of this post, I'm mapping a tenkeyless UK-pattern ISO keyboard to an American-market ANSI MacBook Air keyboard. Here are my relative layouts:
 
@@ -38,7 +38,7 @@ The red keys don't correspond to the Mac's layout, or don't function at all - th
 
 ---
 
-### Software
+## Software
 
 You'll need a copy of [Karabiner-Elements](https://karabiner-elements.pqrs.org/), a free open-source application intended for exactly this purpose. Check that your version of OSX is supported (anything after 10.15.6 should be OK), that you have Administrator-level permissions on your computer, and download the application from their website. It installs like any other app, but requires permissions you'll have to approve manually. Follow the [official instructions](https://karabiner-elements.pqrs.org/docs/getting-started/installation/) carefully to ensure the app has the permissions it needs.
 
@@ -52,7 +52,7 @@ The first thing to do is limit the changes you are making to the external keyboa
 
 ---
 
-### Identifying Keys
+## Identifying Keys
 
 Each key on a keyboard has a specific name. The number keys are "`1`" through "`0`", the letters "`a`" through "`z`". The modifier, arrow, keypad, international and control and symbol keys are named more specifically. For example, the caps lock key is "`caps_lock`", the up arrow key "`up_arrow`", the keypad number 1 key "`keypad_1`", and the backspace key "`delete_or_backspace`".
 
@@ -70,11 +70,11 @@ This process can be repeated on the Apple keyboard to establish the names of the
 
 ---
 
-### Reassigning Keys 1: Simple Rules
+## Reassigning Keys 1: Simple Rules
 
 Armed with the names of the keys that should be matched up, we can begin remapping the keyboard. The most straightforward remapping - key-for-key - is done through Karabiner-Element's GUI.
 
-#### Switching the Command & Option Keys
+### Switching the Command & Option Keys
 
 The most obvious switch most users will wish to prioritise is reassigning the `Command` (`Alt` or `Alt Gr` and `⌘` for Windows and OSX respectively) and `Option` (`⊞` and `⌥` for Windows and OSX respectively) keys, which are inverted on Mac and Windows keyboards.
 
@@ -86,11 +86,11 @@ This, and other simple key remapping, is readily achieved in Karabiner Elements.
 
 You can repeat this for any other keys you want to reassign like-for-like.
 
-#### Disabling Keys
+### Disabling Keys
 
 Disabling keys is another simple feature supported by the 'Simple modifications' tab. There are several keys on the typical Windows keyboard that are superfluous on a basic Mac layout. Some you might want to reassign to more complex modes, others conflict with your Windows keyboard muscle memory. I chose to disable the `Scroll Lock` and `Pause` keys, which have extremely limited utility even in Windows use. Again, it's a simple case of selecting the key you wish to reassign, and assigning it to `vk_none (disable this key)`.
 
-#### Function Keys
+### Function Keys
 
 Reassigning Function keys is one of the simplest processes in Karabiner-Elements. In Karabiner-Elements' Preferences pane, select the 'Function keys' tab. Again, limit the changes you are making to the external keyboard only by selecting it from the 'Target device' drop-down menu. Here's my modified pairing:
 
@@ -100,6 +100,6 @@ I also remapped the otherwise-useless `≣` (`Application`) key to the `Fn` key.
 
 ---
 
-### Reassigning Keys 2: Complex Rules
+## Reassigning Keys 2: Complex Rules
 
 The most common situation requiring complex rules are conditional reassignments - e.g. where the combination of a key and a modifier key needs to be reassigned, but the key alone does not. This will be addressed in [Part 2 of this series]({% post_url 2021-08-16-mapping-keyboards-to-osx-part-two %}).

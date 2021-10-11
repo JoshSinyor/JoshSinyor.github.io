@@ -1,5 +1,5 @@
-## Remapping Windows Keyboards to OSX: Part 4
-### Part 4: Browser Shortcuts
+# Remapping Windows Keyboards to OSX: Part 4
+## Part 4: Browser Shortcuts
 
 Sometimes you'll want to limit the intervention of Karabiner Elements to certain applications. For example, Windows users will be used to using the `F5` key or a variety of keyboard shortcuts to refresh the pages of web browsers. OSX uses radically different combinations of keys, so complex remapping is required. However, I really only want this behaviour when I'm using a web browser; it's always possible some hitherto-unforeseen scenario will demand the normal function of these key combinations. To do this, I'll use conditions to apply the rule only when using specified applications - my web browsers.
 
@@ -15,13 +15,13 @@ Sometimes you'll want to limit the intervention of Karabiner Elements to certain
 
 ---
 
-### Including Applications in Rules
+## Including Applications in Rules
 
 We've previously discussed using the `frontmost_application_if` condition to [exclude a few programs from a rule]({% post_url 2021-08-23-mapping-keyboards-to-osx-part-three %}#excluding-applications-from-rules). In situations where instead of a rule applying *except* to specific applications a rule should apply *only* to specific applications, Karabiner Elements provides the [`frontmost_application_unless` condition](https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/conditions/frontmost-application/). A simple example of using `frontmost_application_if` to include browser applications is provided in the [Browser Page Refresh Using `Ctrl` + `r` or `F5`](#copying-with-ctrl--r-or-f5) section below.
 
 ---
 
-### Browser Page Refresh Using `Ctrl` + `r` or `F5`
+## Browser Page Refresh Using `Ctrl` + `r` or `F5`
 
 Windows users will have it ingrained in them that the `Ctrl` + `r` key combination or the `F5` key refreshes a webpage, and that the `Ctrl` + `⇧` + `r` key combination or the `Ctrl` and `F5` key combination hard refreshes a webpage. All of my browsers (Safari, Chrome and Firefox) can use the same OSX keyboard shortcut (`⌘` + `r`) to do a refresh, so this rule can be applied to all browsers.
 
@@ -91,7 +91,7 @@ Here are the complex rules I inserted into my `karabiner.json` file:
 
 ---
 
-### Browser Page Hard Refresh Using `Ctrl` + `⇧` + `r` or `⇧` + `F5`
+## Browser Page Hard Refresh Using `Ctrl` + `⇧` + `r` or `⇧` + `F5`
 
 Windows users will also be used hard-refreshing browser pages using the `Ctrl` + `⇧` + `r` or `⇧` + `F5` key combinations. However, unlike my other OSX browsers, which use (`⇧` + `⌘` + `r`) to hard refresh a page, Safari uses a different key combination (`⌘` + `⌥` + `r`). Therefore Safari must have separate rules.
 
