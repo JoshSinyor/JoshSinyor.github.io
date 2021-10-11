@@ -14,6 +14,7 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 
 - [Features of Note](#features-of-note)
 - [Installation](#installation)
+- [Automation with GitHub Actions](#automation-with-github-actions)
 - [Built With](#built-with)
 - [Dependencies](#dependencies)
 - [Author(s)](#author-s-)
@@ -34,6 +35,14 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 This repository is automatically processed by GitHub Pages using Jekyll. If you would like to run a copy of the site locally, fork this repository to your local machine. Verify that you have the variant of Ruby specified in the `Gemfile` installed. In your REPL of choice, change your working directory to the repository directory and run `gem install bundler`, then `bundle update`. Some of the gems this repository uses are frequently updated, so running `bundle update` frequently is advised.
 
 To start the local hosting server, run `jekyll serve`, and visit the site at http://localhost:4000/.
+
+---
+
+## Automation with GitHub Actions
+
+This repository was developed using traditional Ruby test cycles, and best efforts have been made to optimise code, test coverage and styling before each commit. A static blog of this sort requires fewer tests than a more complex program, and with content rather than features being pushed changes that break functionality are less common. Nonetheless, as best practice and as an opportunity to utilise GitHub's relatively new automation tools, this repository uses simple GitHub Actions to subject commits to tests before they are deployed. The functionality of GitHub Actions is somewhat poorly documented, and even very basic functionality is often outsourced to Actions available in the Marketplace. In addition to wanting to learn to develop simple Actions for my own development, I had some reservations about the security implications of handing full access to my repositories to strangers, especially when the functionality I want is so basic.
+
+Instead, I chose to write my own very basic workflow, and document that process on the blog itself. You can see the logs of my workflow runs on the [Test & Deploy section](https://github.com/JoshSinyor/JoshSinyor.github.io/actions/workflows/deployment_ci.yml) of this repository's Actions tab.
 
 ---
 
