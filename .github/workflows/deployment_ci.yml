@@ -46,6 +46,7 @@ jobs:
 
       - name: Reset Deploy Branch
         run: |
+          git restore Gemfile.lock
           git checkout ${{ env.DEPLOY_BRANCH }}
           git reset --hard ${{  env.EMPLOY_BRANCH }}
 
