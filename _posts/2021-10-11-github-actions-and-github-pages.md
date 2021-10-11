@@ -2,11 +2,24 @@
 
 [In 2008](https://github.blog/2008-12-18-github-pages/) GitHub launched [GitHub Pages](https://pages.github.com/), a simple way for users to translate a simple repository into a basic static website hosted by GitHub itself. The concept itself is remarkably simple - you create the bare bones of a site's content, and GitHub will translate it into HTML and CSS using popular Ruby static site generator [Jekyll](https://jekyllrb.com/). The basics of building a Jekyll website have been explained numerous times by coders far more experienced than me; I leaned heavily on [Chad Baldwin](https://github.com/chadbaldwin)'s excellent [simple-blog-bootstrap](https://github.com/chadbaldwin/simple-blog-bootstrap/). GitHub automatically updates your Page with any commit pushed to branch you designate as the site's Source (in the Pages section of the repository's Settings tab), so if you're happy to push changes directly to a branch there's no need to complicate that.
 
-A decade after the launch of Pages, GitHub launched [GitHub Actions](https://github.com/features/actions), a workflow automation tool. Actions isn't intended to supplant traditional cloud computing services; for my purposes, it's a simple and useful way to try out workflow automation. Since my Pages repository is extremely simple and requires rote tests and workflow that doesn't change much, it's an ideal candidate for testing out Actions.
+A decade after the launch of Pages, GitHub launched [GitHub Actions](https://github.com/features/actions), a workflow automation tool. Actions isn't intended to supplant traditional cloud computing services; for my purposes, it's a simple and useful way to try out workflow automation. Since my Pages repository is extremely simple and requires rote tests and workflow that don't change much, it's an ideal candidate for testing out Actions.
 
 ---
 
-TABLE OF CONTENTS
+- [Aims & Objectives](#aims--objectives)
+- [GitHub Actions Workflows](#github-actions-workflows)
+- [Environment Variables](#environment-variables)
+  * [Authentication](#authentication)
+- [Setting Up the Environment](#setting-up-the-environment)
+  * [Installing Ruby](#installing-ruby)
+  * [Installing Gems](#installing-gems)
+- [Running the Test Suite](#running-the-test-suite)
+- [Deploying to Pages](#deploying-to-pages)
+  * [Commit Strategies](#commit-strategies)
+  * [Appropriate Commit Messaging](#appropriate-commit-messaging)
+  * [Resetting the `DEPLOY_BRANCH`](#resetting-the-deploy_branch)
+  * [Pushing to the `DEPLOY_BRANCH`](#pushing-to-the-deploy_branch)
+- [Conclusions](#conclusions)
 
 ---
 
@@ -58,10 +71,12 @@ Next I'll need to set and get some variables for later reference. A [fairly exte
 GitHub Actions environment variables are accessible at the workflow, job and step levels. I need these variables to be accessible in several different steps, so they need to be defined at the job level (`jobs.test_deploy.env`).
 
 ```
+{% raw %}
   env:
     EMPLOY_BRANCH: main
     DEPLOY_BRANCH: gh-pages
     DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
+{% endraw %}
 ```
 
 ### Authentication
@@ -72,35 +87,37 @@ Each run of my Action workflow requires setting up a container which I will use 
 
 ⚠️ **Personal Access Tokens can only authenticate via HTTPS, not SSH.** My Action's Ruby instance is therefore configured to push via HTTPS, not SSH. This doesn't affect any other instances of my repository - my local machines can continue to authenticate pushes and pulls to and from this repository using SSH.
 
-To create a new PAT, navigate to the [Personal access tokens subsection](https://github.com/settings/tokens) of the Developer settings section of your profile's Settings tab. Then, select Generate new token.
+To create a new PAT, navigate to the [Personal access tokens subsection](https://github.com/settings/tokens) of the Developer settings section of your profile's Settings tab. Then, select 'Generate new token'.
 
 ![Generating a New Personal Access Token](/images/2021-10-11/personal_access_token_01.png)
 
 Make sure to name the token something that accurately describes what you'll use it for, and to set an expiration date. You can easily update a token's hash later, so resist the urge to create a token with no expiry date - it's a security risk. Give the token `repo` scope but no other - it doesn't need any others, and if it's trying to use others, it shouldn't be allowed to do so.
 
-Next, click Generate token. You'll be presented with your new token's hash; this is the only time you'll be able to access it, so copy it to clipboard.
+Next, select 'Generate token'. You'll be presented with your new token's hash; this is the only time you'll be able to access it, so copy it to the clipboard.
 
 ![A New Personal Access Token](/images/2021-10-11/personal_access_token_02.png)
 
 ⚠️ **Never reveal the hash of any security token!** It will allow anyone with access to the hash access to whatever your token's scope is. This token was revoked immediately after I took these illustrative screenshots. **Never save or share a token's hash anywhere!**
 
-⚠️ **Do not share PATs between repositories!** If a single PAT is somehow compromised, you can delete it and update the single dependent repository. Using a repository-specific PAT allows you to limit the PAT's scope to the absolute minimum required by that individual repository. We will actually end up restricting the scope of the PAT even further, to just the GitHub Pages environment within this individual repository.
+⚠️ **Do not share PATs between repositories or repository environments!** If a single PAT is somehow compromised, you can delete it and update the single dependency. Using a repository- or repository environment-specific PAT allows you to limit the PAT's scope to the absolute minimum required by that individual dependency.
 
-Having copied the token's hash, navigate to the Secrets subsection of your repository's Settings tab, and select New repository secret.
+Having copied the token's hash, navigate to the Environment subsubsection of your repository's Settings tab. Select 'New repository secret'.
 
-![Adding a Secret](/images/2021-10-11/personal_access_token_03.png)
+![Selecting the Environment](/images/2021-10-11/personal_access_token_03.png)
 
-In the New secret page, name the token how you'll want to refer to it in the workflow (matching the `DEPLOY_TOKEN` environmental variable), paste the PAT's hash in the Value box, and select Add secret.
+⚠️ **You must have already created your GitHub Pages environment to add a secret to it.** If you don't see `github-pages` in the Environments subsection, check that your repository is configured as your GitHub Pages repository.
 
-![New Secret](/images/2021-10-11/personal_access_token_04.png)
+![Adding a Secret](/images/2021-10-11/personal_access_token_04.png)
 
-You'll see the token listed in the repository's Secrets.
+In the New secret page, name the token how you'll want to refer to it in the workflow (matching the `DEPLOY_TOKEN` environmental variable), paste the PAT's hash in the Value box, and select 'Add secret'.
+
+![New Secret](/images/2021-10-11/personal_access_token_05.png)
+
+You'll see the token listed in the repository's Environment secrets.
 
 ![Repository Secret](/images/2021-10-11/personal_access_token_04.png)
 
-Finally, as above I'll need to add the token to the environmental variables already listed in the workflow.
-
-⚠️ **We will return to this PAT later on to further restrict their scope.**
+Finally, as above you'll need to add the token to the environmental variables.
 
 ---
 
@@ -168,8 +185,10 @@ Although the `DEPLOY_BRANCH` won't have much of a commit history - since it will
 Here's the next step of the job:
 
 ```
+{% raw %}
       - name: Edit Commit
         run: git commit --amend --author="GitHub Action <github-actions@github.com>" -m "Automated post-CI deployment commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+{% endraw %}
 ```
 
 This command edits the author and message of the commit. Now it's suitable for a push to the `DEPLOY_BRANCH`.
@@ -179,20 +198,24 @@ This command edits the author and message of the commit. Now it's suitable for a
 Within the Actions container, only the default branch is loaded, and that only within the locality. Therefore it's necessary to set up a remote connection to the hosted repository, and fetch the `DEPLOY_BRANCH`. This is where the PAT is required; it authenticates the HTTPS connection to the remote repository.
 
 ```
+{% raw %}
 - name: Fetch Deploy Branch
   run: |
     git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
     git fetch origin ${{ env.DEPLOY_BRANCH }}
+{% endraw %}
 ```
 
 Having fetched the `DEPLOY_BRANCH`, it can be overwritten with the tested `EMPLOY_BRANCH`. However, the loading of the Gems in the Actions' configuration (without the Jekyll-related gems) will often generate changes in the `EMPLOY_BRANCH`'s Gemfile; it's necessary to discard these before switching to the `EMPLOY_BRANCH`.
 
 ```
+{% raw %}
 - name: Reset Deploy Branch
   run: |
     git restore Gemfile.lock
     git checkout ${{ env.DEPLOY_BRANCH }}
     git reset --hard ${{  env.EMPLOY_BRANCH }}
+{% endraw %}
 ```
 
 ### Pushing to the `DEPLOY_BRANCH`
@@ -200,8 +223,10 @@ Having fetched the `DEPLOY_BRANCH`, it can be overwritten with the tested `EMPLO
 Finally, the reset `DEPLOY_BRANCH` can be pushed to the remote repository. As in the `reset --hard` situation, this deployment needs to be pushed forcefully to prevent merge conflicts. However, there is one situation where overwriting the existing commit is undesirable: where another commit has been pushed in the interim. The `-with-lease` flag will prevent an accidental overwrite of a newer commit with an older one, should such a situation arise.
 
 ```
+{% raw %}
 - name: Deploy
   run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
+{% endraw %}
 ```
 
 ---
@@ -213,6 +238,7 @@ GitHub Actions are a useful tool for a variety of things - deploying to GitHub P
 Here's the contents of my complete GitHub Action.
 
 ```
+{% raw %}
 name: Test & Deploy
 
 on:
@@ -264,4 +290,5 @@ jobs:
 
       - name: Deploy
         run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
+{% endraw %}
 ```
