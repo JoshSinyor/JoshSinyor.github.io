@@ -116,7 +116,7 @@ In the New secret page, name the token how you'll want to refer to it in the wor
 
 You'll see the token listed in the repository's Environment secrets.
 
-![Repository Secret](/images/2021-10-11/personal_access_token_04.png)
+![Repository Secret](/images/2021-10-11/personal_access_token_06.png)
 
 Finally, as above you'll need to add the token to the environmental variables.
 
