@@ -234,13 +234,25 @@ Finally, the reset `DEPLOY_BRANCH` can be pushed to the remote repository. As in
 
 ## Testing the Action
 
-It's pretty simple to test the Action. First, I need to push the commit with the completed workflow file to the `EMPLOY_BRANCH`, which must be the default branch. This push should trigger the Action, which I can monitor on repository's Actions tab. There, logs are posted for each run of each workflow. If there are any problems, these logs will be of help in troubleshooting them.
+It's pretty simple to test the Action. First, I need to push the commit with the completed workflow file to the `EMPLOY_BRANCH`, which must be the default branch. This push should trigger the Action, which I can monitor on repository's Actions tab.
+
+![Actions Tab](/images/2021-10-11/github_action_01.png)
+
+Detailed logs are posted, for each run of each workflow, in the Actions tab. If there are any problems, these will be of help in troubleshooting them.
+
+![Actions Log](/images/2021-10-11/github_action_02.png)
 
 Finally, I can check the commit histories of the `EMPLOY` and `DEPLOY` branches; I should see:
 
 1. My push to the `EMPLOY_BRANCH` as the last commit to that branch, and
 2. A new commit on the `DEPLOY_BRANCH`, with
 3. A commit author and message corresponding to the correct commit on the `EMPLOY_BRANCH`.
+
+![EMPLOY_BRANCH Commit](/images/2021-10-11/github_action_03.png)
+
+![DEPLOY_BRANCH Commit](/images/2021-10-11/github_action_04.png)
+
+You can see that the details of the `DEPLOY_BRANCH` commit (hash [18738cb](https://github.com/JoshSinyor/JoshSinyor.github.io/commit/18738cb00b73aaebd462c61b8a3af261a44deeb6)) correctly identify the author as GitHub Action, and that it correctly identifies the `EMPLOY_BRANCH` as `main` and the reflected commit as [93df4e](https://github.com/JoshSinyor/JoshSinyor.github.io/commit/93de4f3dcff5f4c43fe1e40fc889afdd1ffb2f52).
 
 ---
 
