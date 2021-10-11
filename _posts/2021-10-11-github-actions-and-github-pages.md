@@ -77,9 +77,23 @@ Each run of my Action workflow requires setting up a container which I will use 
 
 ⚠️ **This choice has security implications.** This Action will be running automatically and without direct oversight. It's important that the access granted is as limited in scope as possible; I don't want a bad actor exploiting it to gain access to my GitHub account. This is the number one reason I chose to write this aspect of my Action myself, rather than using any of the numerous off-the-shelf Action components available on the [Marketplace](https://github.com/marketplace?type=actions): I want complete oversight of the code I allow authenticated access to my repository.
 
-⚠️ **Personal Access Tokens can only authenticate via HTTPS, not SSH.** My Action's Ruby instance is therefore configured to push via HTTPS, not SSH. However, this doesn't affect any other local instances of my repository - my local machines can continue to authenticate pushes and pulls to and from this repository using SSH. Deploy Keys can use SSH or OAuth tokens if HTTPS isn't appropriate.
+⚠️ **Personal Access Tokens can only authenticate via HTTPS, not SSH.** My Action's Ruby instance is therefore configured to push via HTTPS, not SSH. This doesn't affect any other instances of my repository - my local machines can continue to authenticate pushes and pulls to and from this repository using SSH. Deploy Keys can use SSH or OAuth tokens if HTTPS isn't appropriate.
 
-For this situation, a limited-scope PAT was ideal. To create it, I:
+For this situation, a limited-scope PAT was ideal. To create a new PAT, navigate to the [Personal access tokens subsection](https://github.com/settings/tokens) of the Developer settings section of your profile's Settings tab. Then, select Generate new token.
+
+![Generating a New Personal Access Token](/images/2021-10-11/personal_access_token_01.png)
+
+Make sure to name the token something that accurately describes what you'll use it for, and to set an expiration date. You can easily update a token's hash later, so resist the urge to create a token with no expiry date - it's a security risk. Give the token `repo` scope but no other - it doesn't need any others, and if it's trying to use others, it shouldn't be allowed to do so.
+
+Next, click Generate token. You'll be presented with your new token's hash; this is the only time you'll be able to access it, so copy it to clipboard.
+
+![A New Personal Access Token](/images/2021-10-11/personal_access_token_02.png)
+
+⚠️ **Never reveal the hash of any security token!** It will allow anyone with access to the hash access to whatever your token's scope is. This token was revoked immediately after I took these illustrative screenshots. **Never save or share a token's hash anywhere!**
+
+⚠️ **Do not share PATs between repositories!** If a single PAT is somehow compromised, you can delete it and update the single dependent repository. Using a repository-specific PAT allows you to limit the PAT's scope to the absolute minimum required by that individual repository.
+
+![Adding a Secret](/images/2021-10-11/personal_access_token_03.png)
 
 ```
   env:
