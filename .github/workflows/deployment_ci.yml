@@ -31,19 +31,6 @@ jobs:
         run: |
           bundle config set --local without 'jekyll jekyll_plugins'
           bundle install
-          git restore Gemfile.lock
-
-      # - name: Install Gems
-      #   run: |
-      #     bundle config set --local without 'jekyll jekyll_plugins'
-      #     bundle install
-      #     git restore Gemfile.lock
-
-      # - name: Run Tests
-      #   run: |
-      #     rubocop
-      #     rspec
-      #     git restore Gemfile.lock
 
       - name: Check For Changes
         run: |
@@ -55,21 +42,17 @@ jobs:
         if: env.DIFF_BOOLEAN == 'true'
         run: echo ${{ env.DIFF_BOOLEAN }}
 
-      - name: Check Differences
+      - name: New Commit If Changes
+        if: env.DIFF_BOOLEAN == 'true'
         run: |
-          git checkout -b test-branch
+          git add .
+          git config user.name "$COMMIT_USER_NAME"
+          git config user.email "$COMMIT_USER_EMAIL"
+          git commit -m "${{ env.COMMIT_MESSAGE }}"
 
-      # - name: New Commit If Changes
-      #   if: env.DIFF_BOOLEAN == 'true'
-      #   run: |
-      #     git add .
-      #     git config user.name "$COMMIT_USER_NAME"
-      #     git config user.email "$COMMIT_USER_EMAIL"
-      #     git commit -m "${{ env.COMMIT_MESSAGE }}"
-
-      # - name: Edit Commit If No Changes
-      #   if: env.DIFF_BOOLEAN == 'false'
-      #   run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+      - name: Edit Commit If No Changes
+        if: env.DIFF_BOOLEAN == 'false'
+        run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
 
       # - name: Fetch Deploy Branch
       #   run: |
