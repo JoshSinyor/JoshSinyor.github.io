@@ -37,6 +37,7 @@ jobs:
 
       - name: Check For Changes
         run: |
+          git add .
           if git diff --exit-code; then
             echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
           else
