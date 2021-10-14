@@ -49,7 +49,7 @@ jobs:
           git add .
           git config user.name $COMMIT_USER_NAME
           git config user.email $COMMIT_USER_EMAIL
-          git commit -m $COMMIT_MESSAGE
+          git commit -m ${{ COMMIT_MESSAGE }}
 
       # - name: Edit Commit If No Changes
       #   if: env.DIFF_BOOLEAN == 'false'
