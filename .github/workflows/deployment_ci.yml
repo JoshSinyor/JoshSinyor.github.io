@@ -32,6 +32,9 @@ jobs:
           bundle install
           git restore Gemfile.lock
 
+      - name: Create Test File
+        run: touch test.txt
+
       - name: Check For Changes
         run: |
           if git diff --exit-code; then
