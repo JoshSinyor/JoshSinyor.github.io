@@ -37,6 +37,9 @@ jobs:
           rubocop
           rspec
 
+      - name: Create Test File
+        run: touch test.txt
+
       - name: Commit
         run: |
           git add .
