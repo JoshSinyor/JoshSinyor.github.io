@@ -3,7 +3,7 @@ name: Test & Deploy
 on:
   push:
     branches:
-      - main
+      - test-branch
 
 jobs:
   test_deploy:
@@ -31,11 +31,11 @@ jobs:
         run: |
           bundle config set --local without 'jekyll jekyll_plugins'
           bundle install
+          git restore Gemfile.lock
+          echo git diff--exit-code
 
       - name: Check For Changes
         run: |
-          git restore Gemfile.lock
-          git add .
           if git diff --exit-code; then
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
           fi
@@ -52,15 +52,15 @@ jobs:
         run: |
           git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
 
-      - name: Fetch Deploy Branch
-        run: |
-          git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
-          git fetch origin $DEPLOY_BRANCH
-
-      - name: Reset Deploy Branch
-        run: |
-          git checkout $DEPLOY_BRANCH
-          git reset --hard $EMPLOY_BRANCH
-
-      - name: Deploy
-        run: git push --force-with-lease origin $DEPLOY_BRANCH
+      # - name: Fetch Deploy Branch
+      #   run: |
+      #     git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
+      #     git fetch origin $DEPLOY_BRANCH
+      #
+      # - name: Reset Deploy Branch
+      #   run: |
+      #     git checkout $DEPLOY_BRANCH
+      #     git reset --hard $EMPLOY_BRANCH
+      #
+      # - name: Deploy
+      #   run: git push --force-with-lease origin $DEPLOY_BRANCH
