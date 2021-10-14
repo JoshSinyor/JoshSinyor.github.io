@@ -43,6 +43,7 @@ jobs:
           if git diff --exit-code; then
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
           fi
+          echo ${{ env.DIFF_BOOLEAN }}
 
       - name: Check Variable
         if: env.DIFF_BOOLEAN == 'true'
@@ -55,20 +56,20 @@ jobs:
       #     git config user.name "$COMMIT_USER_NAME"
       #     git config user.email "$COMMIT_USER_EMAIL"
       #     git commit -m "${{ env.COMMIT_MESSAGE }}"
-
-      - name: Edit Commit If No Changes
-        if: env.DIFF_BOOLEAN == 'false'
-        run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+      #
+      # - name: Edit Commit If No Changes
+      #   if: env.DIFF_BOOLEAN == 'false'
+      #   run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
 
       - name: Fetch Deploy Branch
         run: |
           git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
           git fetch origin $DEPLOY_BRANCH
 
-      # - name: Reset Deploy Branch
-      #   run: |
-      #     git checkout ${{ env.DEPLOY_BRANCH }}
-      #     git reset --hard ${{  env.EMPLOY_BRANCH }}
-      #
+      - name: Reset Deploy Branch
+        run: |
+          git checkout ${{ env.DEPLOY_BRANCH }}
+          git reset --hard ${{  env.EMPLOY_BRANCH }}
+
       # - name: Deploy
       #   run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
