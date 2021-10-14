@@ -32,6 +32,9 @@ jobs:
           bundle config set --local without 'jekyll jekyll_plugins'
           bundle install
 
+      - name: Test File Creation
+        run: touch test.txt
+
       - name: Check For Changes
         run: |
           if git diff --exit-code; then
