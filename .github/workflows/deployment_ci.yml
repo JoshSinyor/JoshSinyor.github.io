@@ -32,11 +32,30 @@ jobs:
       #     bundle install
       #     git restore Gemfile.lock
 
-      - name: Pre-Create Test File
+      - name: Don't Create Test File
+        run: |
+          if git diff-index --quiet HEAD; then
+            echo "No difference."
+          fi
+
+      - name: Check For Changes
         run: |
           git add .
           if git diff-index --quiet HEAD; then
-            echo "No difference."
+            echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
+          else
+            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
+          fi
+
+      - name: Check Variable Status
+        run: echo ${{ env.DIFF_BOOLEAN }}
+
+      - name: Create But Don't Stage Test File
+        run: |
+          touch test.txt
+          echo "Hello World!" >> test.txt
+          if git diff-index --quiet HEAD; then
+            echo "Some difference."
           fi
 
       - name: Check For Changes
@@ -50,7 +69,7 @@ jobs:
       - name: Check Variable Status
         run: echo ${{ env.DIFF_BOOLEAN }}
 
-      - name: Create Test File
+      - name: Create And Stage Test File
         run: |
           touch test.txt
           echo "Hello World!" >> test.txt
@@ -58,15 +77,9 @@ jobs:
             echo "Some difference."
           fi
 
-      - name: Create Test File
-        run: |
-          git add .
-          if git diff-index --quiet HEAD; then
-            echo "Some difference."
-          fi
-
       - name: Check For Changes
         run: |
+          git add .
           if git diff-index --quiet HEAD; then
             echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
           else
