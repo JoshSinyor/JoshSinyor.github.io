@@ -45,13 +45,17 @@ jobs:
           fi
           echo ${{ env.DIFF_BOOLEAN }}
 
-      - name: New Commit If Changes
+      - name: Check Variable
         if: env.DIFF_BOOLEAN == 'true'
-        run: |
-          git add .
-          git config user.name "$COMMIT_USER_NAME"
-          git config user.email "$COMMIT_USER_EMAIL"
-          git commit -m "${{ env.COMMIT_MESSAGE }}"
+        run: echo ${{ env.DIFF_BOOLEAN }}
+
+      # - name: New Commit If Changes
+      #   if: env.DIFF_BOOLEAN == 'true'
+      #   run: |
+      #     git add .
+      #     git config user.name "$COMMIT_USER_NAME"
+      #     git config user.email "$COMMIT_USER_EMAIL"
+      #     git commit -m "${{ env.COMMIT_MESSAGE }}"
 
       - name: Edit Commit If No Changes
         if: env.DIFF_BOOLEAN == 'false'
