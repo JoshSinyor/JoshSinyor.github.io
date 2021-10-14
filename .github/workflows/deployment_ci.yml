@@ -27,10 +27,15 @@ jobs:
         with:
           ruby-version: 2.7.3
 
+      - name: Install Gems
+        run: |
+          bundle install
+
       # - name: Install Gems
       #   run: |
       #     bundle config set --local without 'jekyll jekyll_plugins'
       #     bundle install
+      #     git restore Gemfile.lock
 
       # - name: Run Tests
       #   run: |
@@ -38,11 +43,11 @@ jobs:
       #     rspec
       #     git restore Gemfile.lock
 
-      # - name: Check For Changes
-      #   run: |
-      #     if git diff --exit-code; then
-      #       echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
-      #     fi
+      - name: Check For Changes
+        run: |
+          if git diff --exit-code; then
+            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
+          fi
 
       - name: Check Variable
         if: env.DIFF_BOOLEAN == 'true'
