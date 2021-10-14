@@ -54,7 +54,14 @@ jobs:
         run: |
           touch test.txt
           echo "Hello World!" >> test.txt
-          if ggit diff-index --quiet HEAD; then
+          if git diff-index --quiet HEAD; then
+            echo "Some difference."
+          fi
+
+      - name: Create Test File
+        run: |
+          git add .
+          if git diff-index --quiet HEAD; then
             echo "Some difference."
           fi
 
