@@ -41,7 +41,7 @@ jobs:
           fi
 
       - name: Check Variable Status
-        run: ${{ env.DIFF_BOOLEAN }}
+        run: echo ${{ env.DIFF_BOOLEAN }}
 
       - name: New Commit If Changes
         if: env.DIFF_BOOLEAN == 'true'
