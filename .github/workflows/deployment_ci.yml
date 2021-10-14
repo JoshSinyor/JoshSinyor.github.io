@@ -32,10 +32,6 @@ jobs:
           bundle config set --local without 'jekyll jekyll_plugins'
           bundle install
 
-      - name: Test File Creation
-        run: |
-          touch test_2.txt
-
       - name: Check For Changes
         run: |
           git restore Gemfile.lock
@@ -55,7 +51,6 @@ jobs:
         if: env.DIFF_BOOLEAN == 'false'
         run: |
           git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
-          git restore Gemfile.lock
 
       - name: Fetch Deploy Branch
         run: |
