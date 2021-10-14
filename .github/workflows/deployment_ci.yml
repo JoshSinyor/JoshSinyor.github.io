@@ -38,14 +38,12 @@ jobs:
           rubocop
           rspec
 
-      - name: Identify Change
-        run: echo git diff
-
-      # - name: Check For Changes
-      #   run: |
-      #     if git diff --exit-code; then
-      #       echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
-      #     fi
+      - name: Check For Changes
+        run: |
+          if git diff --exit-code; then
+            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
+          fi
+          echo $DIFF_BOOLEAN
 
       # - name: New Commit If Changes
       #   if: env.DIFF_BOOLEAN == 'true'
