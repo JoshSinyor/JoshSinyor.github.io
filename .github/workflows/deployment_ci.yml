@@ -34,22 +34,24 @@ jobs:
 
       - name: Pre-Create Test File
         run: |
-          git diff --exit-code
+          git add .
+          git diff --exit-code || echo "No difference."
 
       - name: Create Test File
         run: |
           touch test.txt
+          echo "Hello World!" >> test.txt
           git add .
-          git diff --exit-code
+          git diff --exit-code || echo "Some difference."
 
-      # - name: Check For Changes
-      #   run: |
-      #     git add .
-      #     if git diff --exit-code; then
-      #       echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
-      #     else
-      #       echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
-      #     fi
+      - name: Check For Changes
+        run: |
+          git add .
+          if git diff --exit-code; then
+            echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
+          else
+            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
+          fi
 
       # - name: Check Variable Status
       #   run: echo ${{ env.DIFF_BOOLEAN }}
