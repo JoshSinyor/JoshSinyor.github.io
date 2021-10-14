@@ -39,6 +39,7 @@ jobs:
       - name: Create Test File
         run: |
           touch test.txt
+          git add .
           git diff --exit-code
 
       # - name: Check For Changes
