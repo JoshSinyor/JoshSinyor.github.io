@@ -53,6 +53,10 @@ jobs:
         if: env.DIFF_BOOLEAN == 'true'
         run: echo ${{ env.DIFF_BOOLEAN }}
 
+      - name: Check Differences
+        run: |
+          git checkout -b test-branch
+
       # - name: New Commit If Changes
       #   if: env.DIFF_BOOLEAN == 'true'
       #   run: |
