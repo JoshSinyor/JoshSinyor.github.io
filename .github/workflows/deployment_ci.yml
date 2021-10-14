@@ -32,39 +32,48 @@ jobs:
           bundle install
           git restore Gemfile.lock
 
-      - name: Check For Changes
+      - name: Pre-Create Test File
         run: |
-          git add .
-          if git diff --exit-code; then
-            echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
-          else
-            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
-          fi
+          echo git diff --exit-code
 
-      - name: Check Variable Status
-        run: echo ${{ env.DIFF_BOOLEAN }}
-
-      - name: New Commit If Changes
-        if: env.DIFF_BOOLEAN == 'true'
+      - name: Create Test File
         run: |
-          git config user.name "$COMMIT_USER_NAME"
-          git config user.email "$COMMIT_USER_EMAIL"
-          git commit -m "${{ env.COMMIT_MESSAGE }}"
+          touch test.txt
+          echo git diff --exit-code
 
-      - name: Edit Commit If No Changes
-        if: env.DIFF_BOOLEAN == 'false'
-        run: |
-          git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+      # - name: Check For Changes
+      #   run: |
+      #     git add .
+      #     if git diff --exit-code; then
+      #       echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
+      #     else
+      #       echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
+      #     fi
 
-      - name: Fetch Deploy Branch
-        run: |
-          git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
-          git fetch origin $DEPLOY_BRANCH
+      # - name: Check Variable Status
+      #   run: echo ${{ env.DIFF_BOOLEAN }}
 
-      - name: Reset Deploy Branch
-        run: |
-          git checkout $DEPLOY_BRANCH
-          git reset --hard $EMPLOY_BRANCH
+      # - name: New Commit If Changes
+      #   if: env.DIFF_BOOLEAN == 'true'
+      #   run: |
+      #     git config user.name "$COMMIT_USER_NAME"
+      #     git config user.email "$COMMIT_USER_EMAIL"
+      #     git commit -m "${{ env.COMMIT_MESSAGE }}"
+
+      # - name: Edit Commit If No Changes
+      #   if: env.DIFF_BOOLEAN == 'false'
+      #   run: |
+      #     git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+
+      # - name: Fetch Deploy Branch
+      #   run: |
+      #     git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
+      #     git fetch origin $DEPLOY_BRANCH
+
+      # - name: Reset Deploy Branch
+      #   run: |
+      #     git checkout $DEPLOY_BRANCH
+      #     git reset --hard $EMPLOY_BRANCH
 
       # - name: Deploy
       #   run: git push --force-with-lease origin $DEPLOY_BRANCH
