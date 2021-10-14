@@ -54,7 +54,6 @@ jobs:
         run: |
           touch test.txt
           echo "Hello World!" >> test.txt
-          git add .
           if git diff --exit-code; then
             echo "Some difference."
           fi
