@@ -33,7 +33,9 @@ jobs:
           bundle install
 
       - name: Test File Creation
-        run: touch test.txt
+        run: |
+          touch test.txt
+          git add .
 
       - name: Check For Changes
         run: |
