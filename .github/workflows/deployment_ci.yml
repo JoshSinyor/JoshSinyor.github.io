@@ -53,15 +53,15 @@ jobs:
         run: |
           git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
 
-      # - name: Fetch Deploy Branch
-      #   run: |
-      #     git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
-      #     git fetch origin $DEPLOY_BRANCH
-      #
-      # - name: Reset Deploy Branch
-      #   run: |
-      #     git checkout $DEPLOY_BRANCH
-      #     git reset --hard $EMPLOY_BRANCH
-      #
+      - name: Fetch Deploy Branch
+        run: |
+          git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
+          git fetch origin $DEPLOY_BRANCH
+
+      - name: Reset Deploy Branch
+        run: |
+          git checkout $DEPLOY_BRANCH
+          git reset --hard $EMPLOY_BRANCH
+
       # - name: Deploy
       #   run: git push --force-with-lease origin $DEPLOY_BRANCH
