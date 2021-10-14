@@ -34,11 +34,12 @@ jobs:
 
       - name: Test File Creation
         run: |
-          touch test.txt
-          git add .
+          touch test_2.txt
 
       - name: Check For Changes
         run: |
+          git restore Gemfile.lock
+          git add .
           if git diff --exit-code; then
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
           fi
@@ -46,7 +47,6 @@ jobs:
       - name: New Commit If Changes
         if: env.DIFF_BOOLEAN == 'true'
         run: |
-          git add .
           git config user.name "$COMMIT_USER_NAME"
           git config user.email "$COMMIT_USER_EMAIL"
           git commit -m "${{ env.COMMIT_MESSAGE }}"
