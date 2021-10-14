@@ -32,26 +32,21 @@ jobs:
           bundle install
           git restore Gemfile.lock
 
-      - name: Check For Changes
+      - name: Run Tests
+        run: |
+          rubocop
+          rspec
+
+      - name: Commit
         run: |
           git add .
           if git diff-index --quiet HEAD; then
-            echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
+            git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
           else
-            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
+            git config user.name "$COMMIT_USER_NAME"
+            git config user.email "$COMMIT_USER_EMAIL"
+            git commit -m "${{ env.COMMIT_MESSAGE }}"
           fi
-
-      - name: New Commit If Changes
-        if: env.DIFF_BOOLEAN == 'true'
-        run: |
-          git config user.name "$COMMIT_USER_NAME"
-          git config user.email "$COMMIT_USER_EMAIL"
-          git commit -m "${{ env.COMMIT_MESSAGE }}"
-
-      - name: Edit Commit If No Changes
-        if: env.DIFF_BOOLEAN == 'false'
-        run: |
-          git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
 
       # - name: Fetch Deploy Branch
       #   run: |
