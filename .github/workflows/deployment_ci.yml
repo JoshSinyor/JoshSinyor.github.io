@@ -26,17 +26,11 @@ jobs:
         with:
           ruby-version: 2.7.3
 
-      # - name: Install Gems
-      #   run: |
-      #     bundle config set --local without 'jekyll jekyll_plugins'
-      #     bundle install
-      #     git restore Gemfile.lock
-
-      - name: Don't Create Test File
+      - name: Install Gems
         run: |
-          if git diff-index --quiet HEAD; then
-            echo "No difference."
-          fi
+          bundle config set --local without 'jekyll jekyll_plugins'
+          bundle install
+          git restore Gemfile.lock
 
       - name: Check For Changes
         run: |
@@ -47,59 +41,17 @@ jobs:
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
           fi
 
-      - name: Check Variable Status
-        run: echo ${{ env.DIFF_BOOLEAN }}
-
-      - name: Create But Don't Stage Test File
+      - name: New Commit If Changes
+        if: env.DIFF_BOOLEAN == 'true'
         run: |
-          touch test.txt
-          echo "Hello World!" >> test.txt
-          if git diff-index --quiet HEAD; then
-            echo "Some difference."
-          fi
+          git config user.name "$COMMIT_USER_NAME"
+          git config user.email "$COMMIT_USER_EMAIL"
+          git commit -m "${{ env.COMMIT_MESSAGE }}"
 
-      - name: Check For Changes
+      - name: Edit Commit If No Changes
+        if: env.DIFF_BOOLEAN == 'false'
         run: |
-          if git diff-index --quiet HEAD; then
-            echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
-          else
-            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
-          fi
-
-      - name: Check Variable Status
-        run: echo ${{ env.DIFF_BOOLEAN }}
-
-      - name: Create And Stage Test File
-        run: |
-          touch test.txt
-          echo "Hello World!" >> test.txt
-          if git diff-index --quiet HEAD; then
-            echo "Some difference."
-          fi
-
-      - name: Check For Changes
-        run: |
-          git add .
-          if git diff-index --quiet HEAD; then
-            echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
-          else
-            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
-          fi
-
-      - name: Check Variable Status
-        run: echo ${{ env.DIFF_BOOLEAN }}
-
-      # - name: New Commit If Changes
-      #   if: env.DIFF_BOOLEAN == 'true'
-      #   run: |
-      #     git config user.name "$COMMIT_USER_NAME"
-      #     git config user.email "$COMMIT_USER_EMAIL"
-      #     git commit -m "${{ env.COMMIT_MESSAGE }}"
-
-      # - name: Edit Commit If No Changes
-      #   if: env.DIFF_BOOLEAN == 'false'
-      #   run: |
-      #     git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+          git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
 
       # - name: Fetch Deploy Branch
       #   run: |
