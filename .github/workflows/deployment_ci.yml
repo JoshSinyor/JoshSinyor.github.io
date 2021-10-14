@@ -31,19 +31,18 @@ jobs:
         run: |
           bundle config set --local without 'jekyll jekyll_plugins'
           bundle install
-          git restore Gemfile.lock
 
       - name: Run Tests
         run: |
           rubocop
           rspec
+          git restore Gemfile.lock
 
       - name: Check For Changes
         run: |
           if git diff --exit-code; then
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
           fi
-          echo ${{ env.DIFF_BOOLEAN }}
 
       - name: Check Variable
         if: env.DIFF_BOOLEAN == 'true'
