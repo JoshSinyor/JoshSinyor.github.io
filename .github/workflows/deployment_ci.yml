@@ -54,15 +54,15 @@ jobs:
         if: env.DIFF_BOOLEAN == 'false'
         run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
 
-      # - name: Fetch Deploy Branch
-      #   run: |
-      #     git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
-      #     git fetch origin $DEPLOY_BRANCH
+      - name: Fetch Deploy Branch
+        run: |
+          git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
+          git fetch origin $DEPLOY_BRANCH
 
-      # - name: Reset Deploy Branch
-      #   run: |
-      #     git checkout ${{ env.DEPLOY_BRANCH }}
-      #     git reset --hard ${{  env.EMPLOY_BRANCH }}
+      - name: Reset Deploy Branch
+        run: |
+          git checkout ${{ env.DEPLOY_BRANCH }}
+          git reset --hard ${{  env.EMPLOY_BRANCH }}
 
-      # - name: Deploy
-      #   run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
+      - name: Deploy
+        run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
