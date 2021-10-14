@@ -26,22 +26,22 @@ jobs:
         with:
           ruby-version: 2.7.3
 
-      - name: Install Gems
-        run: |
-          bundle config set --local without 'jekyll jekyll_plugins'
-          bundle install
-          git restore Gemfile.lock
+      # - name: Install Gems
+      #   run: |
+      #     bundle config set --local without 'jekyll jekyll_plugins'
+      #     bundle install
+      #     git restore Gemfile.lock
 
       - name: Pre-Create Test File
         run: |
           git add .
-          if git diff --exit-code; then
+          if git diff-index --quiet HEAD; then
             echo "No difference."
           fi
 
       - name: Check For Changes
         run: |
-          if git diff --exit-code; then
+          if git diff-index --quiet HEAD; then
             echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
           else
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
@@ -54,13 +54,13 @@ jobs:
         run: |
           touch test.txt
           echo "Hello World!" >> test.txt
-          if git diff --exit-code; then
+          if ggit diff-index --quiet HEAD; then
             echo "Some difference."
           fi
 
       - name: Check For Changes
         run: |
-          if git diff --exit-code; then
+          if git diff-index --quiet HEAD; then
             echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
           else
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
