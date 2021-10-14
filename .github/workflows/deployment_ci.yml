@@ -38,24 +38,27 @@ jobs:
           rubocop
           rspec
 
-      - name: Check For Changes
-        run: |
-          if git diff --exit-code; then
-            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
-          fi
+      - name: Identify Change
+        run: echo git diff
 
-      - name: New Commit If Changes
-        if: env.DIFF_BOOLEAN == 'true'
-        run: |
-          git add .
-          git config user.name "$COMMIT_USER_NAME"
-          git config user.email "$COMMIT_USER_EMAIL"
-          git commit -m "${{ env.COMMIT_MESSAGE }}"
+      # - name: Check For Changes
+      #   run: |
+      #     if git diff --exit-code; then
+      #       echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
+      #     fi
 
+      # - name: New Commit If Changes
+      #   if: env.DIFF_BOOLEAN == 'true'
+      #   run: |
+      #     git add .
+      #     git config user.name "$COMMIT_USER_NAME"
+      #     git config user.email "$COMMIT_USER_EMAIL"
+      #     git commit -m "${{ env.COMMIT_MESSAGE }}"
+      #
       # - name: Edit Commit If No Changes
       #   if: env.DIFF_BOOLEAN == 'false'
-      #   run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m $COMMIT_MESSAGE
-      #
+      #   run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+
       # - name: Fetch Deploy Branch
       #   run: |
       #     git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
