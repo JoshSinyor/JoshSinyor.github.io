@@ -35,26 +35,40 @@ jobs:
       - name: Pre-Create Test File
         run: |
           git add .
-          git diff --exit-code || echo "No difference."
-
-      - name: Create Test File
-        run: |
-          touch test.txt
-          echo "Hello World!" >> test.txt
-          git add .
-          git diff --exit-code || echo "Some difference."
+          if git diff --exit-code; then
+            echo "No difference."
+          fi
 
       - name: Check For Changes
         run: |
-          git add .
           if git diff --exit-code; then
             echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
           else
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
           fi
 
-      # - name: Check Variable Status
-      #   run: echo ${{ env.DIFF_BOOLEAN }}
+      - name: Check Variable Status
+        run: echo ${{ env.DIFF_BOOLEAN }}
+
+      - name: Create Test File
+        run: |
+          touch test.txt
+          echo "Hello World!" >> test.txt
+          git add .
+          if git diff --exit-code; then
+            echo "Some difference."
+          fi
+
+      - name: Check For Changes
+        run: |
+          if git diff --exit-code; then
+            echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
+          else
+            echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
+          fi
+
+      - name: Check Variable Status
+        run: echo ${{ env.DIFF_BOOLEAN }}
 
       # - name: New Commit If Changes
       #   if: env.DIFF_BOOLEAN == 'true'
