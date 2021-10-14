@@ -31,13 +31,13 @@ jobs:
         run: |
           bundle config set --local without 'jekyll jekyll_plugins'
           bundle install
-          git diff --exit-code
           git restore Gemfile.lock
-          git diff --exit-code
+
+      - name: Add Any Changes
+        run: git add .
 
       - name: Check For Changes
         run: |
-          git add .
           if git diff --exit-code; then
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
           fi
