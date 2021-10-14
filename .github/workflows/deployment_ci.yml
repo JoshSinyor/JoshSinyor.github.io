@@ -13,10 +13,9 @@ jobs:
       EMPLOY_BRANCH: main
       DEPLOY_BRANCH: gh-pages
       DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
-      DIFF_BOOLEAN: false
-      COMMIT_USER_NAME: "GitHub Action"
-      COMMIT_USER_EMAIL: "github-actions@github.com"
-      COMMIT_MESSAGE: "Automated commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }})."
+      COMMIT_USER_NAME: GitHub Action
+      COMMIT_USER_EMAIL: github-action@github.com
+      COMMIT_MESSAGE: Automated commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }}).
 
     steps:
       - name: Checkout
@@ -38,28 +37,24 @@ jobs:
           rubocop
           rspec
 
-      - name: New Commit If Changes
-        if: env.DIFF_BOOLEAN == 'true'
+      - name: Commit
         run: |
           git add .
-          git config user.name $COMMIT_USER_NAME
-          git config user.email $COMMIT_USER_EMAIL
-          git commit -m $COMMIT_MESSAGE
-          git push
-
-      - name: Edit Commit If No Changes
-        if: env.DIFF_BOOLEAN == 'false'
-        run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m $COMMIT_MESSAGE
+          if git diff-index --quiet HEAD; then
+            git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+          else
+            git commit --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+          fi
 
       - name: Fetch Deploy Branch
         run: |
-          git remote set-url origin "https://x-access-token:${{ env.DEPLOY_TOKEN }}@github.com/${{ github.repository }}"
-          git fetch origin ${{ env.DEPLOY_BRANCH }}
+          git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
+          git fetch origin $DEPLOY_BRANCH
 
       - name: Reset Deploy Branch
         run: |
-          git checkout ${{ env.DEPLOY_BRANCH }}
-          git reset --hard ${{  env.EMPLOY_BRANCH }}
+          git checkout $DEPLOY_BRANCH
+          git reset --hard $EMPLOY_BRANCH
 
       - name: Deploy
-        run: git push --force-with-lease origin ${{ env.DEPLOY_BRANCH }}
+        run: git push --force-with-lease origin $DEPLOY_BRANCH
