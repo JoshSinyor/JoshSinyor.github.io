@@ -52,7 +52,9 @@ jobs:
 
       - name: Edit Commit If No Changes
         if: env.DIFF_BOOLEAN == 'false'
-        run: git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+        run: |
+          git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+          git restore Gemfile.lock
 
       - name: Fetch Deploy Branch
         run: |
