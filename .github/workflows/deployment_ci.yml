@@ -34,12 +34,14 @@ jobs:
 
       - name: Check For Changes
         run: |
-          git add .
           if git diff --exit-code; then
             echo "DIFF_BOOLEAN=false" >> $GITHUB_ENV
           else
             echo "DIFF_BOOLEAN=true" >> $GITHUB_ENV
           fi
+
+      - name: Check Variable Status
+        run: ${{ env.DIFF_BOOLEAN }}
 
       - name: New Commit If Changes
         if: env.DIFF_BOOLEAN == 'false'
