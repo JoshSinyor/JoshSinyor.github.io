@@ -7,7 +7,9 @@
 </p>
 
 <p align="center">
-  <img src="/images/shared/punch_card_logo.svg" alt="Punch Card Logo" width="25%">
+  <a href="https://joshsinyor.github.io/">
+    <img src="/images/shared/punch_card_logo.svg" alt="Punch Card Logo" width="50%">
+  </a>
 </p>
 
 # JoshSinyor.github.io
