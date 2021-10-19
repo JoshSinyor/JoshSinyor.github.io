@@ -13,8 +13,6 @@ jobs:
       EMPLOY_BRANCH: main
       DEPLOY_BRANCH: gh-pages
       DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
-      GPG_PRIVATE_KEY: ${{ }}
-      GPG_PASSPHRASE: ${{ }}
       COMMIT_USER_NAME: GitHub Action
       COMMIT_USER_EMAIL: github-action@users.noreply.github.com
       COMMIT_MESSAGE: Automated commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }}).
@@ -31,7 +29,9 @@ jobs:
         # Test Code Begins Here
 
       - name: gpg-agent Test
-        run: eval($gpg-agent --daemon)
+        run: |
+          ${{ env.GITHUB_ACTOR}}
+          git config --l
 
         # Test Code Ends Here
 
