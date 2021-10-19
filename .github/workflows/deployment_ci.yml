@@ -3,7 +3,7 @@ name: Test & Deploy
 on:
   push:
     branches:
-      - main
+      - verification-test
 
 jobs:
   test_deploy:
@@ -26,35 +26,42 @@ jobs:
         with:
           ruby-version: 2.7.3
 
-      - name: Install Gems
-        run: |
-          bundle config set --local without 'jekyll jekyll_plugins'
-          bundle install
-          git restore Gemfile.lock
+        # Test Code Begins Here
 
-      - name: Run Tests
-        run: |
-          rubocop
-          rspec
+      - name: gpg-agent Test
+        run: eval($gpg-agent --daemon)
 
-      - name: Commit
-        run: |
-          git add .
-          if git diff-index --quiet HEAD; then
-            git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
-          else
-            git commit --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
-          fi
+        # Test Code Ends Here
 
-      - name: Fetch Deploy Branch
-        run: |
-          git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
-          git fetch origin $DEPLOY_BRANCH
-
-      - name: Reset Deploy Branch
-        run: |
-          git checkout $DEPLOY_BRANCH
-          git reset --hard $EMPLOY_BRANCH
-
-      - name: Deploy
-        run: git push --force-with-lease origin $DEPLOY_BRANCH
+      # - name: Install Gems
+      #   run: |
+      #     bundle config set --local without 'jekyll jekyll_plugins'
+      #     bundle install
+      #     git restore Gemfile.lock
+      #
+      # - name: Run Tests
+      #   run: |
+      #     rubocop
+      #     rspec
+      #
+      # - name: Commit
+      #   run: |
+      #     git add .
+      #     if git diff-index --quiet HEAD; then
+      #       git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+      #     else
+      #       git commit --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
+      #     fi
+      #
+      # - name: Fetch Deploy Branch
+      #   run: |
+      #     git remote set-url origin "https://x-access-token:$DEPLOY_TOKEN@github.com/${{ github.repository }}"
+      #     git fetch origin $DEPLOY_BRANCH
+      #
+      # - name: Reset Deploy Branch
+      #   run: |
+      #     git checkout $DEPLOY_BRANCH
+      #     git reset --hard $EMPLOY_BRANCH
+      #
+      # - name: Deploy
+      #   run: git push --force-with-lease origin $DEPLOY_BRANCH
