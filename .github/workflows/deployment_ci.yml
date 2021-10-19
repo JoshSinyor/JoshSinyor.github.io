@@ -30,8 +30,8 @@ jobs:
 
       - name: gpg-agent Test
         run: |
-          ${{ env.GITHUB_ACTOR}}
-          git config --l
+          echo ${{ env.GITHUB_ACTOR}}
+          git config -l
 
         # Test Code Ends Here
 
