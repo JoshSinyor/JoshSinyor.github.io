@@ -13,8 +13,10 @@ jobs:
       EMPLOY_BRANCH: main
       DEPLOY_BRANCH: gh-pages
       DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
+      GPG_PRIVATE_KEY: ${{ }}
+      GPG_PASSPHRASE: ${{ }}
       COMMIT_USER_NAME: GitHub Action
-      COMMIT_USER_EMAIL: github-action@github.com
+      COMMIT_USER_EMAIL: github-action@users.noreply.github.com
       COMMIT_MESSAGE: Automated commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }}).
 
     steps:
