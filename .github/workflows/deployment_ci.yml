@@ -30,8 +30,14 @@ jobs:
 
         # Test Code Begins Here
 
+      - name: Suppress Output
+        run: echo "::add-mask::${{ secrets.GPG_PRIVATE_KEY_BLOCK }}"
+
       - name: Test Step
-        run: gpg-agent --daemon
+        run: |
+          gpg-agent
+          gpg --import ${{ secrets.GPG_PRIVATE_KEY_BLOCK }}
+          gpg --list-keys
 
         # Test Code Ends Here
 
