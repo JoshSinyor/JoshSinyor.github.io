@@ -33,7 +33,6 @@ jobs:
       - name: Test Step
         run: |
           gpg-agent --daemon
-          gpg --import ${{ secrets.GPG_PRIVATE_KEY_BLOCK }}
           gpg --list-keys
 
         # Test Code Ends Here
