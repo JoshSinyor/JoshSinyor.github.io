@@ -32,7 +32,7 @@ jobs:
         run: |
           gpg-agent --daemon
           gpg --list-secret-keys
-          echo ${{ GPG_PRIVATE_KEY_BLOCK }} > private.key
+          echo ${{ secrets.GPG_PRIVATE_KEY_BLOCK }} > private.key
           head -1 private.key
           gpg --import private.key
           gpg --list-secret-keys
