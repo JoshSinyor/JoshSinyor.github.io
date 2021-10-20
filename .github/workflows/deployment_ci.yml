@@ -31,7 +31,8 @@ jobs:
 
       - name: Decode & Export GPG Key
         run: |
-          echo -n ${{ env.GPG_KEY }} | base64 --decode | gpg --import
+          echo -n ${{ secrets.GPG_KEY }} | base64 --decode | gpg --import
+          gpg --list-secret-keys
 
       # - name: Start gpg-agent and Import GPG Key
       #   run: |
