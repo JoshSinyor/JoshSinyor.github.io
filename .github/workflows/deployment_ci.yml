@@ -33,7 +33,8 @@ jobs:
         run: |
           gpg-agent --daemon
           gpg --list-secret-keys
-          base64 --decode ${{ secrets.GPG_KEY }} | gpg --import
+          echo ${{ secrets.GPG_KEY }} > private.key
+          base64 --decode private.key | gpg --import
           gpg --list-secret-keys
 
       # - name: Start gpg-agent and Import GPG Key
