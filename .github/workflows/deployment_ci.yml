@@ -30,7 +30,6 @@ jobs:
         # Test Code Begins Here
 
       - name: Decode & Export GPG Key
-        env:
         run: |
           echo "::add-mask::private.key"
           echo -n ${{ env.GPG_KEY }} | base64 --decode | private.key
