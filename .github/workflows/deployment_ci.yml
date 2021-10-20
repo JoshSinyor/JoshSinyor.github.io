@@ -34,8 +34,6 @@ jobs:
           gpg --list-secret-keys
           echo ${{ secrets.GPG_PRIVATE_KEY_BLOCK }} > private.key
           head -1 private.key
-          gpg --import private.key
-          gpg --list-secret-keys
 
       # - name: Start gpg-agent and Import GPG Key
       #   run: |
