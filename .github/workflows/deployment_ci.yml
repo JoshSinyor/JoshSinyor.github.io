@@ -31,13 +31,12 @@ jobs:
 
       - name: Decode & Export GPG Key
         run: |
-          echo "::add-mask::private.key"
           echo -n ${{ env.GPG_KEY }} | base64 --decode | private.key
 
-      - name: Start gpg-agent and Import GPG Key
-        run: |
-          gpg-agent --daemon
-          gpg --import private.key
+      # - name: Start gpg-agent and Import GPG Key
+      #   run: |
+      #     gpg-agent --daemon
+      #     gpg --import private.key
 
         # Test Code Ends Here
 
