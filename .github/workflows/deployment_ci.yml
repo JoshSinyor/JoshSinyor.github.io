@@ -15,8 +15,7 @@ jobs:
       DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
       COMMIT_USER_NAME: Joshua Sinyor
       COMMIT_USER_EMAIL: 74914999+JoshSinyor@users.noreply.github.com
-      COMMIT_GPG_KEY: ${{ secrets.GPG_PRIVATE_KEY_BLOCK }}
-      COMMIT_GPG_PASSPHRASE: ${{ secrets.GPG_KEY_PASSPHRASE }}
+      COMMIT_GPG_KEY: ${{ secrets.GPG_KEY }}
       COMMIT_MESSAGE: Automated commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }}).
 
     steps:
@@ -30,10 +29,16 @@ jobs:
 
         # Test Code Begins Here
 
-      - name: Test Step
+      - name: Decode & Export GPG Key
+        env:
+        run: |
+          echo "::add-mask::private.key"
+          echo -n ${{ env.GPG_KEY }} | base64 --decode | private.key
+
+      - name: Start gpg-agent and Import GPG Key
         run: |
           gpg-agent --daemon
-          gpg --list-keys
+          gpg --import private.key
 
         # Test Code Ends Here
 
