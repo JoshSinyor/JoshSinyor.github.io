@@ -31,10 +31,8 @@ jobs:
       - name: Decode & Export GPG Key
         run: |
           gpg-agent --daemon
-          gpg --version
           echo ${{ secrets.GPG_PRIVATE_KEY_BLOCK }} > private.key
-          gpg --batch --yes --passphrase ${{ secrets.GPG_KEY_PASSPHRASE }} --import private.key
-          gpg --list-secret-keys
+          gpg --batch --passphrase "${{ secrets.GPG_KEY_PASSPHRASE }}" --import private.key
 
       # - name: Start gpg-agent and Import GPG Key
       #   run: |
