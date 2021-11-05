@@ -252,7 +252,7 @@ Finally, I can check the commit histories of the `EMPLOY` and `DEPLOY` branches;
 
 ![DEPLOY_BRANCH Commit](/images/2021-10-11/github_action_04.png)
 
-You can see that the details of the `DEPLOY_BRANCH` commit (hash [18738cb](https://github.com/JoshSinyor/JoshSinyor.github.io/commit/18738cb00b73aaebd462c61b8a3af261a44deeb6)) correctly identify the author as GitHub Action, and that it correctly identifies the `EMPLOY_BRANCH` as `main` and the reflected commit as [93df4e](https://github.com/JoshSinyor/JoshSinyor.github.io/commit/93de4f3dcff5f4c43fe1e40fc889afdd1ffb2f52).
+You can see that the details of the `DEPLOY_BRANCH` commit (hash [18738cb](https://github.com/JoshSinyor/JoshSinyor.github.io/commit/18738cb00b73aaebd462c61b8a3af261a44deeb6)) correctly identify the author as GitHub Action, and that it correctly identifies the `EMPLOY_BRANCH` as `main` and the reflected commit as [93de4f3](https://github.com/JoshSinyor/JoshSinyor.github.io/commit/93de4f3dcff5f4c43fe1e40fc889afdd1ffb2f52).
 
 ---
 
