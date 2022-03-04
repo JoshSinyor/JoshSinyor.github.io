@@ -12,7 +12,7 @@ ruby '2.7.3'
 
 group :jekyll do
   gem 'github-pages', group: :jekyll_plugins
-  gem 'minima', '~> 2.5'
+  gem 'minima', '~> 2.5.1'
 end
 
 group :jekyll_plugins do
@@ -35,9 +35,9 @@ gem 'wdm', '~> 0.1.0', install_if: Gem.win_platform?
 # gem "kramdown-parser-gfm"
 
 group :test do
-  gem 'rspec', '>= 3.10.0', require: false
-  gem 'rubocop', '>= 1.19.1', require: false
-  gem 'rubocop-rspec', '>= 2.4.0', require: false
+  gem 'rspec', '>= 3.11.0', require: false
+  gem 'rubocop', '>= 1.25.1', require: false
+  gem 'rubocop-rspec', '>= 2.9.0', require: false
   gem 'simplecov', '>= 0.21.2', require: false
   gem 'simplecov-console', '>= 0.9.1', require: false
 end
