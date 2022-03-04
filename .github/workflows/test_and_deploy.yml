@@ -3,17 +3,17 @@ name: Test & Deploy
 on:
   push:
     branches:
-      - main
+      - switch-to-ubuntu
 
 jobs:
   test_deploy:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     env:
-      EMPLOY_BRANCH: main
+      EMPLOY_BRANCH: switch-to-ubuntu
       DEPLOY_BRANCH: gh-pages
       DEPLOY_TOKEN: ${{ secrets.ACTIONS_PAT }}
-      COMMIT_USER_NAME: GitHub Action
+      COMMIT_USER_NAME: GitHub Action "${{ github.workflow }}"
       COMMIT_USER_EMAIL: github-action@github.com
       COMMIT_MESSAGE: Automated commit. Reflects $(git rev-parse --abbrev-ref ${{ github.ref }}) branch commit $(git rev-parse --short ${{ github.sha }}).
 
@@ -25,6 +25,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.3
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "$COMMIT_USER_NAME"
+          git config --global user.email "$COMMIT_USER_EMAIL"
 
       - name: Install Gems
         run: |
@@ -40,8 +45,10 @@ jobs:
         run: |
           git add .
           if git diff-index --quiet HEAD; then
+            echo "::notice title=Amending Last Commit::No changes to commit. Amending username and e-mail address of last commit."
             git commit --amend --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
           else
+            echo "::notice title=Committing Changes::Changes to commit. Creating a new commit."
             git commit --author="$COMMIT_USER_NAME <$COMMIT_USER_EMAIL>" -m "${{ env.COMMIT_MESSAGE }}"
           fi
 
@@ -55,5 +62,5 @@ jobs:
           git checkout $DEPLOY_BRANCH
           git reset --hard $EMPLOY_BRANCH
 
-      - name: Deploy
-        run: git push --force-with-lease origin $DEPLOY_BRANCH
+      # - name: Deploy
+      #   run: git push --force-with-lease origin $DEPLOY_BRANCH
