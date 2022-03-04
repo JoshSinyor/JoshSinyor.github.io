@@ -36,8 +36,11 @@ gem 'wdm', '~> 0.1.0', install_if: Gem.win_platform?
 
 group :test do
   gem 'rspec', '>= 3.11.0', require: false
-  gem 'rubocop', '>= 1.25.1', require: false
-  gem 'rubocop-rspec', '>= 2.9.0', require: false
   gem 'simplecov', '>= 0.21.2', require: false
   gem 'simplecov-console', '>= 0.9.1', require: false
+end
+
+group :linters do
+  gem 'rubocop', '>= 1.25.1', require: false
+  gem 'rubocop-rspec', '>= 2.9.0', require: false
 end

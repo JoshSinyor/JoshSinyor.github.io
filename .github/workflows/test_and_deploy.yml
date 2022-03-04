@@ -28,13 +28,12 @@ jobs:
 
       - name: Install Gems
         run: |
-          bundle config set --local without 'jekyll jekyll_plugins'
+          bundle config set --local without 'jekyll jekyll_plugins linters'
           bundle install
           git restore Gemfile.lock
 
       - name: Run Tests
         run: |
-          rubocop
           rspec
 
       - name: Commit
