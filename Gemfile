@@ -41,6 +41,6 @@ group :test do
 end
 
 group :linters do
-  gem 'rubocop', '>= 1.25.1', require: false
-  gem 'rubocop-rspec', '>= 2.9.0', require: false
+  gem 'rubocop', '>= 1.30.0', require: false
+  gem 'rubocop-rspec', '>= 2.11.1', require: false
 end

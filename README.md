@@ -25,8 +25,8 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 - [Automation with GitHub Actions](#automation-with-github-actions)
 - [Built With](#built-with)
 - [Dependencies](#dependencies)
-- [Author(s)](#author-s-)
-- [License(s)](#license-s-)
+- [Author(s)](#authors)
+- [License(s)](#licenses)
 - [Acknowledgements](#acknowledgements)
 
 ---
@@ -40,7 +40,7 @@ This repository functions as the back-end of my GitHub Pages webpage, [The Punch
 
 ## Installation
 
-This repository is automatically processed by GitHub Pages using Jekyll. If you would like to run a copy of the site locally, fork this repository to your local machine. Verify that you have the variant of Ruby specified in the `Gemfile` installed. In your REPL of choice, change your working directory to the repository directory and run `gem install bundler`, then `bundle update`. Some of the gems this repository uses are frequently updated, so running `bundle update` frequently is advised.
+This repository is automatically processed by GitHub Pages using Jekyll. If you would like to run a copy of the site locally, fork this repository to your local machine. Verify that you have the variant of Ruby specified in the `Gemfile` installed. In your REPL of choice, change your working directory to the repository directory and run `gem install bundler`, then `bundle update`. For direct mirroring of the GitHub Pages environment, ensure that the gemset matches the current [Dependency Versions](https://pages.github.com/versions/).
 
 To start the local hosting server, run `jekyll serve`, and visit the site at http://localhost:4000/.
 
