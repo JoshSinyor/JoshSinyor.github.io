@@ -8,7 +8,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 # dependency version of GitHub Pages. These can be updated as necessary by
 # reference to https://pages.github.com/versions/.
 
-ruby '2.7.3'
+ruby '2.7.4'
 
 group :jekyll do
   gem 'github-pages', group: :jekyll_plugins
@@ -35,12 +35,12 @@ gem 'wdm', '~> 0.1.0', install_if: Gem.win_platform?
 # gem "kramdown-parser-gfm"
 
 group :test do
-  gem 'rspec', '>= 3.11.0', require: false
-  gem 'simplecov', '>= 0.21.2', require: false
+  gem 'rspec', '>= 3.12.0', require: false
+  gem 'simplecov', '>= 0.22.0', require: false
   gem 'simplecov-console', '>= 0.9.1', require: false
 end
 
 group :linters do
-  gem 'rubocop', '>= 1.30.0', require: false
-  gem 'rubocop-rspec', '>= 2.11.1', require: false
+  gem 'rubocop', '>= 1.42.0', require: false
+  gem 'rubocop-rspec', '>= 2.19.0', require: false
 end
