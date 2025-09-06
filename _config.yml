@@ -1,0 +1,39 @@
+title: "The Punch Card"
+author: "Josh Sinyor"
+description: "Projects, problems and solutions in programming."
+
+email: "josh.sinyor@gmail.com"
+twitter_username: "JoshSinyor"
+github_username: "JoshSinyor"
+linkedin_username: "joshsinyor"
+
+theme: "minima"
+
+rss: RSS
+
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+  auto_ids: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+titles_from_headings:
+  strip_title: true
+  collections: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      tags: Other
+
+exclude:
+  - spec
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
